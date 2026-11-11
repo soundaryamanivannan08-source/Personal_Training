@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Stackly Journal - Evidence-Based Fitness, Nutrition & Biomechanics</title>
+    <meta name="description" content="Explore peer-reviewed training methodologies, InBody clinical biometrics, periodized hypertrophy programming, and sports nutrition protocols from certified Stackly coaches.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        teal: {
+                            400: '#2dd4bf',
+                            500: '#14b8a6',
+                            accent: '#00e5c9',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+                        heading: ['Outfit', '"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- AOS (Animate On Scroll) Animation CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css?v=2">
+</head>
+<body class="bg-[#07111a] text-slate-100 font-sans selection:bg-[#00e5c9] selection:text-black min-h-screen flex flex-col">
+
+    <!-- Header / Navbar -->
+    <header>
+        <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-5 bg-[#07111a]/95 backdrop-blur-md border-b border-white/5">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between">
+                    <a href="index.html" class="flex items-center group cursor-pointer focus:outline-none">
+                        <img src="assets/images/logo_0991.webp" alt="Stackly" class="h-8 sm:h-9 md:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+                    </a>
+
+                    <div class="hidden md:flex items-center space-x-8 text-[15px] font-medium">
+                        <a href="index.html" class="text-gray-300 hover:text-[#00e5c9] transition py-2">Home</a>
+                        <a href="about.html" class="text-gray-300 hover:text-[#00e5c9] transition py-2">About</a>
+                        <a href="service.html" class="text-gray-300 hover:text-[#00e5c9] transition py-2">Service</a>
+                        <div class="relative py-2">
+                            <a href="blog.html" class="text-[#00e5c9] font-semibold transition">Blog</a>
+                            <span class="absolute bottom-0 left-0 right-0 h-[3px] bg-[#00e5c9] rounded-full"></span>
+                        </div>
+                        <a href="contact.html" class="text-gray-300 hover:text-[#00e5c9] transition py-2">Contact</a>
+                    </div>
+
+                    <div class="hidden md:flex items-center space-x-4">
+                        <a href="login.html" class="flex items-center space-x-2 border border-[#00e5c9]/80 text-white hover:text-black hover:bg-[#00e5c9] px-6 py-2 rounded-full text-sm font-semibold transition">
+                            <i class="fa-solid fa-user text-xs text-[#00e5c9]"></i>
+                            <span>Login</span>
+                        </a>
+                    </div>
+
+                    <div class="flex md:hidden items-center">
+                        <button id="mobile-menu-btn" aria-label="Open Navigation Menu" class="p-2.5 rounded-xl text-gray-200 hover:text-[#00e5c9]">
+                            <i class="fa-solid fa-bars-staggered text-2xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-menu-backdrop" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden transition-opacity"></div>
+    <div id="mobile-menu-drawer" class="fixed top-0 right-0 bottom-0 w-[290px] max-w-[85%] z-50 bg-[#07111a] border-l border-white/10 p-6 flex flex-col justify-between transform translate-x-full transition-transform">
+        <div>
+            <div class="flex items-center justify-between pb-6 border-b border-white/10">
+                <a href="index.html" class="flex items-center">
+                    <img src="assets/images/logo_0991.webp" alt="Stackly" class="h-7 w-auto object-contain">
+                </a>
+                <button id="mobile-menu-close" aria-label="Close Navigation Menu" class="p-2 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <div class="flex flex-col space-y-4 mt-8">
+                <a href="index.html" class="mobile-nav-link py-2 text-gray-300 border-b border-white/5">Home</a>
+                <a href="about.html" class="mobile-nav-link py-2 text-gray-300 border-b border-white/5">About</a>
+                <a href="service.html" class="mobile-nav-link py-2 text-gray-300 border-b border-white/5">Service</a>
+                <a href="blog.html" class="mobile-nav-link py-2 text-[#00e5c9] font-bold border-b border-white/5">Blog</a>
+                <a href="contact.html" class="mobile-nav-link py-2 text-gray-300 border-b border-white/5">Contact</a>
+            </div>
+        </div>
+        <div class="pt-6 border-t border-white/10">
+            <a href="login.html" class="w-full flex items-center justify-center space-x-2 border border-[#00e5c9] text-white py-3 rounded-full font-semibold">Login</a>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT WRAPPER -->
+    <main class="flex-grow">
+
+        <!-- ========================================================
+             SECTION 1: HERO EDITORIAL HEADER & DYNAMIC SEARCH/FILTER
+             ======================================================== -->
+        <section class="pt-32 sm:pt-40 pb-16 bg-[#050c14] relative overflow-hidden border-b border-white/5">
+            <!-- Ambient Glow Background -->
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 sm:w-[600px] sm:h-[600px] bg-[#00e5c9]/5 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <div data-aos="fade-down" class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#00e5c9]/10 border border-[#00e5c9]/25 text-[#00e5c9] text-xs font-bold uppercase tracking-wider mb-5">
+                    <i class="fa-solid fa-book-open text-xs"></i>
+                    <span>The Stackly Clinical Journal • Evidence Over Gimmicks</span>
+                </div>
+                
+                <h1 data-aos="fade-up" class="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white font-heading tracking-tight mb-6">
+                    Science-Backed Training, <br class="hidden sm:inline">
+                    <span class="text-[#00e5c9]">Nutrition & Biomechanics</span>
+                </h1>
+                
+                <p data-aos="fade-up" data-aos-delay="100" class="text-gray-300 max-w-3xl mx-auto text-sm sm:text-lg leading-relaxed">
+                    We ignore viral fitness fads. Every protocol published here is derived from verified exercise literature, InBody clinical biometric tracking, and tens of thousands of client training pod hours.
+                </p>
+
+                <!-- Credibility Ticker -->
+                <div data-aos="fade-up" data-aos-delay="250" class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-12 pt-8 border-t border-white/10 text-left">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-[#00e5c9]/10 text-[#00e5c9] flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-microscope text-sm"></i>
+                        </div>
+                        <div>
+                            <div class="text-base sm:text-lg font-black text-white font-heading">120+ Studies</div>
+                            <div class="text-xs text-gray-400">Cited Literature</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-[#00e5c9]/10 text-[#00e5c9] flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-user-graduate text-sm"></i>
+                        </div>
+                        <div>
+                            <div class="text-base sm:text-lg font-black text-white font-heading">50+ Coaches</div>
+                            <div class="text-xs text-gray-400">CSCS &amp; DPT Authors</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-[#00e5c9]/10 text-[#00e5c9] flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-chart-line text-sm"></i>
+                        </div>
+                        <div>
+                            <div class="text-base sm:text-lg font-black text-white font-heading">100% Clinical</div>
+                            <div class="text-xs text-gray-400">InBody Verified</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-[#00e5c9]/10 text-[#00e5c9] flex items-center justify-center shrink-0">
+                            <i class="fa-solid fa-shield-halved text-sm"></i>
+                        </div>
+                        <div>
+                            <div class="text-base sm:text-lg font-black text-white font-heading">Zero Fads</div>
+                            <div class="text-xs text-gray-400">No Gimmick Guarantee</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 2: FEATURED EDITOR'S BREAKTHROUGH ARTICLE
+             ======================================================== -->
+        <section class="py-16 sm:py-20 bg-[#07111a] border-b border-white/5 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div data-aos="fade-up" class="flex items-center justify-between mb-8">
+                    <div class="flex items-center space-x-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-[#00e5c9] animate-pulse"></span>
+                        <span class="text-xs font-bold uppercase tracking-widest text-[#00e5c9]">Editor's Featured Study</span>
+                    </div>
+                    <span class="text-xs text-gray-400 font-mono">PUBLISHED NOVEMBER 2026</span>
+                </div>
+
+                <!-- 2-Column Showcase Card -->
+                <div data-aos="fade-up" class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center bg-[#0b1724] border border-white/10 rounded-3xl p-6 sm:p-10 hover:border-[#00e5c9]/40 transition duration-300 shadow-2xl">
+                    <div class="lg:col-span-6 rounded-2xl overflow-hidden h-72 sm:h-96 relative group">
+                        <img src="assets/images/elite-coaching.webp" alt="Biomechanics of Hypertrophy in Private Training Suite" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#07111a] via-transparent to-transparent"></div>
+                        <div class="absolute top-4 left-4 bg-[#07111a]/85 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/10 text-xs font-semibold text-[#00e5c9]">
+                            <i class="fa-solid fa-trophy mr-1.5"></i> Landmark Publication
+                        </div>
+                        <div class="absolute bottom-4 left-4 right-4 bg-[#07111a]/90 backdrop-blur-md p-3.5 rounded-xl border border-white/10 flex items-center justify-between text-xs">
+                            <span class="text-gray-300">Reading Time:</span>
+                            <span class="font-bold text-[#00e5c9]">12 Min • Full Clinical Breakdown</span>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-6 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center space-x-3 mb-3">
+                                <span class="px-2.5 py-0.5 rounded-md bg-[#00e5c9]/10 text-[#00e5c9] text-xs font-bold uppercase tracking-wider">Biomechanics &amp; Hypertrophy</span>
+                                <span class="text-xs text-gray-400">Nov 8, 2026</span>
+                            </div>
+
+                            <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white font-heading mb-4 leading-tight">
+                                The Biomechanics of Hypertrophy: How Calibrated Tension &amp; Barbell Velocity Dictate True Muscle Growth
+                            </h2>
+
+                            <p class="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
+                                Lifting to failure is often counterproductive when joint alignment breaks down. We explore how tracking barbell velocity (VBT) and maximizing mechanical tension within safe kinetic angles creates 2.4x superior hypertrophy without damaging connective tissues.
+                            </p>
+
+                            <!-- Key Takeaways -->
+                            <div class="space-y-2 mb-8 text-xs sm:text-sm text-gray-300">
+                                <div class="flex items-center"><i class="fa-solid fa-circle-check text-[#00e5c9] mr-2.5"></i> Why arbitrary rep ranges fail without calibrated bar speed</div>
+                                <div class="flex items-center"><i class="fa-solid fa-circle-check text-[#00e5c9] mr-2.5"></i> Kinetic joint stacking: preventing lumbar and rotator cuff wear</div>
+                                <div class="flex items-center"><i class="fa-solid fa-circle-check text-[#00e5c9] mr-2.5"></i> InBody case analysis: 90-day lean mass deltas in executive athletes</div>
+                            </div>
+                        </div>
+
+                        <!-- Author & Action -->
+                        <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 pt-6 border-t border-white/10">
+                            <div class="flex items-center space-x-3">
+                                <img src="assets/images/alexander-vance.webp" alt="Alexander Vance" class="w-11 h-11 rounded-full object-cover border border-[#00e5c9]/30">
+                                <div>
+                                    <div class="text-sm font-bold text-white">Alexander Vance</div>
+                                    <div class="text-xs text-gray-400">Founder &amp; Performance Director, M.S. Kinesiology</div>
+                                </div>
+                            </div>
+                            <a href="404.html" class="inline-flex items-center justify-center space-x-2 bg-[#00e5c9] hover:bg-[#25f4dc] text-gray-950 font-bold px-6 py-3 rounded-full text-xs sm:text-sm transition shadow-md">
+                                <span>Read Comprehensive Analysis</span>
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 3: CORE ARTICLES DIRECTORY (FILTERABLE GRID)
+             ======================================================== -->
+        <section class="py-20 sm:py-28 bg-[#050c14] border-b border-white/5 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div data-aos="fade-up" class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                    <div>
+                        <span class="text-[#00e5c9] text-xs font-bold uppercase tracking-widest bg-[#00e5c9]/10 px-3.5 py-1 rounded-full border border-[#00e5c9]/20">
+                            Knowledge Base
+                        </span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-heading mt-3">
+                            Latest Published Research &amp; Articles
+                        </h2>
+                    </div>
+                    <div id="articles-count-label" class="text-xs sm:text-sm text-gray-400 mt-2 md:mt-0 font-mono">
+                        Showing 6 verified articles
+                    </div>
+                </div>
+
+                <!-- Articles Grid -->
+                <div id="blog-articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Article 1: Biomechanics / Squat -->
+                    <article data-aos="fade-up" data-aos-delay="100" class="blog-article-card hover-lift bg-[#0b1724] border border-white/10 rounded-3xl overflow-hidden flex flex-col group" data-category="biomechanics" data-keywords="squat mistakes biomechanics form knee cave back pain lower back bar path">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="assets/images/blog-squat-biomechanics.webp" alt="Barbell Back Squat Biomechanics and Form Fixes" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0b1724] via-transparent to-transparent"></div>
+                            <span class="absolute top-4 left-4 bg-[#00e5c9] text-gray-950 text-xs font-bold px-3 py-1 rounded-full uppercase">Biomechanics</span>
+                            <span class="absolute bottom-3 right-4 text-xs font-semibold text-gray-300 bg-[#07111a]/80 px-2.5 py-1 rounded-md backdrop-blur-sm">6 Min Read</span>
+                        </div>
+                        <div class="p-6 sm:p-7 flex-grow flex flex-col justify-between">
+                            <div>
+                                <div class="text-xs text-gray-400 mb-2 flex items-center space-x-2">
+                                    <span>Nov 4, 2026</span>
+                                    <span>•</span>
+                                    <span class="text-[#00e5c9]">Kinetic Safety</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-3 font-heading group-hover:text-[#00e5c9] transition">
+                                    5 High-Risk Barbell Squat Flaws: Biomechanical Form Fixes for Lumbar Safety
+                                </h3>
+                                <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                                    Knee cave, premature forward torso pitch, and uneven foot pressure stall progress and cause spine compression. Here is our coach checklist to correct ankle dorsiflexion and pelvic stability.
+                                </p>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                                <div class="flex items-center space-x-2.5">
+                                    <img src="assets/images/James.webp" alt="Marcus Vance" class="w-8 h-8 rounded-full object-cover">
+                                    <span class="text-xs text-gray-300 font-semibold">Marcus Vance, CSCS</span>
+                                </div>
+                                <a href="404.html" class="text-xs text-[#00e5c9] font-bold hover:underline flex items-center">
+                                    <span>Read Guide</span> <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 2: Nutrition Phasing -->
+                    <article data-aos="fade-up" data-aos-delay="200" class="blog-article-card hover-lift bg-[#0b1724] border border-white/10 rounded-3xl overflow-hidden flex flex-col group" data-category="nutrition" data-keywords="protein intake nutrition diet calories leucine threshold muscle protein synthesis timing">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="assets/images/blog-protein-nutrition.webp" alt="Precision Protein Phasing and Athletic Meal Prep" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0b1724] via-transparent to-transparent"></div>
+                            <span class="absolute top-4 left-4 bg-[#00e5c9] text-gray-950 text-xs font-bold px-3 py-1 rounded-full uppercase">Nutrition</span>
+                            <span class="absolute bottom-3 right-4 text-xs font-semibold text-gray-300 bg-[#07111a]/80 px-2.5 py-1 rounded-md backdrop-blur-sm">8 Min Read</span>
+                        </div>
+                        <div class="p-6 sm:p-7 flex-grow flex flex-col justify-between">
+                            <div>
+                                <div class="text-xs text-gray-400 mb-2 flex items-center space-x-2">
+                                    <span>Oct 29, 2026</span>
+                                    <span>•</span>
+                                    <span class="text-[#00e5c9]">Clinical Dietetics</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-3 font-heading group-hover:text-[#00e5c9] transition">
+                                    Optimal Protein Phasing: Demystifying Leucine Thresholds, MPS, and Caloric Deficits
+                                </h3>
+                                <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                                    Drinking 300g of whey will not build extra muscle. We examine real nitrogen balance studies, optimal protein distribution per meal (0.4g/kg), and daily amino acid saturation curves.
+                                </p>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                                <div class="flex items-center space-x-2.5">
+                                    <img src="assets/images/Michael.webp" alt="Elena Rodriguez" class="w-8 h-8 rounded-full object-cover">
+                                    <span class="text-xs text-gray-300 font-semibold">Elena Rodriguez, CISSN</span>
+                                </div>
+                                <a href="404.html" class="text-xs text-[#00e5c9] font-bold hover:underline flex items-center">
+                                    <span>Read Guide</span> <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 3: InBody Clinical Biometrics -->
+                    <article data-aos="fade-up" data-aos-delay="300" class="blog-article-card hover-lift bg-[#0b1724] border border-white/10 rounded-3xl overflow-hidden flex flex-col group" data-category="biomechanics" data-keywords="inbody 770 clinical biometrics body scan visceral fat skeletal muscle fluid balance water weight">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="assets/images/blog-inbody-diagnostics.webp" alt="InBody 770 Clinical Diagnostic Biometrics" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0b1724] via-transparent to-transparent"></div>
+                            <span class="absolute top-4 left-4 bg-[#00e5c9] text-gray-950 text-xs font-bold px-3 py-1 rounded-full uppercase">Diagnostics</span>
+                            <span class="absolute bottom-3 right-4 text-xs font-semibold text-gray-300 bg-[#07111a]/80 px-2.5 py-1 rounded-md backdrop-blur-sm">7 Min Read</span>
+                        </div>
+                        <div class="p-6 sm:p-7 flex-grow flex flex-col justify-between">
+                            <div>
+                                <div class="text-xs text-gray-400 mb-2 flex items-center space-x-2">
+                                    <span>Oct 24, 2026</span>
+                                    <span>•</span>
+                                    <span class="text-[#00e5c9]">Biomarkers</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-3 font-heading group-hover:text-[#00e5c9] transition">
+                                    InBody 770 Diagnostic Breakdown: Distinguishing Intracellular Water from Pure Muscle Gains
+                                </h3>
+                                <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                                    A standard bathroom scale cannot distinguish between shedding dehydrated water and burning deep visceral adipose tissue. Learn how multi-frequency segmental impedance reveals real body recomposition.
+                                </p>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                                <div class="flex items-center space-x-2.5">
+                                    <img src="assets/images/sophia-chen.webp" alt="Sophia Chen" class="w-8 h-8 rounded-full object-cover">
+                                    <span class="text-xs text-gray-300 font-semibold">Sophia Chen, M.D.</span>
+                                </div>
+                                <a href="404.html" class="text-xs text-[#00e5c9] font-bold hover:underline flex items-center">
+                                    <span>Read Guide</span> <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 4: Recovery & Cryo -->
+                    <article data-aos="fade-up" data-aos-delay="100" class="blog-article-card hover-lift bg-[#0b1724] border border-white/10 rounded-3xl overflow-hidden flex flex-col group" data-category="recovery" data-keywords="recovery cryotherapy cold plunge sauna cns fatigue sleep inflammation contrast therapy">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="assets/images/cryo-recovery.webp" alt="Hyperthermic Contrast Therapy and Cryo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0b1724] via-transparent to-transparent"></div>
+                            <span class="absolute top-4 left-4 bg-[#00e5c9] text-gray-950 text-xs font-bold px-3 py-1 rounded-full uppercase">Recovery</span>
+                            <span class="absolute bottom-3 right-4 text-xs font-semibold text-gray-300 bg-[#07111a]/80 px-2.5 py-1 rounded-md backdrop-blur-sm">5 Min Read</span>
+                        </div>
+                        <div class="p-6 sm:p-7 flex-grow flex flex-col justify-between">
+                            <div>
+                                <div class="text-xs text-gray-400 mb-2 flex items-center space-x-2">
+                                    <span>Oct 18, 2026</span>
+                                    <span>•</span>
+                                    <span class="text-[#00e5c9]">Contrast Science</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-3 font-heading group-hover:text-[#00e5c9] transition">
+                                    Hyperthermic Contrast Protocols: Combining 200°F Sauna with 42°F Plunge for CNS Recovery
+                                </h3>
+                                <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                                    Heavy neural fatigue from 90% 1RM deadlifts requires more than stretching. We examine the vasodilation-vasoconstriction cycle and heat-shock protein synthesis that restores central nervous system drive.
+                                </p>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                                <div class="flex items-center space-x-2.5">
+                                    <img src="assets/images/trainer-3.webp" alt="David Chen" class="w-8 h-8 rounded-full object-cover">
+                                    <span class="text-xs text-gray-300 font-semibold">David Chen, FMS</span>
+                                </div>
+                                <a href="404.html" class="text-xs text-[#00e5c9] font-bold hover:underline flex items-center">
+                                    <span>Read Guide</span> <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 5: Hypertrophy / Zone 2 -->
+                    <article data-aos="fade-up" data-aos-delay="200" class="blog-article-card hover-lift bg-[#0b1724] border border-white/10 rounded-3xl overflow-hidden flex flex-col group" data-category="hypertrophy" data-keywords="hypertrophy zone 2 cardio endurance vo2 max mitochondria work capacity lean mass">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="assets/images/program-hiit.webp" alt="Zone 2 Conditioning for Strength Athletes" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0b1724] via-transparent to-transparent"></div>
+                            <span class="absolute top-4 left-4 bg-[#00e5c9] text-gray-950 text-xs font-bold px-3 py-1 rounded-full uppercase">Hypertrophy</span>
+                            <span class="absolute bottom-3 right-4 text-xs font-semibold text-gray-300 bg-[#07111a]/80 px-2.5 py-1 rounded-md backdrop-blur-sm">6 Min Read</span>
+                        </div>
+                        <div class="p-6 sm:p-7 flex-grow flex flex-col justify-between">
+                            <div>
+                                <div class="text-xs text-gray-400 mb-2 flex items-center space-x-2">
+                                    <span>Oct 12, 2026</span>
+                                    <span>•</span>
+                                    <span class="text-[#00e5c9]">Mitochondrial Density</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-3 font-heading group-hover:text-[#00e5c9] transition">
+                                    Zone 2 Conditioning for Lifters: Expanding Work Capacity Without Sacrificing Strength
+                                </h3>
+                                <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                                    The myth that cardio destroys muscle gains is completely debunked by lactate threshold research. Learn how 45 minutes of aerobic base conditioning doubles your inter-set barbell recovery rate.
+                                </p>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                                <div class="flex items-center space-x-2.5">
+                                    <img src="assets/images/trainer-1.webp" alt="Marcus Vance" class="w-8 h-8 rounded-full object-cover">
+                                    <span class="text-xs text-gray-300 font-semibold">Marcus Vance, CSCS</span>
+                                </div>
+                                <a href="404.html" class="text-xs text-[#00e5c9] font-bold hover:underline flex items-center">
+                                    <span>Read Guide</span> <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Article 6: Floor Culture & Mindset -->
+                    <article data-aos="fade-up" data-aos-delay="300" class="blog-article-card hover-lift bg-[#0b1724] border border-white/10 rounded-3xl overflow-hidden flex flex-col group" data-category="recovery" data-keywords="gym anxiety habits psychology floor culture consistency zero ego private pod coaching">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="assets/images/about-fitness.webp" alt="Zero-Ego Floor Culture and Mindset" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0b1724] via-transparent to-transparent"></div>
+                            <span class="absolute top-4 left-4 bg-[#00e5c9] text-gray-950 text-xs font-bold px-3 py-1 rounded-full uppercase">Mindset &amp; Culture</span>
+                            <span class="absolute bottom-3 right-4 text-xs font-semibold text-gray-300 bg-[#07111a]/80 px-2.5 py-1 rounded-md backdrop-blur-sm">4 Min Read</span>
+                        </div>
+                        <div class="p-6 sm:p-7 flex-grow flex flex-col justify-between">
+                            <div>
+                                <div class="text-xs text-gray-400 mb-2 flex items-center space-x-2">
+                                    <span>Oct 05, 2026</span>
+                                    <span>•</span>
+                                    <span class="text-[#00e5c9]">Behavioral Psychology</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-3 font-heading group-hover:text-[#00e5c9] transition">
+                                    Zero-Ego Floor Culture: How Psychological Safety in Private Pods Accelerates Strength
+                                </h3>
+                                <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                                    Gym anxiety and intimidating big-box crowds spike cortisol and ruin mind-muscle connection. Discover why private 1-on-1 pods unlock deeper focus and 3x faster neuro-muscular adaptation.
+                                </p>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                                <div class="flex items-center space-x-2.5">
+                                    <img src="assets/images/James.webp" alt="Alexander Vance" class="w-8 h-8 rounded-full object-cover">
+                                    <span class="text-xs text-gray-300 font-semibold">Alexander Vance, M.S.</span>
+                                </div>
+                                <a href="404.html" class="text-xs text-[#00e5c9] font-bold hover:underline flex items-center">
+                                    <span>Read Guide</span> <i class="fa-solid fa-arrow-right text-[10px] ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 4: DOWNLOADABLE CLINICAL PROTOCOLS & WHITEPAPERS
+             ======================================================== -->
+        <section class="py-20 sm:py-28 bg-[#07111a] border-b border-white/5 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div data-aos="fade-up" class="text-center max-w-3xl mx-auto mb-16">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#00e5c9]/10 text-[#00e5c9] text-xs font-bold uppercase tracking-wider mb-4">
+                        FREE CLINICAL PROTOCOLS
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-heading tracking-tight mb-4">
+                        Stackly Field Manuals &amp; <span class="text-[#00e5c9]">Downloadable Guides</span>
+                    </h2>
+                    <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
+                        Download the identical protocol templates our master trainers use on the private pod floor every single day.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                    
+                    <!-- Guide 1 -->
+                    <div data-aos="fade-up" data-aos-delay="100" class="p-8 rounded-3xl bg-[#0b1724] border border-white/10 hover-lift flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="w-12 h-12 rounded-2xl bg-[#00e5c9]/15 text-[#00e5c9] flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-file-pdf"></i>
+                                </div>
+                                <span class="text-xs font-mono font-bold text-gray-400 bg-white/5 px-2.5 py-1 rounded-md">32 PAGES • PDF</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white font-heading mb-3">12-Point Joint Kinetic Screening Manual</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                                Step-by-step diagnostic screening instructions for testing ankle dorsiflexion, hip internal rotation, and thoracic spine extension before loading heavy barbells.
+                            </p>
+                        </div>
+                        <div class="pt-6 border-t border-white/5 flex items-center justify-between">
+                            <span class="text-xs text-gray-400"><i class="fa-solid fa-download text-[#00e5c9] mr-1.5"></i> 14,800+ Downloads</span>
+                            <button onclick="downloadResource('12-Point Joint Kinetic Screening Manual')" class="inline-flex items-center space-x-1.5 bg-[#00e5c9] text-gray-950 font-bold px-4 py-2 rounded-full text-xs hover:bg-[#25f4dc] transition shadow-sm">
+                                <span>Get PDF</span>
+                                <i class="fa-solid fa-arrow-down text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Guide 2 -->
+                    <div data-aos="fade-up" data-aos-delay="200" class="p-8 rounded-3xl bg-[#0b1724] border border-[#00e5c9]/30 hover-lift flex flex-col justify-between relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-[#00e5c9]/10 rounded-full blur-xl pointer-events-none"></div>
+                        <div>
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="w-12 h-12 rounded-2xl bg-[#00e5c9] text-gray-950 flex items-center justify-center text-xl shadow-md">
+                                    <i class="fa-solid fa-table-cells"></i>
+                                </div>
+                                <span class="text-xs font-mono font-bold text-[#00e5c9] bg-[#00e5c9]/10 px-2.5 py-1 rounded-md border border-[#00e5c9]/20">POPULAR • XLS</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white font-heading mb-3">Executive Macronutrient Phasing Blueprint</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                                Automated spreadsheet with built-in lean body mass formulas, carb-cycling phasing schedules, and business travel dining decision trees.
+                            </p>
+                        </div>
+                        <div class="pt-6 border-t border-white/5 flex items-center justify-between">
+                            <span class="text-xs text-gray-400"><i class="fa-solid fa-download text-[#00e5c9] mr-1.5"></i> 22,400+ Downloads</span>
+                            <button onclick="downloadResource('Executive Macronutrient Phasing Blueprint')" class="inline-flex items-center space-x-1.5 bg-[#00e5c9] text-gray-950 font-bold px-4 py-2 rounded-full text-xs hover:bg-[#25f4dc] transition shadow-sm">
+                                <span>Get Sheet</span>
+                                <i class="fa-solid fa-arrow-down text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Guide 3 -->
+                    <div data-aos="fade-up" data-aos-delay="300" class="p-8 rounded-3xl bg-[#0b1724] border border-white/10 hover-lift flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="w-12 h-12 rounded-2xl bg-[#00e5c9]/15 text-[#00e5c9] flex items-center justify-center text-xl">
+                                    <i class="fa-solid fa-snowflake"></i>
+                                </div>
+                                <span class="text-xs font-mono font-bold text-gray-400 bg-white/5 px-2.5 py-1 rounded-md">18 PAGES • PDF</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white font-heading mb-3">Contrast Cryo &amp; Sauna Standard Operating Protocol</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                                Scientific temperature exposure guidelines, heart rate monitoring, and post-hypertrophy contrast timing to accelerate central nervous system recovery.
+                            </p>
+                        </div>
+                        <div class="pt-6 border-t border-white/5 flex items-center justify-between">
+                            <span class="text-xs text-gray-400"><i class="fa-solid fa-download text-[#00e5c9] mr-1.5"></i> 9,600+ Downloads</span>
+                            <button onclick="downloadResource('Contrast Cryo & Sauna SOP')" class="inline-flex items-center space-x-1.5 bg-[#00e5c9] text-gray-950 font-bold px-4 py-2 rounded-full text-xs hover:bg-[#25f4dc] transition shadow-sm">
+                                <span>Get PDF</span>
+                                <i class="fa-solid fa-arrow-down text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 5: VIDEO MASTERCLASSES & COACH PODCAST SUITE
+             ======================================================== -->
+        <section class="py-20 sm:py-28 bg-[#050c14] border-b border-white/5 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div data-aos="fade-up" class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+                    <div>
+                        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#00e5c9]/10 text-[#00e5c9] text-xs font-bold uppercase tracking-wider mb-4">
+                            <i class="fa-solid fa-play text-xs"></i>
+                            <span>AUDIO &amp; VIDEO BREAKDOWNS</span>
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-heading tracking-tight">
+                            Watch &amp; Listen: <span class="text-[#00e5c9]">Coach Masterclasses</span>
+                        </h2>
+                    </div>
+                    <div class="mt-4 md:mt-0">
+                        <span class="text-xs text-gray-400 font-mono">NEW EPISODES EVERY TUESDAY</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Video 1 -->
+                    <div data-aos="fade-up" data-aos-delay="100" class="hover-lift bg-[#0b1724] border border-white/10 rounded-3xl overflow-hidden group">
+                        <a href="404.html" class="relative h-60 overflow-hidden cursor-pointer block" aria-label="Watch Bench Press Shoulder Impingement Masterclass">
+                            <img src="assets/images/studio-facility.webp" alt="Bench Press Form Masterclass" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition"></div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-14 h-14 rounded-full bg-[#00e5c9] text-gray-950 flex items-center justify-center text-xl shadow-lg group-hover:scale-110 transition duration-300">
+                                    <i class="fa-solid fa-play ml-1"></i>
+                                </div>
+                            </div>
+                            <span class="absolute bottom-3 right-3 bg-black/80 backdrop-blur-sm text-white text-xs font-mono px-2.5 py-1 rounded">22:45</span>
+                            <span class="absolute top-3 left-3 bg-[#07111a]/80 backdrop-blur-sm text-[#00e5c9] text-xs font-bold px-2.5 py-1 rounded border border-white/10">Masterclass</span>
+                        </a>
+                        <div class="p-6">
+                            <div class="text-xs text-gray-400 mb-2">Episode 48 • Biomechanics</div>
+                            <h3 class="text-lg font-bold text-white mb-2 font-heading group-hover:text-[#00e5c9] transition">
+                                <a href="404.html" class="hover:text-[#00e5c9] transition">Fixing Rotator Cuff Impingement on Heavy Bench Press</a>
+                            </h3>
+                            <p class="text-xs text-gray-400 leading-relaxed mb-4">
+                                Scapular retraction, elbow tuck angles (45° vs 90°), and stabilizing the lats to press heavy without anterior shoulder strain.
+                            </p>
+                            <div class="text-xs text-gray-300 font-semibold flex items-center">
+                                <i class="fa-solid fa-user-tie text-[#00e5c9] mr-2"></i> Coach Marcus Vance &amp; Dr. Jonathan Hayes
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video 2 -->
+                    <div data-aos="fade-up" data-aos-delay="200" class="hover-lift bg-[#0b1724] border border-white/10 rounded-3xl overflow-hidden group">
+                        <a href="404.html" class="relative h-60 overflow-hidden cursor-pointer block" aria-label="Listen to InBody Scan Breakdown Podcast">
+                            <img src="assets/images/inbody-biometrics.webp" alt="InBody Podcast Breakdown" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition"></div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-14 h-14 rounded-full bg-[#00e5c9] text-gray-950 flex items-center justify-center text-xl shadow-lg group-hover:scale-110 transition duration-300">
+                                    <i class="fa-solid fa-headphones"></i>
+                                </div>
+                            </div>
+                            <span class="absolute bottom-3 right-3 bg-black/80 backdrop-blur-sm text-white text-xs font-mono px-2.5 py-1 rounded">34:10</span>
+                            <span class="absolute top-3 left-3 bg-[#07111a]/80 backdrop-blur-sm text-[#00e5c9] text-xs font-bold px-2.5 py-1 rounded border border-white/10">Podcast</span>
+                        </a>
+                        <div class="p-6">
+                            <div class="text-xs text-gray-400 mb-2">Episode 47 • Diagnostics</div>
+                            <h3 class="text-lg font-bold text-white mb-2 font-heading group-hover:text-[#00e5c9] transition">
+                                <a href="404.html" class="hover:text-[#00e5c9] transition">Why Bathroom Scales Lie: Clinical InBody 770 Segmental Analysis</a>
+                            </h3>
+                            <p class="text-xs text-gray-400 leading-relaxed mb-4">
+                                A clinical deep-dive on how fluid retention masks true fat loss, and why measuring intra-to-extracellular ratios prevents chronic overtraining.
+                            </p>
+                            <div class="text-xs text-gray-300 font-semibold flex items-center">
+                                <i class="fa-solid fa-user-tie text-[#00e5c9] mr-2"></i> Alexander Vance &amp; Dr. Sophia Chen
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video 3 -->
+                    <div data-aos="fade-up" data-aos-delay="300" class="hover-lift bg-[#0b1724] border border-white/10 rounded-3xl overflow-hidden group">
+                        <a href="404.html" class="relative h-60 overflow-hidden cursor-pointer block" aria-label="Watch Nutrition Phasing Masterclass">
+                            <img src="assets/images/hybrid-remote.webp" alt="Macro Phasing Video Tutorial" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition"></div>
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-14 h-14 rounded-full bg-[#00e5c9] text-gray-950 flex items-center justify-center text-xl shadow-lg group-hover:scale-110 transition duration-300">
+                                    <i class="fa-solid fa-play ml-1"></i>
+                                </div>
+                            </div>
+                            <span class="absolute bottom-3 right-3 bg-black/80 backdrop-blur-sm text-white text-xs font-mono px-2.5 py-1 rounded">18:15</span>
+                            <span class="absolute top-3 left-3 bg-[#07111a]/80 backdrop-blur-sm text-[#00e5c9] text-xs font-bold px-2.5 py-1 rounded border border-white/10">Tutorial</span>
+                        </a>
+                        <div class="p-6">
+                            <div class="text-xs text-gray-400 mb-2">Episode 46 • Nutrition</div>
+                            <h3 class="text-lg font-bold text-white mb-2 font-heading group-hover:text-[#00e5c9] transition">
+                                <a href="404.html" class="hover:text-[#00e5c9] transition">Caloric Phasing for Busy Executives Traveling 3+ Days a Week</a>
+                            </h3>
+                            <p class="text-xs text-gray-400 leading-relaxed mb-4">
+                                Practical macro survival rules for business travel dinners, hotel fitness workouts, and maintaining unbroken streak metrics worldwide.
+                            </p>
+                            <div class="text-xs text-gray-300 font-semibold flex items-center">
+                                <i class="fa-solid fa-user-tie text-[#00e5c9] mr-2"></i> Elena Rodriguez, CISSN
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 6: REAL ATHLETE TRANSFORMATION CASE STUDIES
+             ======================================================== -->
+        <section class="py-20 sm:py-28 bg-[#07111a] border-b border-white/5 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div data-aos="fade-up" class="text-center max-w-3xl mx-auto mb-16">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#00e5c9]/10 text-[#00e5c9] text-xs font-bold uppercase tracking-wider mb-4">
+                        DOCUMENTED CASE STUDIES
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-heading tracking-tight mb-4">
+                        Real Data. Real Scans. <span class="text-[#00e5c9]">Real Outcomes.</span>
+                    </h2>
+                    <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
+                        Every single client transformation at Stackly is tracked with bi-weekly InBody 770 scans and documented barbell strength progression.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Case 1 -->
+                    <div data-aos="fade-up" data-aos-delay="100" class="hover-lift bg-[#0b1724] border border-white/10 rounded-3xl p-6 sm:p-7 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center space-x-4 mb-6">
+                                <img src="assets/images/testimonial-sarah.webp" alt="Sarah Jenkins" class="w-14 h-14 rounded-2xl object-cover border border-[#00e5c9]/40">
+                                <div>
+                                    <h3 class="text-lg font-bold text-white font-heading">Sarah Jenkins</h3>
+                                    <div class="text-xs text-gray-400">Tech Executive • 6 Months Client</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Delta Metrics -->
+                            <div class="grid grid-cols-2 gap-3 mb-6 p-4 rounded-2xl bg-[#07111a] border border-white/5 text-center">
+                                <div>
+                                    <div class="text-lg sm:text-xl font-extrabold text-[#00e5c9]">-28 lbs</div>
+                                    <div class="text-[11px] text-gray-400">Adipose Fat Lost</div>
+                                </div>
+                                <div>
+                                    <div class="text-lg sm:text-xl font-extrabold text-white">+4.2 lbs</div>
+                                    <div class="text-[11px] text-gray-400">Skeletal Muscle Added</div>
+                                </div>
+                            </div>
+
+                            <p class="text-gray-300 text-xs sm:text-sm leading-relaxed mb-6 italic">
+                                "As a tech VP working 60 hours a week, I was intimidated by gym crowds. In 6 months with Coach Marcus in the private pod, I completely eliminated 4 years of desk chronic back pain while deadlifting 185 lbs effortlessly."
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-white/5 flex items-center justify-between text-xs text-gray-400">
+                            <span>Protocol: Hybrid + Pod 3x/wk</span>
+                            <span class="text-[#00e5c9] font-bold">100% InBody Verified</span>
+                        </div>
+                    </div>
+
+                    <!-- Case 2 -->
+                    <div data-aos="fade-up" data-aos-delay="200" class="hover-lift bg-[#0b1724] border border-[#00e5c9]/30 rounded-3xl p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-20 h-20 bg-[#00e5c9]/10 rounded-full blur-lg pointer-events-none"></div>
+                        <div>
+                            <div class="flex items-center space-x-4 mb-6">
+                                <img src="assets/images/testimonial-liam.webp" alt="Liam Reynolds" class="w-14 h-14 rounded-2xl object-cover border border-[#00e5c9]/40">
+                                <div>
+                                    <h3 class="text-lg font-bold text-white font-heading">Liam Reynolds</h3>
+                                    <div class="text-xs text-gray-400">Endurance Triathlete • 8 Months</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Delta Metrics -->
+                            <div class="grid grid-cols-2 gap-3 mb-6 p-4 rounded-2xl bg-[#07111a] border border-white/5 text-center">
+                                <div>
+                                    <div class="text-lg sm:text-xl font-extrabold text-[#00e5c9]">+180 lbs</div>
+                                    <div class="text-[11px] text-gray-400">Deadlift Increase</div>
+                                </div>
+                                <div>
+                                    <div class="text-lg sm:text-xl font-extrabold text-white">Sub-20 5K</div>
+                                    <div class="text-[11px] text-gray-400">Cardio Threshold</div>
+                                </div>
+                            </div>
+
+                            <p class="text-gray-300 text-xs sm:text-sm leading-relaxed mb-6 italic">
+                                "The private pod system means I come in at 6:00 AM, hit an intense barbell block without waiting for racks, and shower in luxury before morning meetings. Zero joint aches."
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-white/5 flex items-center justify-between text-xs text-gray-400">
+                            <span>Protocol: Power + Contrast Cryo</span>
+                            <span class="text-[#00e5c9] font-bold">100% InBody Verified</span>
+                        </div>
+                    </div>
+
+                    <!-- Case 3 -->
+                    <div data-aos="fade-up" data-aos-delay="300" class="hover-lift bg-[#0b1724] border border-white/10 rounded-3xl p-6 sm:p-7 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center space-x-4 mb-6">
+                                <img src="assets/images/testimonial-chloe.webp" alt="Chloe Bennett" class="w-14 h-14 rounded-2xl object-cover border border-[#00e5c9]/40">
+                                <div>
+                                    <h3 class="text-lg font-bold text-white font-heading">Chloe Bennett</h3>
+                                    <div class="text-xs text-gray-400">Architect • 4 Months Client</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Delta Metrics -->
+                            <div class="grid grid-cols-2 gap-3 mb-6 p-4 rounded-2xl bg-[#07111a] border border-white/5 text-center">
+                                <div>
+                                    <div class="text-lg sm:text-xl font-extrabold text-[#00e5c9]">14.8%</div>
+                                    <div class="text-[11px] text-gray-400">Clinical Body Fat</div>
+                                </div>
+                                <div>
+                                    <div class="text-lg sm:text-xl font-extrabold text-white">18 Strict</div>
+                                    <div class="text-[11px] text-gray-400">Bodyweight Pull-Ups</div>
+                                </div>
+                            </div>
+
+                            <p class="text-gray-300 text-xs sm:text-sm leading-relaxed mb-6 italic">
+                                "Elena's macro coaching was a revelation. I never had to cut carbs or starve myself. Paired with 3 weekly pod workouts, I achieved the athletic muscle definition I chased for 5 years."
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-white/5 flex items-center justify-between text-xs text-gray-400">
+                            <span>Protocol: Hypertrophy + Macros</span>
+                            <span class="text-[#00e5c9] font-bold">100% InBody Verified</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 7: EXPERT CONTRIBUTOR & COACH FACULTY SPOTLIGHT
+             ======================================================== -->
+        <section class="py-20 sm:py-28 bg-[#050c14] border-b border-white/5 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div data-aos="fade-up" class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-[#00e5c9] text-xs font-bold uppercase tracking-widest bg-[#00e5c9]/10 px-3.5 py-1 rounded-full border border-[#00e5c9]/20">
+                        Editorial Board
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-heading mt-3 mb-4">
+                        Meet Our Certified Research Authors
+                    </h2>
+                    <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
+                        Every article published in The Stackly Journal undergoes peer review by board-certified exercise physiologists and physical therapists.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                    
+                    <!-- Coach 1 -->
+                    <div data-aos="fade-up" data-aos-delay="100" class="hover-lift bg-[#0b1724] border border-white/10 rounded-3xl p-6 text-center group">
+                        <img src="assets/images/Michael.webp" alt="Alexander Vance" class="w-24 h-24 rounded-full mx-auto object-cover border-2 border-[#00e5c9]/50 mb-4 group-hover:scale-105 transition">
+                        <h3 class="text-lg font-bold text-white font-heading">Alexander Vance</h3>
+                        <div class="text-xs text-[#00e5c9] font-semibold mb-2">Founder &amp; Performance Director</div>
+                        <p class="text-xs text-gray-400 leading-relaxed mb-4">M.S. Kinesiology, 12+ years bridging sports biomechanics with executive transformations.</p>
+                        <span class="text-[11px] font-mono text-gray-400 bg-white/5 px-2.5 py-1 rounded-full">34 Published Studies</span>
+                    </div>
+
+                    <!-- Coach 2 -->
+                    <div data-aos="fade-up" data-aos-delay="200" class="hover-lift bg-[#0b1724] border border-white/10 rounded-3xl p-6 text-center group">
+                        <img src="assets/images/David.webp" alt="Marcus Vance" class="w-24 h-24 rounded-full mx-auto object-cover border-2 border-white/10 mb-4 group-hover:scale-105 transition">
+                        <h3 class="text-lg font-bold text-white font-heading">Marcus Vance</h3>
+                        <div class="text-xs text-[#00e5c9] font-semibold mb-2">Head Strength &amp; Biomechanics</div>
+                        <p class="text-xs text-gray-400 leading-relaxed mb-4">CSCS, USAW Level 2. Specializes in barbell velocity, kinetic joint stacking, and spine health.</p>
+                        <span class="text-[11px] font-mono text-gray-400 bg-white/5 px-2.5 py-1 rounded-full">28 Published Guides</span>
+                    </div>
+
+                    <!-- Coach 3 -->
+                    <div data-aos="fade-up" data-aos-delay="300" class="hover-lift bg-[#0b1724] border border-white/10 rounded-3xl p-6 text-center group">
+                        <img src="assets/images/James.webp" alt="Elena Rodriguez" class="w-24 h-24 rounded-full mx-auto object-cover border-2 border-white/10 mb-4 group-hover:scale-105 transition">
+                        <h3 class="text-lg font-bold text-white font-heading">Elena Rodriguez</h3>
+                        <div class="text-xs text-[#00e5c9] font-semibold mb-2">Sports Dietitian &amp; CISSN</div>
+                        <p class="text-xs text-gray-400 leading-relaxed mb-4">Board Certified Sports Dietetics. Expert in metabolic phasing, hydration, and lipid biomarkers.</p>
+                        <span class="text-[11px] font-mono text-gray-400 bg-white/5 px-2.5 py-1 rounded-full">22 Published Protocols</span>
+                    </div>
+
+                    <!-- Coach 4 -->
+                    <div data-aos="fade-up" data-aos-delay="400" class="hover-lift bg-[#0b1724] border border-white/10 rounded-3xl p-6 text-center group">
+                        <img src="assets/images/Elena.webp" alt="Dr. Sophia Chen" class="w-24 h-24 rounded-full mx-auto object-cover border-2 border-white/10 mb-4 group-hover:scale-105 transition">
+                        <h3 class="text-lg font-bold text-white font-heading">Dr. Sophia Chen</h3>
+                        <div class="text-xs text-[#00e5c9] font-semibold mb-2">Clinical Diagnostic Advisor</div>
+                        <p class="text-xs text-gray-400 leading-relaxed mb-4">M.D., Sports Medicine Fellow. Leads clinical InBody 770 multi-frequency impedance calibration.</p>
+                        <span class="text-[11px] font-mono text-gray-400 bg-white/5 px-2.5 py-1 rounded-full">19 Clinical Whitepapers</span>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 8: WEEKLY RESEARCH DIGEST & METHODOLOGY FAQ
+             ======================================================== -->
+        <section class="py-20 sm:py-28 bg-[#07111a] border-b border-white/5 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+                    
+                    <!-- Left: Newsletter Subscription -->
+                    <div data-aos="fade-up" class="lg:col-span-5 bg-[#0b1724] border border-white/10 rounded-3xl p-8 sm:p-10 shadow-xl relative overflow-hidden">
+                        <div class="absolute -right-8 -top-8 w-32 h-32 bg-[#00e5c9]/10 rounded-full blur-2xl pointer-events-none"></div>
+                        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#00e5c9]/10 text-[#00e5c9] text-xs font-bold uppercase tracking-wider mb-4">
+                            WEEKLY RESEARCH DIGEST
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-heading mb-4 leading-tight">
+                            Subscribe to the Stackly Science Newsletter
+                        </h2>
+                        <p class="text-gray-300 text-xs sm:text-sm leading-relaxed mb-6">
+                            Join 25,000+ athletes and coaches receiving one concise email every Sunday breaking down one new peer-reviewed training study and actionable workout protocol.
+                        </p>
+
+                        <form id="blog-newsletter-form" class="space-y-4 mb-6">
+                            <div>
+                                <label for="digest-email" class="sr-only">Work or Personal Email</label>
+                                <input id="digest-email" type="email" required placeholder="Enter your best email address..." class="w-full bg-[#07111a] border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#00e5c9] transition">
+                            </div>
+                            <button type="submit" class="w-full bg-[#00e5c9] hover:bg-[#25f4dc] text-gray-950 font-bold py-3.5 rounded-xl text-sm transition shadow-md flex items-center justify-center space-x-2">
+                                <span>Join 25,000+ Subscribers</span>
+                                <i class="fa-solid fa-paper-plane text-xs"></i>
+                            </button>
+                        </form>
+
+                        <div class="space-y-2 text-xs text-gray-400">
+                            <div class="flex items-center"><i class="fa-solid fa-circle-check text-[#00e5c9] mr-2"></i> Zero spam. One-click instant unsubscribe anytime.</div>
+                            <div class="flex items-center"><i class="fa-solid fa-circle-check text-[#00e5c9] mr-2"></i> Rated 4.9/5 by health executives and strength athletes.</div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Methodology FAQ Accordion -->
+                    <div data-aos="fade-up" data-aos-delay="100" class="lg:col-span-7">
+                        <span class="text-[#00e5c9] text-xs font-bold uppercase tracking-widest bg-[#00e5c9]/10 px-3.5 py-1 rounded-full border border-[#00e5c9]/20">
+                            Common Questions
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white font-heading mt-3 mb-6">
+                            Science &amp; Editorial Standards FAQ
+                        </h2>
+                        
+                        <div class="space-y-4">
+                            
+                            <!-- FAQ 1 -->
+                            <div class="border border-white/10 bg-[#0b1724] rounded-2xl overflow-hidden transition">
+                                <button type="button" aria-expanded="false" class="faq-trigger w-full flex items-center justify-between p-5 text-left text-white font-bold text-sm sm:text-base hover:text-[#00e5c9] transition focus:outline-none">
+                                    <span>How does Stackly verify the accuracy of its articles?</span>
+                                    <i class="faq-icon fa-solid fa-chevron-down text-xs text-gray-400 transition-transform duration-300"></i>
+                                </button>
+                                <div class="faq-content hidden px-5 pb-5 text-xs sm:text-sm text-gray-400 leading-relaxed border-t border-white/5 pt-3">
+                                    Every article is authored by degreed exercise physiologists (M.S./DPT/CSCS) and cross-checked against indexed peer-reviewed literature (Journal of Strength and Conditioning Research, Sports Medicine, American College of Sports Medicine). We never publish unverified claims or sponsor-funded supplement pseudoscience.
+                                </div>
+                            </div>
+
+                            <!-- FAQ 2 -->
+                            <div class="border border-white/10 bg-[#0b1724] rounded-2xl overflow-hidden transition">
+                                <button type="button" aria-expanded="false" class="faq-trigger w-full flex items-center justify-between p-5 text-left text-white font-bold text-sm sm:text-base hover:text-[#00e5c9] transition focus:outline-none">
+                                    <span>Can I apply these protocols if I train at a commercial gym?</span>
+                                    <i class="faq-icon fa-solid fa-chevron-down text-xs text-gray-400 transition-transform duration-300"></i>
+                                </button>
+                                <div class="faq-content hidden px-5 pb-5 text-xs sm:text-sm text-gray-400 leading-relaxed border-t border-white/5 pt-3">
+                                    Yes. While Stackly operates private pod suites with custom Eleiko hardware, all biomechanical joint cues, velocity pacing guidelines, and macro phasing schedules are fully applicable in any well-equipped fitness facility or home gym setup.
+                                </div>
+                            </div>
+
+                            <!-- FAQ 3 -->
+                            <div class="border border-white/10 bg-[#0b1724] rounded-2xl overflow-hidden transition">
+                                <button type="button" aria-expanded="false" class="faq-trigger w-full flex items-center justify-between p-5 text-left text-white font-bold text-sm sm:text-base hover:text-[#00e5c9] transition focus:outline-none">
+                                    <span>How frequently are new research guides published?</span>
+                                    <i class="faq-icon fa-solid fa-chevron-down text-xs text-gray-400 transition-transform duration-300"></i>
+                                </button>
+                                <div class="faq-content hidden px-5 pb-5 text-xs sm:text-sm text-gray-400 leading-relaxed border-t border-white/5 pt-3">
+                                    We publish 2 comprehensive deep-dive articles each week, along with our Tuesday video masterclass podcast episode and Sunday clinical research digest.
+                                </div>
+                            </div>
+
+                            <!-- FAQ 4 -->
+                            <div class="border border-white/10 bg-[#0b1724] rounded-2xl overflow-hidden transition">
+                                <button type="button" aria-expanded="false" class="faq-trigger w-full flex items-center justify-between p-5 text-left text-white font-bold text-sm sm:text-base hover:text-[#00e5c9] transition focus:outline-none">
+                                    <span>How do I get featured in an athlete case study?</span>
+                                    <i class="faq-icon fa-solid fa-chevron-down text-xs text-gray-400 transition-transform duration-300"></i>
+                                </button>
+                                <div class="faq-content hidden px-5 pb-5 text-xs sm:text-sm text-gray-400 leading-relaxed border-t border-white/5 pt-3">
+                                    Stackly members who complete a 90-day private pod mesocycle and log verified InBody 770 recomposition scans are eligible to be interviewed by our editorial staff and have their anonymized or named case study archived in our journal.
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 9: HIGH-CONVERTING CONSULTATION CTA SECTION
+             ======================================================== -->
+        <section class="py-20 sm:py-28 bg-[#050c14] relative overflow-hidden">
+            <!-- Background Radial Glow -->
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,229,201,0.08)_0,transparent_70%)] pointer-events-none"></div>
+
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <div data-aos="fade-down" class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#00e5c9]/10 border border-[#00e5c9]/30 text-[#00e5c9] text-xs font-bold uppercase tracking-wider mb-6">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>STOP GUESSING. START TRANSFORMING.</span>
+                </div>
+
+                <h2 data-aos="fade-up" class="text-3xl sm:text-4xl md:text-5xl font-black text-white font-heading tracking-tight mb-6">
+                    Ready to Put Clinical Science <br class="hidden sm:inline">
+                    <span class="text-[#00e5c9]">Into Personal Practice?</span>
+                </h2>
+
+                <p data-aos="fade-up" data-aos-delay="100" class="text-gray-300 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed mb-10">
+                    Book your complimentary 45-minute discovery consultation, clinical InBody 770 body composition scan, and customized 90-day athletic roadmap today. Zero pressure, zero commitments.
+                </p>
+
+                <!-- Value Props Ticker -->
+                <div data-aos="fade-up" data-aos-delay="150" class="flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs sm:text-sm text-gray-300 mb-10">
+                    <div class="flex items-center"><i class="fa-solid fa-circle-check text-[#00e5c9] mr-2"></i> Free InBody 770 Scan ($150 Value)</div>
+                    <div class="flex items-center"><i class="fa-solid fa-circle-check text-[#00e5c9] mr-2"></i> 1-on-1 Movement Screening</div>
+                    <div class="flex items-center"><i class="fa-solid fa-circle-check text-[#00e5c9] mr-2"></i> 30-Day Money-Back Guarantee</div>
+                </div>
+
+                <!-- CTA Actions -->
+                <div data-aos="fade-up" data-aos-delay="200" class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="404.html" class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 bg-[#00e5c9] hover:bg-[#25f4dc] text-gray-950 font-bold px-8 py-4 rounded-full text-sm transition shadow-lg hover:scale-105">
+                        <span>Claim Free Discovery Session</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                    <a href="service.html" class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 bg-[#0b1724] hover:bg-white/10 text-white border border-white/10 px-8 py-4 rounded-full text-sm font-semibold transition">
+                        <span>Explore Coaching Programs</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========================================================
+         LUXURY 5-COLUMN FOOTER
+         ======================================================== -->
+    <footer class="bg-[#040a10] border-t border-white/10 text-gray-400 text-sm pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+                
+                <!-- Col 1: Brand & Bio -->
+                <div class="lg:col-span-2 space-y-4">
+                    <a href="index.html" class="flex items-center group">
+                        <img src="assets/images/logo_0991.webp" alt="Stackly" class="h-8 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+                    </a>
+                    <p class="text-xs sm:text-sm text-gray-400 leading-relaxed max-w-sm">
+                        High-performance 1-on-1 private pod personal training. Combining clinical InBody diagnostics, human biomechanics, and personalized macro nutrition to deliver guaranteed athletic outcomes.
+                    </p>
+                    <div class="flex space-x-3 text-gray-400">
+                        <a href="404.html" aria-label="Instagram" class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:text-[#00e5c9] hover:border-[#00e5c9] transition"><i class="fa-brands fa-instagram text-xs"></i></a>
+                        <a href="404.html" aria-label="YouTube" class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:text-[#00e5c9] hover:border-[#00e5c9] transition"><i class="fa-brands fa-youtube text-xs"></i></a>
+                        <a href="404.html" aria-label="LinkedIn" class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:text-[#00e5c9] hover:border-[#00e5c9] transition"><i class="fa-brands fa-linkedin-in text-xs"></i></a>
+                        <a href="404.html" aria-label="Facebook" class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:text-[#00e5c9] hover:border-[#00e5c9] transition"><i class="fa-brands fa-facebook-f text-xs"></i></a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Navigation -->
+                <div class="space-y-3">
+                    <h4 class="text-white font-bold text-xs font-mono uppercase tracking-widest">Navigation</h4>
+                    <ul class="space-y-2 text-xs sm:text-sm">
+                        <li><a href="index.html" class="hover:text-[#00e5c9] transition">Home</a></li>
+                        <li><a href="about.html" class="hover:text-[#00e5c9] transition">About Stackly</a></li>
+                        <li><a href="service.html" class="hover:text-[#00e5c9] transition">Training Services</a></li>
+                        <li><a href="blog.html" class="text-[#00e5c9] font-semibold transition">The Stackly Journal</a></li>
+                        <li><a href="contact.html" class="hover:text-[#00e5c9] transition">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Research Topics -->
+                <div class="space-y-3">
+                    <h4 class="text-white font-bold text-xs font-mono uppercase tracking-widest">Journal Topics</h4>
+                    <ul class="space-y-2 text-xs sm:text-sm">
+                        <li><a href="#blog-articles-grid" class="hover:text-[#00e5c9] transition">Barbell Biomechanics</a></li>
+                        <li><a href="#blog-articles-grid" class="hover:text-[#00e5c9] transition">InBody Diagnostics</a></li>
+                        <li><a href="#blog-articles-grid" class="hover:text-[#00e5c9] transition">Protein Phasing</a></li>
+                        <li><a href="#blog-articles-grid" class="hover:text-[#00e5c9] transition">Cryo &amp; Heat Contrast</a></li>
+                        <li><a href="#blog-articles-grid" class="hover:text-[#00e5c9] transition">Zone 2 Work Capacity</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Studio Contact -->
+                <div class="space-y-3">
+                    <h4 class="text-white font-bold text-xs font-mono uppercase tracking-widest">Private Facility</h4>
+                    <p class="text-xs text-gray-400">
+                        MMR Complex, Chinna Thirupathi, near Chinna Muniyappan Kovil<br>
+                        Salem, Tamil Nadu 636008
+                    </p>
+                    <div class="text-xs space-y-1 text-gray-400 pt-2">
+                        <div><i class="fa-solid fa-phone text-[#00e5c9] mr-2"></i> <a href="tel:9876543210" class="hover:text-[#00e5c9] transition">9876543210</a></div>
+                        <div><i class="fa-solid fa-envelope text-[#00e5c9] mr-2"></i> <a href="mailto:info@stackly.com" class="hover:text-[#00e5c9] transition">info@stackly.com</a></div>
+                        <div><i class="fa-solid fa-clock text-[#00e5c9] mr-2"></i> Mon-Sat: 5:30 AM - 9:00 PM</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Subfooter -->
+            <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400">
+                <p>&copy; 2026 Stackly Personal Training Inc. All rights reserved. Peer-reviewed athletic conditioning.</p>
+                <div class="mt-4 sm:mt-0 flex space-x-6">
+                    <a href="404.html" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="404.html" class="hover:text-white transition">Terms of Service</a>
+                    <a href="404.html" class="hover:text-white transition">Medical Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Interactive Toast Notification Container -->
+    <div id="blog-toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-[#0b1724] border border-[#00e5c9] text-white px-6 py-3.5 rounded-2xl shadow-2xl flex items-center space-x-3 text-xs sm:text-sm font-semibold transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <i class="fa-solid fa-circle-check text-[#00e5c9] text-base"></i>
+        <span id="blog-toast-msg">Action completed</span>
+    </div>
+
+    <!-- AOS (Animate On Scroll) JS CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="assets/js/main.js?v=2"></script>
+
+    <!-- Blog-Specific Interactive JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initNewsletterForm();
+        });
+
+        // Toast Feedback System
+        function showBlogToast(message) {
+            const toast = document.getElementById('blog-toast');
+            const toastMsg = document.getElementById('blog-toast-msg');
+            if (!toast || !toastMsg) return;
+            toastMsg.textContent = message;
+            toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+                toast.classList.remove('translate-y-0', 'opacity-100');
+            }, 3500);
+        }
+
+        // Download Resource Trigger
+        function downloadResource(guideName) {
+            showBlogToast('Downloading ' + guideName + ' (Free Clinical Access)...');
+        }
+
+        // Play Video Trigger
+        function playVideo(videoTitle) {
+            window.location.href = '404.html';
+        }
+
+        // Newsletter Form Handler
+        function initNewsletterForm() {
+            const form = document.getElementById('blog-newsletter-form');
+            if (!form) return;
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const emailInput = document.getElementById('digest-email');
+                const email = emailInput ? emailInput.value : '';
+                showBlogToast('Welcome to Stackly Digest! Research email dispatched to ' + email);
+                form.reset();
+            });
+        }
+    </script>
+</body>
+</html>

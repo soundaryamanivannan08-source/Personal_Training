@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackly - Personal Training | Your Fitness, Our Priority</title>
+    <meta name="description" content="Get personalized 1-on-1 personal training, expert guidance, and real fitness results with Stackly's certified personal trainers.">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        teal: {
+                            400: '#2dd4bf',
+                            500: '#14b8a6',
+                            accent: '#00e5c9',
+                            glow: 'rgba(0, 229, 201, 0.45)',
+                        },
+                        theme: {
+                            dark: '#07111a',
+                            darker: '#040b11',
+                            card: '#0d1924',
+                            cardHover: '#132332',
+                            border: 'rgba(255, 255, 255, 0.08)',
+                            tealBorder: 'rgba(0, 229, 201, 0.25)',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+                        heading: ['Outfit', '"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- AOS (Animate On Scroll) Animation CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/style.css?v=2">
+</head>
+<body class="bg-[#07111a] text-slate-100 font-sans selection:bg-[#00e5c9] selection:text-black min-h-screen flex flex-col">
+
+    <!-- ========================================================
+         HEADER / NAVBAR
+         ======================================================== -->
+    <header>
+        <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-5 bg-transparent">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between">
+                    
+                    <!-- Brand Logo: Stackly Image Logo -->
+                    <a href="index.html" class="flex items-center group cursor-pointer focus:outline-none">
+                        <img src="assets/images/logo_0991.webp" alt="Stackly" class="h-8 sm:h-9 md:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+                    </a>
+
+                    <!-- Desktop Navigation Links -->
+                    <div class="hidden md:flex items-center space-x-8 lg:space-x-10 text-[15px] font-medium">
+                        <!-- Active Link: Home with Teal Underline -->
+                        <div class="relative py-2">
+                            <a href="index.html" class="text-[#00e5c9] font-semibold transition-colors">Home</a>
+                            <span class="absolute bottom-0 left-0 right-0 h-[3px] bg-[#00e5c9] rounded-full"></span>
+                        </div>
+                        <a href="about.html" class="text-gray-300 hover:text-[#00e5c9] transition-colors py-2">About</a>
+                        <a href="service.html" class="text-gray-300 hover:text-[#00e5c9] transition-colors py-2">Service</a>
+                        <a href="blog.html" class="text-gray-300 hover:text-[#00e5c9] transition-colors py-2">Blog</a>
+                        <a href="contact.html" class="text-gray-300 hover:text-[#00e5c9] transition-colors py-2">Contact</a>
+                    </div>
+
+                    <!-- Right Header Action: Login Button -->
+                    <div class="hidden md:flex items-center space-x-4">
+                        <a href="login.html" class="group flex items-center space-x-2 border border-[#00e5c9]/80 text-white hover:text-black hover:bg-[#00e5c9] px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300">
+                            <i class="fa-solid fa-user text-xs text-[#00e5c9] group-hover:text-black transition-colors"></i>
+                            <span>Login</span>
+                        </a>
+                    </div>
+
+                    <!-- Mobile Menu Hamburger Button -->
+                    <div class="flex md:hidden items-center">
+                        <button id="mobile-menu-btn" type="button" aria-label="Open Navigation Menu" class="p-2.5 rounded-xl text-gray-200 hover:text-[#00e5c9] hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-[#00e5c9]/50 transition">
+                            <i class="fa-solid fa-bars-staggered text-2xl"></i>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Drawer Overlay & Sidebar -->
+    <div id="mobile-menu-backdrop" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden transition-opacity duration-300"></div>
+    <div id="mobile-menu-drawer" class="fixed top-0 right-0 bottom-0 w-[290px] max-w-[85%] z-50 bg-[#07111a] border-l border-white/10 p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
+        <div>
+            <!-- Drawer Header -->
+            <div class="flex items-center justify-between pb-6 border-b border-white/10">
+                <a href="index.html" class="flex items-center">
+                    <img src="assets/images/logo_0991.webp" alt="Stackly" class="h-7 w-auto object-contain">
+                </a>
+                <button id="mobile-menu-close" type="button" aria-label="Close Navigation Menu" class="p-2 text-gray-400 hover:text-white rounded-lg hover:bg-white/5">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Links -->
+            <div class="flex flex-col space-y-4 mt-8">
+                <a href="index.html" class="mobile-nav-link flex items-center justify-between py-2 text-[#00e5c9] font-semibold border-b border-white/5">
+                    <span>Home</span>
+                    <i class="fa-solid fa-chevron-right text-xs"></i>
+                </a>
+                <a href="about.html" class="mobile-nav-link flex items-center justify-between py-2 text-gray-300 hover:text-[#00e5c9] font-medium border-b border-white/5 transition">
+                    <span>About</span>
+                    <i class="fa-solid fa-chevron-right text-xs text-gray-500"></i>
+                </a>
+                <a href="service.html" class="mobile-nav-link flex items-center justify-between py-2 text-gray-300 hover:text-[#00e5c9] font-medium border-b border-white/5 transition">
+                    <span>Service</span>
+                    <i class="fa-solid fa-chevron-right text-xs text-gray-500"></i>
+                </a>
+                <a href="blog.html" class="mobile-nav-link flex items-center justify-between py-2 text-gray-300 hover:text-[#00e5c9] font-medium border-b border-white/5 transition">
+                    <span>Blog</span>
+                    <i class="fa-solid fa-chevron-right text-xs text-gray-500"></i>
+                </a>
+                <a href="contact.html" class="mobile-nav-link flex items-center justify-between py-2 text-gray-300 hover:text-[#00e5c9] font-medium border-b border-white/5 transition">
+                    <span>Contact</span>
+                    <i class="fa-solid fa-chevron-right text-xs text-gray-500"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="pt-6 border-t border-white/10 flex flex-col space-y-3">
+            <a href="login.html" class="mobile-nav-link flex items-center justify-center space-x-2 border border-[#00e5c9] text-white py-3 rounded-full font-semibold hover:bg-[#00e5c9] hover:text-black transition">
+                <i class="fa-solid fa-user text-xs text-[#00e5c9]"></i>
+                <span>Login</span>
+            </a>
+            <a href="contact.html" class="mobile-nav-link flex items-center justify-center space-x-2 bg-[#00e5c9] text-gray-950 py-3 rounded-full font-bold shadow-[0_0_20px_rgba(0,229,201,0.4)]">
+                <span>Free Trial Session</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- ========================================================
+         HERO SECTION (Matching Image Specification)
+         ======================================================== -->
+    <main class="flex-grow">
+        <section class="hero-wrapper relative min-h-screen flex flex-col justify-between pt-32 sm:pt-36 md:pt-40 lg:pt-44 overflow-hidden">
+            
+            <!-- Hero Content Container -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-20 mb-8 sm:mb-12">
+                <div class="max-w-2xl lg:max-w-3xl">
+                    
+                    <!-- Eyebrow: TRAIN • TRANSFORM • THRIVE -->
+                    <div data-aos="fade-down" data-aos-duration="600" class="inline-flex items-center space-x-3 text-xs sm:text-sm font-semibold tracking-[0.25em] uppercase text-gray-300 mb-5">
+                        <span class="hover:text-white transition">TRAIN</span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#00e5c9] shadow-[0_0_8px_#00e5c9]"></span>
+                        <span class="hover:text-white transition">TRANSFORM</span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#00e5c9] shadow-[0_0_8px_#00e5c9]"></span>
+                        <span class="hover:text-white transition">THRIVE</span>
+                    </div>
+
+                    <!-- Main Headline: Your Fitness, Our Priority -->
+                    <h1 data-aos="fade-up" data-aos-duration="750" data-aos-delay="100" class="text-4xl sm:text-5xl md:text-6xl lg:text-[76px] font-extrabold text-white tracking-tight leading-[1.08] mb-6 font-heading">
+                        Your Fitness,<br>
+                        <span class="text-[#00e5c9] drop-shadow-[0_0_35px_rgba(0,229,201,0.45)]">Our Priority</span>
+                    </h1>
+
+                    <!-- Description Subtext -->
+                    <p data-aos="fade-up" data-aos-duration="750" data-aos-delay="200" class="text-gray-300 text-base sm:text-lg md:text-xl font-normal leading-relaxed max-w-xl mb-9">
+                        Get personalized training, expert guidance and real results with our professional personal trainers.
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div data-aos="fade-up" data-aos-duration="750" data-aos-delay="300" class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-5 mb-10 sm:mb-12">
+                        <!-- Primary CTA -->
+                        <a href="404.html" class="group bg-[#00e5c9] hover:bg-[#25f4dc] text-gray-950 font-bold px-8 py-4 rounded-full transition-all duration-300 transform hover:-translate-y-0.5 shadow-[0_0_25px_rgba(0,229,201,0.4)] hover:shadow-[0_0_35px_rgba(0,229,201,0.7)] flex items-center justify-center space-x-3 text-base">
+                            <span>Start Your Journey</span>
+                            <i class="fa-solid fa-arrow-right text-sm group-hover:translate-x-1.5 transition-transform duration-300"></i>
+                        </a>
+
+                        <!-- Secondary CTA: Watch Video -->
+                        <a href="404.html" class="group bg-[#0a141d]/80 hover:bg-white/10 border border-white/50 hover:border-white text-white font-semibold px-7 py-4 rounded-full transition-all duration-300 backdrop-blur-md flex items-center justify-center space-x-3 text-base">
+                            <span class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-play text-[11px] text-white ml-0.5"></i>
+                            </span>
+                            <span>Watch Video</span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ========================================================
+                 HERO FEATURE BAR (4 Highlights from Mockup)
+                 ======================================================== -->
+            <div class="w-full z-20 px-4 sm:px-6 lg:px-8 mt-auto pb-6 sm:pb-8">
+                <div data-aos="fade-up" data-aos-delay="200" class="max-w-6xl mx-auto bg-[#0a1622]/85 backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-full py-4 px-6 md:px-8 shadow-2xl">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0 lg:divide-x lg:divide-white/10 items-center">
+                        
+                        <!-- Feature 1: Certified Trainers -->
+                        <div data-aos="fade-up" data-aos-delay="100" class="flex items-center space-x-4 lg:px-6">
+                            <div class="w-12 h-12 rounded-xl bg-[#00e5c9]/10 border border-[#00e5c9]/20 flex items-center justify-center flex-shrink-0 text-[#00e5c9]">
+                                <i class="fa-solid fa-dumbbell text-2xl"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-white font-bold text-base tracking-tight font-heading">Certified Trainers</h2>
+                                <p class="text-gray-400 text-xs sm:text-sm">Expert Guidance</p>
+                            </div>
+                        </div>
+
+                        <!-- Feature 2: Healthier You -->
+                        <div data-aos="fade-up" data-aos-delay="200" class="flex items-center space-x-4 lg:px-6">
+                            <div class="w-12 h-12 rounded-xl bg-[#00e5c9]/10 border border-[#00e5c9]/20 flex items-center justify-center flex-shrink-0 text-[#00e5c9]">
+                                <i class="fa-solid fa-heart-pulse text-2xl"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-white font-bold text-base tracking-tight font-heading">Healthier You</h2>
+                                <p class="text-gray-400 text-xs sm:text-sm">Better Life</p>
+                            </div>
+                        </div>
+
+                        <!-- Feature 3: Real Results -->
+                        <div data-aos="fade-up" data-aos-delay="300" class="flex items-center space-x-4 lg:px-6">
+                            <div class="w-12 h-12 rounded-xl bg-[#00e5c9]/10 border border-[#00e5c9]/20 flex items-center justify-center flex-shrink-0 text-[#00e5c9]">
+                                <i class="fa-solid fa-trophy text-2xl"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-white font-bold text-base tracking-tight font-heading">Real Results</h2>
+                                <p class="text-gray-400 text-xs sm:text-sm">Achieve Your Goals</p>
+                            </div>
+                        </div>
+
+                        <!-- Feature 4: Support Always -->
+                        <div data-aos="fade-up" data-aos-delay="400" class="flex items-center space-x-4 lg:px-6">
+                            <div class="w-12 h-12 rounded-xl bg-[#00e5c9]/10 border border-[#00e5c9]/20 flex items-center justify-center flex-shrink-0 text-[#00e5c9]">
+                                <i class="fa-solid fa-users text-2xl"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-white font-bold text-base tracking-tight font-heading">Support Always</h2>
+                                <p class="text-gray-400 text-xs sm:text-sm">You're Not Alone</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================================
+                 SIGNATURE TEAL WAVE DIVIDER (Exact Curve from Mockup)
+                 ======================================================== -->
+            <div class="relative w-full overflow-hidden leading-none z-10 -mt-2">
+                <svg class="relative block w-full h-12 sm:h-16 md:h-20 lg:h-24 text-[#00e5c9]" viewBox="0 0 1440 100" fill="none" preserveAspectRatio="none">
+                    <path d="M0,60 C320,105 740,20 1440,70 L1440,100 L0,100 Z" fill="#00e5c9" opacity="0.3"></path>
+                    <path d="M0,75 C360,110 820,35 1440,82 L1440,100 L0,100 Z" fill="#00e5c9"></path>
+                </svg>
+            </div>
+
+        </section>
+
+        <!-- ========================================================
+             SECTION 2: ABOUT STACKLY & WHY CHOOSE US
+             ======================================================== -->
+        <section id="about" class="py-20 md:py-28 bg-[#07111a] relative overflow-hidden">
+            <!-- Background radial glow -->
+            <div class="absolute top-1/4 left-0 w-96 h-96 bg-[#00e5c9]/5 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                    
+                    <!-- Left Column: Visual Image Showcase -->
+                    <div class="lg:col-span-5 relative" data-aos="fade-up" data-aos-duration="750">
+                        <div class="relative mx-auto max-w-md lg:max-w-none">
+                            <!-- Main Image -->
+                            <div class="rounded-3xl overflow-hidden border border-white/10 shadow-2xl relative group">
+                                <img src="assets/images/about-fitness.webp" alt="Stackly Coach with Client" class="w-full h-[460px] object-cover group-hover:scale-105 transition-transform duration-700">
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#07111a] via-transparent to-transparent"></div>
+                            </div>
+                            
+                            <!-- Floating Metric Badge 1 -->
+                            <div data-aos="zoom-in" data-aos-delay="250" class="absolute -bottom-6 -left-4 sm:left-4 bg-[#0d1924]/95 border border-[#00e5c9]/30 rounded-2xl p-5 shadow-2xl backdrop-blur-md flex items-center space-x-4">
+                                <div class="w-12 h-12 rounded-xl bg-[#00e5c9]/20 flex items-center justify-center text-[#00e5c9] text-xl font-bold">
+                                    <i class="fa-solid fa-award"></i>
+                                </div>
+                                <div>
+                                    <div class="text-2xl font-extrabold text-white font-heading">10+ Years</div>
+                                    <div class="text-xs text-gray-400">Coaching Excellence</div>
+                                </div>
+                            </div>
+
+                            <!-- Floating Metric Badge 2 -->
+                            <div data-aos="zoom-in" data-aos-delay="350" class="absolute -top-6 -right-4 bg-[#0d1924]/95 border border-white/10 rounded-2xl p-4 shadow-2xl backdrop-blur-md flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-lg bg-[#00e5c9] text-gray-950 flex items-center justify-center font-bold text-lg">
+                                    98%
+                                </div>
+                                <div class="text-xs text-gray-300 font-medium">
+                                    Client Success<br>Rate
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Content & Value Proposition -->
+                    <div class="lg:col-span-7" data-aos="fade-up" data-aos-duration="750" data-aos-delay="150">
+                        <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#00e5c9]/10 border border-[#00e5c9]/30 text-[#00e5c9] text-xs font-semibold tracking-wider uppercase mb-4">
+                            <i class="fa-solid fa-shield-halved text-xs"></i>
+                            <span>About Stackly Fitness</span>
+                        </div>
+
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-tight mb-6 font-heading">
+                            Personal Training Tailored Specifically to <span class="text-[#00e5c9]">Your Body & Lifestyle</span>
+                        </h2>
+
+                        <p class="text-gray-300 text-base sm:text-lg leading-relaxed mb-8">
+                            At Stackly, we reject one-size-fits-all workout templates. Our elite certified trainers assess your unique biomechanics, metabolism, and schedule to build a sustainable, high-impact training roadmap that gets you the results you deserve.
+                        </p>
+
+                        <!-- Key Pillars Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-10">
+                            
+                            <div data-aos="fade-up" data-aos-delay="200" class="flex items-start space-x-3.5 p-4 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-[#00e5c9]/30 transition">
+                                <div class="w-8 h-8 rounded-lg bg-[#00e5c9]/15 flex items-center justify-center text-[#00e5c9] flex-shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-check text-sm"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-white font-bold text-sm sm:text-base font-heading">1-on-1 Dedicated Coach</h3>
+                                    <p class="text-gray-400 text-xs sm:text-sm mt-1">Undivided attention on form, posture, intensity, and progression.</p>
+                                </div>
+                            </div>
+
+                            <div data-aos="fade-up" data-aos-delay="250" class="flex items-start space-x-3.5 p-4 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-[#00e5c9]/30 transition">
+                                <div class="w-8 h-8 rounded-lg bg-[#00e5c9]/15 flex items-center justify-center text-[#00e5c9] flex-shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-check text-sm"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-white font-bold text-sm sm:text-base font-heading">Personalized Nutrition</h3>
+                                    <p class="text-gray-400 text-xs sm:text-sm mt-1">Macro-balanced, delicious meal plans built around foods you enjoy.</p>
+                                </div>
+                            </div>
+
+                            <div data-aos="fade-up" data-aos-delay="300" class="flex items-start space-x-3.5 p-4 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-[#00e5c9]/30 transition">
+                                <div class="w-8 h-8 rounded-lg bg-[#00e5c9]/15 flex items-center justify-center text-[#00e5c9] flex-shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-check text-sm"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-white font-bold text-sm sm:text-base font-heading">Bi-Weekly InBody Scans</h3>
+                                    <p class="text-gray-400 text-xs sm:text-sm mt-1">Accurate muscle gain, body fat percentage, and metabolic tracking.</p>
+                                </div>
+                            </div>
+
+                            <div data-aos="fade-up" data-aos-delay="350" class="flex items-start space-x-3.5 p-4 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-[#00e5c9]/30 transition">
+                                <div class="w-8 h-8 rounded-lg bg-[#00e5c9]/15 flex items-center justify-center text-[#00e5c9] flex-shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-check text-sm"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-white font-bold text-sm sm:text-base font-heading">24/7 Trainer Support</h3>
+                                    <p class="text-gray-400 text-xs sm:text-sm mt-1">Direct WhatsApp access to your trainer for accountability and questions.</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Stats Row -->
+                        <div class="grid grid-cols-3 gap-4 pt-6 border-t border-white/10 text-center sm:text-left">
+                            <div>
+                                <div class="text-2xl sm:text-3xl font-extrabold text-[#00e5c9] font-heading">15,000+</div>
+                                <div class="text-xs sm:text-sm text-gray-400 mt-1">Clients Transformed</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl sm:text-3xl font-extrabold text-white font-heading">50+</div>
+                                <div class="text-xs sm:text-sm text-gray-400 mt-1">Certified Coaches</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl sm:text-3xl font-extrabold text-white font-heading">4.9 / 5</div>
+                                <div class="text-xs sm:text-sm text-gray-400 mt-1">Client Rating <i class="fa-solid fa-star text-amber-400"></i></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 3: SIGNATURE TRAINING PROGRAMS (SERVICES)
+             ======================================================== -->
+        <section id="services" class="py-20 md:py-28 bg-[#050c13] relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Section Header -->
+                <div data-aos="fade-up" class="text-center max-w-3xl mx-auto mb-16">
+                    <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#00e5c9]/10 border border-[#00e5c9]/30 text-[#00e5c9] text-xs font-semibold tracking-wider uppercase mb-4">
+                        <i class="fa-solid fa-fire text-xs"></i>
+                        <span>Tailored Programs</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-5 font-heading">
+                        Our Specialized <span class="text-[#00e5c9]">Training Programs</span>
+                    </h2>
+                    <p class="text-gray-400 text-base sm:text-lg">
+                        Whether your goal is muscle hypertrophy, rapid fat loss, athletic performance, or longevity, our certified specialists have a program designed for you.
+                    </p>
+                </div>
+
+                <!-- Programs Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Program 1: 1-on-1 Personal Training -->
+                    <div data-aos="fade-up" data-aos-delay="100" class="hover-lift bg-[#0d1924] border border-white/10 rounded-3xl overflow-hidden flex flex-col group">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="assets/images/elite-coaching.webp" alt="1-on-1 Personal Training in Private Suite" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0d1924] via-transparent to-transparent"></div>
+                            <span class="absolute top-4 left-4 bg-[#00e5c9] text-gray-950 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                                Most Popular
+                            </span>
+                        </div>
+                        <div class="p-6 sm:p-7 flex-grow flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between text-xs text-gray-400 mb-3">
+                                    <span><i class="fa-regular fa-clock text-[#00e5c9] mr-1"></i> 60 Min Sessions</span>
+                                    <span><i class="fa-solid fa-user-check text-[#00e5c9] mr-1"></i> Private 1-on-1</span>
+                                </div>
+                                <h3 class="text-xl sm:text-2xl font-bold text-white mb-3 font-heading group-hover:text-[#00e5c9] transition-colors">
+                                    1-on-1 Personal Training
+                                </h3>
+                                <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                                    Maximum accountability, customized exercise selection, biomechanical form correction, and personalized pacing for rapid results.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                                <span class="text-xs text-gray-400">All fitness levels</span>
+                                <a href="404.html" class="text-sm font-semibold text-[#00e5c9] hover:underline flex items-center">
+                                    Learn More <i class="fa-solid fa-arrow-right ml-1.5 text-xs"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Program 2: Strength & Hypertrophy -->
+                    <div data-aos="fade-up" data-aos-delay="200" class="hover-lift bg-[#0d1924] border border-white/10 rounded-3xl overflow-hidden flex flex-col group">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="assets/images/program-strength.webp" alt="Strength & Muscle Building" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0d1924] via-transparent to-transparent"></div>
+                            <span class="absolute top-4 left-4 bg-white/20 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                                Strength
+                            </span>
+                        </div>
+                        <div class="p-6 sm:p-7 flex-grow flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between text-xs text-gray-400 mb-3">
+                                    <span><i class="fa-regular fa-clock text-[#00e5c9] mr-1"></i> 60 Min Sessions</span>
+                                    <span><i class="fa-solid fa-dumbbell text-[#00e5c9] mr-1"></i> Heavy Lifting</span>
+                                </div>
+                                <h3 class="text-xl sm:text-2xl font-bold text-white mb-3 font-heading group-hover:text-[#00e5c9] transition-colors">
+                                    Strength & Hypertrophy
+                                </h3>
+                                <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                                    Science-backed progressive overload, compound movement mastery, and targeted periodization to pack on dense, lean muscle mass.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                                <span class="text-xs text-gray-400">Intermediate & Advanced</span>
+                                <a href="404.html" class="text-sm font-semibold text-[#00e5c9] hover:underline flex items-center">
+                                    Learn More <i class="fa-solid fa-arrow-right ml-1.5 text-xs"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Program 3: HIIT & Athletic Conditioning -->
+                    <div data-aos="fade-up" data-aos-delay="300" class="hover-lift bg-[#0d1924] border border-white/10 rounded-3xl overflow-hidden flex flex-col group">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="assets/images/program-hiit.webp" alt="HIIT & Conditioning" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0d1924] via-transparent to-transparent"></div>
+                            <span class="absolute top-4 left-4 bg-white/20 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                                Fat Burn
+                            </span>
+                        </div>
+                        <div class="p-6 sm:p-7 flex-grow flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between text-xs text-gray-400 mb-3">
+                                    <span><i class="fa-regular fa-clock text-[#00e5c9] mr-1"></i> 45 Min High-Intensity</span>
+                                    <span><i class="fa-solid fa-heart-pulse text-[#00e5c9] mr-1"></i> Cardio Peak</span>
+                                </div>
+                                <h3 class="text-xl sm:text-2xl font-bold text-white mb-3 font-heading group-hover:text-[#00e5c9] transition-colors">
+                                    HIIT & Athletic Conditioning
+                                </h3>
+                                <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                                    High-energy functional intervals designed to torch body fat, elevate VO2 max, build explosive stamina, and boost heart health.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                                <span class="text-xs text-gray-400">All fitness levels</span>
+                                <a href="404.html" class="text-sm font-semibold text-[#00e5c9] hover:underline flex items-center">
+                                    Learn More <i class="fa-solid fa-arrow-right ml-1.5 text-xs"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Program 4: Weight Loss & Body Recomposition -->
+                    <div data-aos="fade-up" data-aos-delay="100" class="hover-lift bg-[#0d1924] border border-white/10 rounded-3xl overflow-hidden flex flex-col group">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="assets/images/program-nutrition.webp" alt="Nutrition & Weight Loss" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0d1924] via-transparent to-transparent"></div>
+                            <span class="absolute top-4 left-4 bg-white/20 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                                Shred & Tone
+                            </span>
+                        </div>
+                        <div class="p-6 sm:p-7 flex-grow flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between text-xs text-gray-400 mb-3">
+                                    <span><i class="fa-solid fa-apple-whole text-[#00e5c9] mr-1"></i> Nutrition + Workouts</span>
+                                    <span><i class="fa-solid fa-chart-line text-[#00e5c9] mr-1"></i> Weekly Scans</span>
+                                </div>
+                                <h3 class="text-xl sm:text-2xl font-bold text-white mb-3 font-heading group-hover:text-[#00e5c9] transition-colors">
+                                    Weight Loss & Nutrition Coaching
+                                </h3>
+                                <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                                    Synergistic workout programming combined with flexible macro coaching. Lose fat while protecting muscle without starving.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                                <span class="text-xs text-gray-400">Beginners & Lifestyle</span>
+                                <a href="404.html" class="text-sm font-semibold text-[#00e5c9] hover:underline flex items-center">
+                                    Learn More <i class="fa-solid fa-arrow-right ml-1.5 text-xs"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Program 5: Functional Mobility & Posture Correction -->
+                    <div data-aos="fade-up" data-aos-delay="200" class="hover-lift bg-[#0d1924] border border-white/10 rounded-3xl overflow-hidden flex flex-col group">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="assets/images/about-fitness.webp" alt="Functional Mobility" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0d1924] via-transparent to-transparent"></div>
+                            <span class="absolute top-4 left-4 bg-white/20 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                                Longevity
+                            </span>
+                        </div>
+                        <div class="p-6 sm:p-7 flex-grow flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between text-xs text-gray-400 mb-3">
+                                    <span><i class="fa-solid fa-arrows-spin text-[#00e5c9] mr-1"></i> Joint Mobility</span>
+                                    <span><i class="fa-solid fa-person text-[#00e5c9] mr-1"></i> Pain-Free</span>
+                                </div>
+                                <h3 class="text-xl sm:text-2xl font-bold text-white mb-3 font-heading group-hover:text-[#00e5c9] transition-colors">
+                                    Functional Mobility & Posture
+                                </h3>
+                                <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                                    Eliminate desk-related back and neck stiffness, improve joint range of motion, and build durable rotational core stability.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                                <span class="text-xs text-gray-400">Desk Workers & Rehab</span>
+                                <a href="404.html" class="text-sm font-semibold text-[#00e5c9] hover:underline flex items-center">
+                                    Learn More <i class="fa-solid fa-arrow-right ml-1.5 text-xs"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Program 6: Hybrid & Remote App Coaching -->
+                    <div data-aos="fade-up" data-aos-delay="300" class="hover-lift bg-[#0d1924] border border-white/10 rounded-3xl overflow-hidden flex flex-col group">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="assets/images/hero-fitness.webp" alt="Hybrid Remote Coaching" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0d1924] via-transparent to-transparent"></div>
+                            <span class="absolute top-4 left-4 bg-[#00e5c9] text-gray-950 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                                Flexible
+                            </span>
+                        </div>
+                        <div class="p-6 sm:p-7 flex-grow flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between text-xs text-gray-400 mb-3">
+                                    <span><i class="fa-solid fa-mobile-screen text-[#00e5c9] mr-1"></i> Stackly Mobile App</span>
+                                    <span><i class="fa-solid fa-video text-[#00e5c9] mr-1"></i> Weekly Video Call</span>
+                                </div>
+                                <h3 class="text-xl sm:text-2xl font-bold text-white mb-3 font-heading group-hover:text-[#00e5c9] transition-colors">
+                                    Hybrid & Remote App Coaching
+                                </h3>
+                                <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                                    Train wherever you travel. Get customized workouts delivered through our mobile app with video feedback and weekly check-ins.
+                                </p>
+                            </div>
+                            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                                <span class="text-xs text-gray-400">Frequent Travelers</span>
+                                <a href="404.html" class="text-sm font-semibold text-[#00e5c9] hover:underline flex items-center">
+                                    Learn More <i class="fa-solid fa-arrow-right ml-1.5 text-xs"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 4: INTERACTIVE BMI & FITNESS CALCULATOR
+             ======================================================== -->
+        <section id="calculator" class="py-20 md:py-28 bg-[#07111a] relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div data-aos="fade-up" class="bg-gradient-to-br from-[#0c1a27] to-[#08121a] border border-[#00e5c9]/20 rounded-3xl p-6 sm:p-10 lg:p-14 shadow-2xl relative">
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                        
+                        <!-- Left Intro Text -->
+                        <div class="lg:col-span-5" data-aos="fade-up" data-aos-delay="100">
+                            <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#00e5c9]/10 border border-[#00e5c9]/30 text-[#00e5c9] text-xs font-semibold tracking-wider uppercase mb-4">
+                                <i class="fa-solid fa-calculator text-xs"></i>
+                                <span>Health Metrics</span>
+                            </div>
+                            <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4 font-heading">
+                                Calculate Your <span class="text-[#00e5c9]">BMI & Fitness Target</span>
+                            </h2>
+                            <p class="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
+                                Knowing your Body Mass Index (BMI) is the first baseline step to setting realistic transformation targets. Enter your measurements to receive an instant analysis.
+                            </p>
+                            
+                            <!-- Unit Selector Buttons -->
+                            <div class="flex items-center space-x-3 mb-6">
+                                <span class="text-xs text-gray-400 uppercase tracking-wider font-semibold">Units:</span>
+                                <div class="inline-flex rounded-xl p-1 bg-white/5 border border-white/10">
+                                    <button id="unit-metric" type="button" class="px-4 py-1.5 rounded-lg text-xs font-bold bg-[#00e5c9] text-gray-950 transition">Metric (cm/kg)</button>
+                                    <button id="unit-imperial" type="button" class="px-4 py-1.5 rounded-lg text-xs font-bold text-gray-300 hover:text-white transition">Imperial (in/lbs)</button>
+                                </div>
+                            </div>
+
+                            <div class="p-4 rounded-2xl bg-white/[0.02] border border-white/5 text-xs text-gray-400 flex items-center space-x-3">
+                                <i class="fa-solid fa-circle-info text-[#00e5c9] text-base flex-shrink-0"></i>
+                                <span>For athletic builds with high muscle mass, our trainers conduct 8-point InBody impedance scans during your initial session.</span>
+                            </div>
+                        </div>
+
+                        <!-- Right Calculator Form -->
+                        <div class="lg:col-span-7" data-aos="fade-up" data-aos-delay="200">
+                            <div class="bg-[#07111a]/80 backdrop-blur-md border border-white/10 rounded-2xl p-6 sm:p-8">
+                                
+                                <form id="bmi-form" class="space-y-5">
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                        <!-- Height Input -->
+                                        <div>
+                                            <label class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2">
+                                                Height (<span id="bmi-height-unit">cm</span>)
+                                            </label>
+                                            <div class="relative">
+                                                <input type="number" id="bmi-height" placeholder="175" class="w-full bg-[#0d1924] border border-white/10 focus:border-[#00e5c9] focus:ring-1 focus:ring-[#00e5c9] rounded-xl px-4 py-3.5 text-white placeholder-gray-500 text-sm outline-none transition">
+                                                <i class="fa-solid fa-ruler-vertical absolute right-4 top-4 text-gray-500 text-sm"></i>
+                                            </div>
+                                        </div>
+
+                                        <!-- Weight Input -->
+                                        <div>
+                                            <label class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2">
+                                                Weight (<span id="bmi-weight-unit">kg</span>)
+                                            </label>
+                                            <div class="relative">
+                                                <input type="number" id="bmi-weight" placeholder="70" class="w-full bg-[#0d1924] border border-white/10 focus:border-[#00e5c9] focus:ring-1 focus:ring-[#00e5c9] rounded-xl px-4 py-3.5 text-white placeholder-gray-500 text-sm outline-none transition">
+                                                <i class="fa-solid fa-weight-scale absolute right-4 top-4 text-gray-500 text-sm"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                        <!-- Age Input -->
+                                        <div>
+                                            <label class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2">Age</label>
+                                            <input type="number" placeholder="28" class="w-full bg-[#0d1924] border border-white/10 focus:border-[#00e5c9] focus:ring-1 focus:ring-[#00e5c9] rounded-xl px-4 py-3.5 text-white placeholder-gray-500 text-sm outline-none transition">
+                                        </div>
+
+                                        <!-- Gender Select -->
+                                        <div>
+                                            <label class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2">Gender</label>
+                                            <select class="w-full bg-[#0d1924] border border-white/10 focus:border-[#00e5c9] focus:ring-1 focus:ring-[#00e5c9] rounded-xl px-4 py-3.5 text-white text-sm outline-none transition">
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <!-- Calculate Button -->
+                                    <button id="bmi-calc-btn" type="button" class="w-full bg-[#00e5c9] hover:bg-[#25f4dc] text-gray-950 font-bold py-4 rounded-xl transition duration-300 shadow-[0_0_20px_rgba(0,229,201,0.35)] flex items-center justify-center space-x-2">
+                                        <i class="fa-solid fa-chart-pie text-sm"></i>
+                                        <span>Calculate My Metrics</span>
+                                    </button>
+                                </form>
+
+                                <!-- Result Box (Initially Hidden) -->
+                                <div id="bmi-result-box" class="hidden mt-6 p-5 rounded-xl bg-[#0d1924] border border-[#00e5c9]/40 transition-all duration-300">
+                                    <div class="flex items-center justify-between mb-3 pb-3 border-b border-white/10">
+                                        <span class="text-xs uppercase tracking-wider text-gray-400 font-semibold">Your Calculated BMI:</span>
+                                        <div class="text-3xl font-extrabold text-[#00e5c9] font-heading" id="bmi-value">22.9</div>
+                                    </div>
+                                    <div class="flex items-center space-x-2 mb-2">
+                                        <span class="text-xs text-gray-400">Classification:</span>
+                                        <span id="bmi-status" class="text-sm font-bold text-white">Normal / Healthy Weight</span>
+                                    </div>
+                                    <p id="bmi-advice" class="text-xs sm:text-sm text-gray-300 leading-relaxed mb-4">
+                                        Great baseline! Our 1-on-1 Personal Training can help you achieve peak definition, endurance, and functional strength.
+                                    </p>
+                                    <a href="404.html" class="inline-flex items-center text-xs font-bold text-[#00e5c9] hover:underline">
+                                        <span>Book a free consultation to review this with a trainer</span>
+                                        <i class="fa-solid fa-arrow-right ml-1"></i>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 5: THE 3-STEP ROADMAP (HOW IT WORKS)
+             ======================================================== -->
+        <section class="py-20 md:py-28 bg-[#050c13] relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div data-aos="fade-up" class="text-center max-w-3xl mx-auto mb-16">
+                    <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#00e5c9]/10 border border-[#00e5c9]/30 text-[#00e5c9] text-xs font-semibold tracking-wider uppercase mb-4">
+                        <i class="fa-solid fa-route text-xs"></i>
+                        <span>The Process</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-5 font-heading">
+                        How We Guide You to <span class="text-[#00e5c9]">Lasting Results</span>
+                    </h2>
+                    <p class="text-gray-400 text-base sm:text-lg">
+                        A structured, scientific progression designed to eliminate guesswork and keep you winning week after week.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+                    
+                    <!-- Step 01 -->
+                    <div data-aos="fade-up" data-aos-delay="100" class="hover-lift bg-[#0d1924] border border-white/10 rounded-3xl p-8 relative flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-8">
+                                <span class="text-5xl font-black text-white/10 font-heading">01</span>
+                                <div class="w-14 h-14 rounded-2xl bg-[#00e5c9]/10 border border-[#00e5c9]/30 flex items-center justify-center text-[#00e5c9] text-2xl">
+                                    <i class="fa-solid fa-clipboard-check"></i>
+                                </div>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-3 font-heading">Comprehensive Assessment</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                                We measure your baseline body composition, evaluate joint mobility, discuss past injuries, and understand your lifestyle routine.
+                            </p>
+                        </div>
+                        <ul class="space-y-2 text-xs text-gray-300 border-t border-white/5 pt-4">
+                            <li class="flex items-center"><i class="fa-solid fa-check text-[#00e5c9] mr-2"></i> InBody Muscle & Fat Analysis</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-[#00e5c9] mr-2"></i> Movement Screen & Posture Check</li>
+                        </ul>
+                    </div>
+
+                    <!-- Step 02 -->
+                    <div data-aos="fade-up" data-aos-delay="200" class="hover-lift bg-[#0d1924] border border-[#00e5c9]/40 rounded-3xl p-8 relative flex flex-col justify-between shadow-[0_0_30px_rgba(0,229,201,0.1)]">
+                        <div class="absolute -top-3.5 right-6 bg-[#00e5c9] text-gray-950 text-[11px] font-bold px-3 py-0.5 rounded-full uppercase tracking-wider">
+                            Custom Built
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-8">
+                                <span class="text-5xl font-black text-[#00e5c9]/20 font-heading">02</span>
+                                <div class="w-14 h-14 rounded-2xl bg-[#00e5c9] text-gray-950 flex items-center justify-center text-2xl font-bold shadow-lg">
+                                    <i class="fa-solid fa-sliders"></i>
+                                </div>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-3 font-heading">Customized Blueprint</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                                Your personal coach writes an individualized training and nutrition protocol crafted specifically for your target physique.
+                            </p>
+                        </div>
+                        <ul class="space-y-2 text-xs text-gray-300 border-t border-white/5 pt-4">
+                            <li class="flex items-center"><i class="fa-solid fa-check text-[#00e5c9] mr-2"></i> Periodized Workout Schedule</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-[#00e5c9] mr-2"></i> Calorie & Macronutrient Targets</li>
+                        </ul>
+                    </div>
+
+                    <!-- Step 03 -->
+                    <div data-aos="fade-up" data-aos-delay="300" class="hover-lift bg-[#0d1924] border border-white/10 rounded-3xl p-8 relative flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-8">
+                                <span class="text-5xl font-black text-white/10 font-heading">03</span>
+                                <div class="w-14 h-14 rounded-2xl bg-[#00e5c9]/10 border border-[#00e5c9]/30 flex items-center justify-center text-[#00e5c9] text-2xl">
+                                    <i class="fa-solid fa-flag-checkered"></i>
+                                </div>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-3 font-heading">1-on-1 Execution & Growth</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                                Train in our private studio with your trainer pushing your potential safely, analyzing metric trends, and celebrating your wins.
+                            </p>
+                        </div>
+                        <ul class="space-y-2 text-xs text-gray-300 border-t border-white/5 pt-4">
+                            <li class="flex items-center"><i class="fa-solid fa-check text-[#00e5c9] mr-2"></i> Bi-weekly Adjustments</li>
+                            <li class="flex items-center"><i class="fa-solid fa-check text-[#00e5c9] mr-2"></i> Real, Measurable Transformations</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 6: MEET OUR CERTIFIED PERSONAL TRAINERS
+             ======================================================== -->
+        <section id="trainers" class="py-20 md:py-28 bg-[#07111a] relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div data-aos="fade-up" class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+                    <div>
+                        <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#00e5c9]/10 border border-[#00e5c9]/30 text-[#00e5c9] text-xs font-semibold tracking-wider uppercase mb-4">
+                            <i class="fa-solid fa-id-badge text-xs"></i>
+                            <span>Elite Coaching Staff</span>
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight font-heading">
+                            Meet Your <span class="text-[#00e5c9]">Dedicated Trainers</span>
+                        </h2>
+                    </div>
+                    <div class="mt-4 md:mt-0">
+                        <p class="text-gray-400 max-w-md text-sm sm:text-base">
+                            Our coaches are certified by gold-standard institutions (NASM, CSCS, ACE, Precision Nutrition) with proven transformation portfolios.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Trainer 1 -->
+                    <div data-aos="fade-up" data-aos-delay="100" class="hover-lift bg-[#0d1924] border border-white/10 rounded-3xl overflow-hidden group">
+                        <div class="relative h-80 overflow-hidden">
+                            <img src="assets/images/trainer-1.webp" alt="Marcus Vance - Head Strength Coach" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0d1924] via-[#0d1924]/20 to-transparent"></div>
+                            <span class="absolute top-4 left-4 bg-[#07111a]/80 backdrop-blur-md text-[#00e5c9] border border-[#00e5c9]/30 text-xs font-bold px-3 py-1 rounded-full">
+                                CSCS • NASM-CPT
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-2xl font-bold text-white font-heading">Marcus Vance</h3>
+                                <div class="text-xs text-[#00e5c9] font-bold"><i class="fa-solid fa-star"></i> 4.9 (120+ reviews)</div>
+                            </div>
+                            <p class="text-[#00e5c9] text-xs font-semibold uppercase tracking-wider mb-4">Head Strength & Conditioning Coach</p>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                                8+ years specializing in progressive barbell powerlifting, athletic speed mechanics, and male body recomposition.
+                            </p>
+                            <a href="404.html" class="w-full py-3 rounded-xl border border-[#00e5c9]/60 text-white font-semibold hover:bg-[#00e5c9] hover:text-black transition duration-300 text-sm flex items-center justify-center space-x-2">
+                                <i class="fa-regular fa-calendar-check text-xs"></i>
+                                <span>Book Session with Marcus</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Trainer 2 -->
+                    <div data-aos="fade-up" data-aos-delay="200" class="hover-lift bg-[#0d1924] border border-[#00e5c9]/30 rounded-3xl overflow-hidden group">
+                        <div class="relative h-80 overflow-hidden">
+                            <img src="assets/images/trainer-2.webp" alt="Elena Rodriguez - Female Transformation Specialist" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0d1924] via-[#0d1924]/20 to-transparent"></div>
+                            <span class="absolute top-4 left-4 bg-[#07111a]/80 backdrop-blur-md text-[#00e5c9] border border-[#00e5c9]/30 text-xs font-bold px-3 py-1 rounded-full">
+                                ACE • Precision Nutrition
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-2xl font-bold text-white font-heading">Elena Rodriguez</h3>
+                                <div class="text-xs text-[#00e5c9] font-bold"><i class="fa-solid fa-star"></i> 5.0 (180+ reviews)</div>
+                            </div>
+                            <p class="text-[#00e5c9] text-xs font-semibold uppercase tracking-wider mb-4">Female Physique & Fat Loss Specialist</p>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                                Dedicated to helping women build lean curves, metabolic fire, and food freedom through resistance training and habit science.
+                            </p>
+                            <a href="404.html" class="w-full py-3 rounded-xl bg-[#00e5c9] text-gray-950 font-bold hover:bg-[#25f4dc] transition duration-300 text-sm shadow-[0_0_15px_rgba(0,229,201,0.3)] flex items-center justify-center space-x-2">
+                                <i class="fa-regular fa-calendar-check text-xs"></i>
+                                <span>Book Session with Elena</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Trainer 3 -->
+                    <div data-aos="fade-up" data-aos-delay="300" class="hover-lift bg-[#0d1924] border border-white/10 rounded-3xl overflow-hidden group">
+                        <div class="relative h-80 overflow-hidden">
+                            <img src="assets/images/trainer-3.webp" alt="David Chen - Mobility & Functional Coach" class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0d1924] via-[#0d1924]/20 to-transparent"></div>
+                            <span class="absolute top-4 left-4 bg-[#07111a]/80 backdrop-blur-md text-[#00e5c9] border border-[#00e5c9]/30 text-xs font-bold px-3 py-1 rounded-full">
+                                FMS • NASM-PES
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-2xl font-bold text-white font-heading">David Chen</h3>
+                                <div class="text-xs text-[#00e5c9] font-bold"><i class="fa-solid fa-star"></i> 4.9 (95+ reviews)</div>
+                            </div>
+                            <p class="text-[#00e5c9] text-xs font-semibold uppercase tracking-wider mb-4">Functional Movement & Rehab Coach</p>
+                            <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                                Expert in injury mitigation, posture restoration, and rotational torque for corporate executives and golfers.
+                            </p>
+                            <a href="404.html" class="w-full py-3 rounded-xl border border-[#00e5c9]/60 text-white font-semibold hover:bg-[#00e5c9] hover:text-black transition duration-300 text-sm flex items-center justify-center space-x-2">
+                                <i class="fa-regular fa-calendar-check text-xs"></i>
+                                <span>Book Session with David</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 7: MEMBERSHIP & PRICING PLANS
+             ======================================================== -->
+        <section id="pricing" class="py-20 md:py-28 bg-[#050c13] relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div data-aos="fade-up" class="text-center max-w-3xl mx-auto mb-16">
+                    <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#00e5c9]/10 border border-[#00e5c9]/30 text-[#00e5c9] text-xs font-semibold tracking-wider uppercase mb-4">
+                        <i class="fa-solid fa-tags text-xs"></i>
+                        <span>Transparent Investment</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-5 font-heading">
+                        Simple Plans for <span class="text-[#00e5c9]">Every Fitness Level</span>
+                    </h2>
+                    <p class="text-gray-400 text-base sm:text-lg mb-8">
+                        No hidden sign-up fees. No lock-in contracts. Switch or pause your membership anytime.
+                    </p>
+
+                    <!-- Monthly / Annual Toggle Switch -->
+                    <div class="inline-flex items-center space-x-4 bg-[#0d1924] border border-white/10 rounded-full p-2">
+                        <span class="text-sm font-semibold text-white pl-2">Monthly</span>
+                        <button id="pricing-toggle" type="button" aria-label="Toggle annual pricing" class="w-14 h-7 rounded-full bg-white/10 p-1 flex items-center cursor-pointer relative transition-colors duration-300 focus:outline-none">
+                            <div id="pricing-toggle-pill" class="w-5 h-5 rounded-full bg-[#00e5c9] shadow-md transform transition-transform duration-300"></div>
+                        </button>
+                        <span class="text-sm font-semibold text-gray-300 pr-1 flex items-center">
+                            Annual <span class="ml-2 text-[11px] font-bold text-[#00e5c9] bg-[#00e5c9]/15 px-2 py-0.5 rounded-full">Save 20%</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Pricing Cards Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+                    
+                    <!-- Plan 1: Starter -->
+                    <div data-aos="fade-up" data-aos-delay="100" class="hover-lift bg-[#0d1924] border border-white/10 rounded-3xl p-8 flex flex-col justify-between">
+                        <div>
+                            <div class="text-gray-400 uppercase text-xs tracking-widest font-bold mb-2">Starter Kickstart</div>
+                            <h3 class="text-2xl font-bold text-white mb-4 font-heading">Gym & Habit Protocol</h3>
+                            <div class="flex items-baseline mb-6">
+                                <span class="text-5xl font-black text-white font-heading" id="price-starter">$49</span>
+                                <span class="text-xs text-gray-400 ml-2 price-period">/ month</span>
+                            </div>
+                            <p class="text-gray-400 text-xs sm:text-sm mb-6">
+                                Perfect for self-motivated individuals looking for expert structured workout blueprints.
+                            </p>
+                            <ul class="space-y-3.5 text-xs sm:text-sm text-gray-300 mb-8 border-t border-white/5 pt-6">
+                                <li class="flex items-center"><i class="fa-solid fa-check text-[#00e5c9] mr-2.5"></i> 2 In-Person Trainer Check-ins / mo</li>
+                                <li class="flex items-center"><i class="fa-solid fa-check text-[#00e5c9] mr-2.5"></i> Custom Monthly Training Routine</li>
+                                <li class="flex items-center"><i class="fa-solid fa-check text-[#00e5c9] mr-2.5"></i> Stackly Mobile Workout App</li>
+                                <li class="flex items-center"><i class="fa-solid fa-check text-[#00e5c9] mr-2.5"></i> Monthly InBody Body Composition</li>
+                                <li class="flex items-center text-gray-500"><i class="fa-solid fa-xmark mr-2.5"></i> Unlimited 1-on-1 Sessions</li>
+                            </ul>
+                        </div>
+                        <a href="404.html" class="w-full py-3.5 rounded-full border border-white/20 text-white font-semibold hover:border-[#00e5c9] hover:text-[#00e5c9] transition duration-300 text-center text-sm">
+                            Choose Starter
+                        </a>
+                    </div>
+
+                    <!-- Plan 2: Pro Transformation (Featured) -->
+                    <div data-aos="zoom-in-up" data-aos-delay="200" class="hover-lift bg-[#0d1924] border-2 border-[#00e5c9] rounded-3xl p-8 lg:p-9 relative flex flex-col justify-between shadow-[0_0_40px_rgba(0,229,201,0.2)]">
+                        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-[#00e5c9] text-gray-950 text-xs font-black px-4 py-1 rounded-full uppercase tracking-widest shadow-lg">
+                            Most Popular Choice
+                        </div>
+                        <div>
+                            <div class="text-[#00e5c9] uppercase text-xs tracking-widest font-bold mb-2">Pro Transformation</div>
+                            <h3 class="text-3xl font-bold text-white mb-4 font-heading">Complete 1-on-1 Coaching</h3>
+                            <div class="flex items-baseline mb-6">
+                                <span class="text-5xl font-black text-[#00e5c9] font-heading" id="price-pro">$99</span>
+                                <span class="text-xs text-gray-400 ml-2 price-period">/ month</span>
+                            </div>
+                            <p class="text-gray-300 text-xs sm:text-sm mb-6">
+                                Complete personal training mentorship with private sessions, meal plans, and weekly accountability.
+                            </p>
+                            <ul class="space-y-3.5 text-xs sm:text-sm text-gray-200 mb-8 border-t border-white/10 pt-6">
+                                <li class="flex items-center"><i class="fa-solid fa-check text-[#00e5c9] mr-2.5"></i> <strong>3x Weekly 1-on-1 Private Sessions</strong></li>
+                                <li class="flex items-center"><i class="fa-solid fa-check text-[#00e5c9] mr-2.5"></i> Fully Tailored Nutritional Diet Plan</li>
+                                <li class="flex items-center"><i class="fa-solid fa-check text-[#00e5c9] mr-2.5"></i> Bi-Weekly InBody Scan & Revisions</li>
+                                <li class="flex items-center"><i class="fa-solid fa-check text-[#00e5c9] mr-2.5"></i> 24/7 Trainer WhatsApp Chat Support</li>
+                                <li class="flex items-center"><i class="fa-solid fa-check text-[#00e5c9] mr-2.5"></i> Full Studio Gym Access Included</li>
+                            </ul>
+                        </div>
+                        <a href="404.html" class="w-full py-4 rounded-full bg-[#00e5c9] hover:bg-[#25f4dc] text-gray-950 font-black transition duration-300 text-center text-sm shadow-[0_0_20px_rgba(0,229,201,0.4)]">
+                            Start Pro Transformation
+                        </a>
+                    </div>
+
+                    <!-- Plan 3: Elite Athlete -->
+                    <div data-aos="fade-up" data-aos-delay="300" class="hover-lift bg-[#0d1924] border border-white/10 rounded-3xl p-8 flex flex-col justify-between">
+                        <div>
+                            <div class="text-gray-400 uppercase text-xs tracking-widest font-bold mb-2">Elite VIP</div>
+                            <h3 class="text-2xl font-bold text-white mb-4 font-heading">Executive & Athlete</h3>
+                            <div class="flex items-baseline mb-6">
+                                <span class="text-5xl font-black text-white font-heading" id="price-elite">$189</span>
+                                <span class="text-xs text-gray-400 ml-2 price-period">/ month</span>
+                            </div>
+                            <p class="text-gray-400 text-xs sm:text-sm mb-6">
+                                Concierge fitness programming for executives and competitive athletes needing top-tier attention.
+                            </p>
+                            <ul class="space-y-3.5 text-xs sm:text-sm text-gray-300 mb-8 border-t border-white/5 pt-6">
+                                <li class="flex items-center"><i class="fa-solid fa-check text-[#00e5c9] mr-2.5"></i> Unlimited 1-on-1 Master Trainer Sessions</li>
+                                <li class="flex items-center"><i class="fa-solid fa-check text-[#00e5c9] mr-2.5"></i> Chef-Prepared Meal Prep Recommendations</li>
+                                <li class="flex items-center"><i class="fa-solid fa-check text-[#00e5c9] mr-2.5"></i> Sports Massage & Recovery Protocols</li>
+                                <li class="flex items-center"><i class="fa-solid fa-check text-[#00e5c9] mr-2.5"></i> Priority Scheduling & Travel Support</li>
+                                <li class="flex items-center"><i class="fa-solid fa-check text-[#00e5c9] mr-2.5"></i> Custom Supplementation Stack</li>
+                            </ul>
+                        </div>
+                        <a href="404.html" class="w-full py-3.5 rounded-full border border-white/20 text-white font-semibold hover:border-[#00e5c9] hover:text-[#00e5c9] transition duration-300 text-center text-sm">
+                            Choose Elite VIP
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 8: CLIENT SUCCESS STORIES & TESTIMONIALS
+             ======================================================== -->
+        <section class="py-20 md:py-28 bg-[#07111a] relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div data-aos="fade-up" class="text-center max-w-3xl mx-auto mb-16">
+                    <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#00e5c9]/10 border border-[#00e5c9]/30 text-[#00e5c9] text-xs font-semibold tracking-wider uppercase mb-4">
+                        <i class="fa-solid fa-trophy text-xs"></i>
+                        <span>Verified Transformations</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-5 font-heading">
+                        Real Clients. <span class="text-[#00e5c9]">Real Life Results.</span>
+                    </h2>
+                    <p class="text-gray-400 text-base sm:text-lg">
+                        See how everyday professionals transformed their body, stamina, and confidence under the guidance of Stackly trainers.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Testimonial 1 -->
+                    <div data-aos="fade-up" data-aos-delay="100" class="hover-lift bg-[#0d1924] border border-white/10 rounded-3xl p-8 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center space-x-1 text-[#00e5c9] text-sm mb-4">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-gray-300 text-sm sm:text-base leading-relaxed italic mb-6">
+                                "I lost 26 lbs in 14 weeks with Marcus. More importantly, my chronic lower back ache is completely gone. The 1-on-1 attention was worth every single dollar."
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-between border-t border-white/10 pt-5 gap-3">
+                            <div class="flex items-center space-x-3.5 min-w-0">
+                                <img src="assets/images/testimonial-sarah.webp" alt="Sarah Jenkins" class="w-12 h-12 rounded-full object-cover border-2 border-[#00e5c9] shadow-[0_0_12px_rgba(0,229,201,0.25)] shrink-0">
+                                <div class="min-w-0">
+                                    <h4 class="text-white font-bold text-base font-heading truncate">Sarah Jenkins</h4>
+                                    <p class="text-xs text-gray-400 truncate">Marketing Director • 34 yrs</p>
+                                </div>
+                            </div>
+                            <span class="text-xs font-bold text-[#00e5c9] bg-[#00e5c9]/10 px-3 py-1 rounded-full shrink-0 whitespace-nowrap">-26 lbs Fat</span>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div data-aos="fade-up" data-aos-delay="200" class="hover-lift bg-[#0d1924] border border-[#00e5c9]/30 rounded-3xl p-8 flex flex-col justify-between shadow-[0_0_20px_rgba(0,229,201,0.1)]">
+                        <div>
+                            <div class="flex items-center space-x-1 text-[#00e5c9] text-sm mb-4">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-gray-300 text-sm sm:text-base leading-relaxed italic mb-6">
+                                "Stackly changed my entire relationship with food and lifting. Elena didn't just give me drills; she taught me biomechanics and helped me stay consistent without crash dieting."
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-between border-t border-white/10 pt-5 gap-3">
+                            <div class="flex items-center space-x-3.5 min-w-0">
+                                <img src="assets/images/testimonial-liam.webp" alt="Liam Reynolds" class="w-12 h-12 rounded-full object-cover border-2 border-[#00e5c9] shadow-[0_0_12px_rgba(0,229,201,0.25)] shrink-0">
+                                <div class="min-w-0">
+                                    <h4 class="text-white font-bold text-base font-heading truncate">Liam Reynolds</h4>
+                                    <p class="text-xs text-gray-400 truncate">Software Architect • 29 yrs</p>
+                                </div>
+                            </div>
+                            <span class="text-xs font-bold text-[#00e5c9] bg-[#00e5c9]/10 px-3 py-1 rounded-full shrink-0 whitespace-nowrap">+14 lbs Muscle</span>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div data-aos="fade-up" data-aos-delay="300" class="hover-lift bg-[#0d1924] border border-white/10 rounded-3xl p-8 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center space-x-1 text-[#00e5c9] text-sm mb-4">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-gray-300 text-sm sm:text-base leading-relaxed italic mb-6">
+                                "At 52, I thought my knees couldn't handle squatting. David rebuilt my joint mobility step-by-step. I'm now lifting heavier than I did in my thirties!"
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-between border-t border-white/10 pt-5 gap-3">
+                            <div class="flex items-center space-x-3.5 min-w-0">
+                                <img src="assets/images/testimonial-robert.webp" alt="Robert Chen" class="w-12 h-12 rounded-full object-cover border-2 border-[#00e5c9] shadow-[0_0_12px_rgba(0,229,201,0.25)] shrink-0">
+                                <div class="min-w-0">
+                                    <h4 class="text-white font-bold text-base font-heading truncate">Robert Chen</h4>
+                                    <p class="text-xs text-gray-400 truncate">Financial Advisor • 52 yrs</p>
+                                </div>
+                            </div>
+                            <span class="text-xs font-bold text-[#00e5c9] bg-[#00e5c9]/10 px-3 py-1 rounded-full shrink-0 whitespace-nowrap">Pain-Free Mobility</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 9: FREQUENTLY ASKED QUESTIONS (FAQ)
+             ======================================================== -->
+        <section class="py-20 md:py-28 bg-[#07111a] relative">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div data-aos="fade-up" class="text-center max-w-2xl mx-auto mb-16">
+                    <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#00e5c9]/10 border border-[#00e5c9]/30 text-[#00e5c9] text-xs font-semibold tracking-wider uppercase mb-4">
+                        <i class="fa-solid fa-circle-question text-xs"></i>
+                        <span>Got Questions?</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-4 font-heading">
+                        Frequently Asked <span class="text-[#00e5c9]">Questions</span>
+                    </h2>
+                    <p class="text-gray-400 text-sm sm:text-base">
+                        Everything you need to know before stepping into the studio.
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    
+                    <!-- FAQ 1 -->
+                    <div data-aos="fade-up" data-aos-delay="100" class="bg-[#0d1924] border border-white/10 rounded-2xl overflow-hidden">
+                        <button type="button" class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between text-white font-bold text-base sm:text-lg focus:outline-none">
+                            <span>Do I need prior gym experience before starting 1-on-1 training?</span>
+                            <i class="fa-solid fa-chevron-down faq-icon transition-transform duration-300 text-gray-400"></i>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-6 text-gray-300 text-sm leading-relaxed border-t border-white/5 pt-4">
+                            Not at all! Over 60% of our clients have never lifted weights before. Our trainers specialize in foundational mechanics, safe movement progressions, and building your confidence from scratch without judgment.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div data-aos="fade-up" data-aos-delay="150" class="bg-[#0d1924] border border-white/10 rounded-2xl overflow-hidden">
+                        <button type="button" class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between text-white font-bold text-base sm:text-lg focus:outline-none">
+                            <span>What happens during my free trial consultation?</span>
+                            <i class="fa-solid fa-chevron-down faq-icon transition-transform duration-300 text-gray-400"></i>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-6 text-gray-300 text-sm leading-relaxed border-t border-white/5 pt-4">
+                            You'll sit down with one of our master trainers for 45 minutes. We take a full InBody body scan, evaluate movement patterns and joint flexibility, discuss your diet history, and test a gentle sample workout so you experience our coaching firsthand.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div data-aos="fade-up" data-aos-delay="200" class="bg-[#0d1924] border border-white/10 rounded-2xl overflow-hidden">
+                        <button type="button" class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between text-white font-bold text-base sm:text-lg focus:outline-none">
+                            <span>Can I change or switch my trainer if needed?</span>
+                            <i class="fa-solid fa-chevron-down faq-icon transition-transform duration-300 text-gray-400"></i>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-6 text-gray-300 text-sm leading-relaxed border-t border-white/5 pt-4">
+                            Yes, absolutely. We want you to feel 100% comfortable and aligned with your coach. If your schedule changes or you'd prefer a trainer with a different specialty, our client manager transitions you seamlessly without penalty.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div data-aos="fade-up" data-aos-delay="250" class="bg-[#0d1924] border border-white/10 rounded-2xl overflow-hidden">
+                        <button type="button" class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between text-white font-bold text-base sm:text-lg focus:outline-none">
+                            <span>How quickly can I expect to see visible results?</span>
+                            <i class="fa-solid fa-chevron-down faq-icon transition-transform duration-300 text-gray-400"></i>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-6 text-gray-300 text-sm leading-relaxed border-t border-white/5 pt-4">
+                            Most clients experience noticeable energy improvements and reduced joint tightness within the first 14 days. Visible body recomposition (muscle definition, waist reduction) typically occurs between weeks 4 to 8 with consistent attendance and nutrition adherence.
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========================================================
+         FOOTER
+         ======================================================== -->
+    <footer class="bg-[#040a10] border-t border-white/10 text-gray-400 text-sm pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+                
+                <!-- Col 1: Brand & Mission -->
+                <div class="lg:col-span-2">
+                    <a href="index.html" class="flex items-center mb-5 group">
+                        <img src="assets/images/logo_0991.webp" alt="Stackly" class="h-8 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+                    </a>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6 max-w-sm">
+                        Elite 1-on-1 personal training, science-driven strength programming, and customized lifestyle coaching. Your fitness is our priority.
+                    </p>
+                    <div class="flex items-center space-x-3 text-white">
+                        <a href="#" class="w-9 h-9 rounded-full bg-white/5 hover:bg-[#00e5c9] hover:text-black flex items-center justify-center transition">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-white/5 hover:bg-[#00e5c9] hover:text-black flex items-center justify-center transition">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-white/5 hover:bg-[#00e5c9] hover:text-black flex items-center justify-center transition">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-white/5 hover:bg-[#00e5c9] hover:text-black flex items-center justify-center transition">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Navigation -->
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4 font-heading">Quick Links</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="index.html" class="hover:text-[#00e5c9] transition">Home</a></li>
+                        <li><a href="about.html" class="hover:text-[#00e5c9] transition">About Us</a></li>
+                        <li><a href="service.html" class="hover:text-[#00e5c9] transition">Training Programs</a></li>
+                        <li><a href="blog.html" class="hover:text-[#00e5c9] transition">Fitness Blog</a></li>
+                        <li><a href="contact.html" class="hover:text-[#00e5c9] transition">Contact & Studio</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Programs -->
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4 font-heading">Programs</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="service.html" class="hover:text-[#00e5c9] transition">1-on-1 Personal Training</a></li>
+                        <li><a href="service.html" class="hover:text-[#00e5c9] transition">Strength & Hypertrophy</a></li>
+                        <li><a href="service.html" class="hover:text-[#00e5c9] transition">HIIT Conditioning</a></li>
+                        <li><a href="service.html" class="hover:text-[#00e5c9] transition">Weight Loss Coaching</a></li>
+                        <li><a href="service.html" class="hover:text-[#00e5c9] transition">Online App Mentorship</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Studio Hours & Location -->
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4 font-heading">Studio Location</h4>
+                    <p class="text-sm text-gray-400 mb-2">
+                        <i class="fa-solid fa-location-dot text-[#00e5c9] mr-2"></i> MMR Complex, Chinna Thirupathi, near Chinna Muniyappan Kovil, Salem, Tamil Nadu 636008
+                    </p>
+                    <p class="text-sm text-gray-400 mb-2">
+                        <i class="fa-solid fa-phone text-[#00e5c9] mr-2"></i> <a href="tel:9876543210" class="hover:text-[#00e5c9] transition">9876543210</a>
+                    </p>
+                    <p class="text-sm text-gray-400 mb-4">
+                        <i class="fa-solid fa-envelope text-[#00e5c9] mr-2"></i> <a href="mailto:info@stackly.com" class="hover:text-[#00e5c9] transition">info@stackly.com</a>
+                    </p>
+                    <div class="text-xs text-gray-400 space-y-1">
+                        <div>Mon - Fri: 5:30 AM – 9:00 PM</div>
+                        
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Copyright & Legal -->
+            <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500">
+                <p>&copy; 2026 Stackly Personal Training. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 sm:mt-0">
+                    <a href="#" class="hover:text-gray-300 transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-gray-300 transition">Terms of Service</a>
+                    <a href="#" class="hover:text-gray-300 transition">Health Disclaimer</a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+
+
+
+    <!-- AOS (Animate On Scroll) JS CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <!-- Main JavaScript -->
+    <script src="assets/js/main.js?v=2"></script>
+</body>
+</html>

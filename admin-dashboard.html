@@ -1,0 +1,1794 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full overflow-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackly Fitness Portal | Admin Dashboard</title>
+    
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        theme: {
+                            teal: '#00e5c9',
+                            tealHover: '#1cf5dc',
+                            tealDark: '#0d9488',
+                            tealBg: 'rgba(0, 229, 201, 0.12)',
+                            dark: '#07111a',
+                            darkCard: '#0d1924',
+                        },
+                        sidebar: {
+                            DEFAULT: '#07111a',
+                            hover: '#0f1f2e',
+                            active: '#00e5c9',
+                        },
+                        portal: {
+                            bg: '#f4f6fa',
+                            navy: '#0f172a',
+                            teal: '#00e5c9',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+                        heading: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- AOS (Animate On Scroll) Animation CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f4f6fa;
+            color: #0f172a;
+        }
+        .portal-sidebar {
+            width: 250px;
+            background-color: #07111a;
+        }
+        .chart-grid-line {
+            stroke: #e2e8f0;
+            stroke-width: 1;
+            stroke-dasharray: 0;
+        }
+        .chart-axis-text {
+            font-size: 11px;
+            font-weight: 500;
+            fill: #64748b;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .chart-bar-teal {
+            fill: #00e5c9;
+            transition: all 0.3s ease;
+        }
+        .chart-bar-teal:hover {
+            fill: #22f5dc;
+            filter: drop-shadow(0 4px 10px rgba(0, 229, 201, 0.5));
+        }
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+        .tab-panel {
+            display: none;
+        }
+        .tab-panel.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="h-full overflow-hidden flex flex-col md:flex-row antialiased bg-[#f4f6fa]">
+
+    <!-- Mobile Sidebar Backdrop Overlay -->
+    <div id="mobileSidebarBackdrop" class="fixed inset-0 bg-black/60 z-40 hidden md:hidden transition-opacity"></div>
+
+    <!-- ==============================================
+         LEFT SIDEBAR NAVIGATION (Deep Slate Navy #07111a)
+         ============================================== -->
+    <aside id="portalSidebar" class="portal-sidebar fixed md:sticky top-0 h-screen z-50 flex flex-col justify-between shrink-0 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out p-5 select-none shadow-2xl md:shadow-none border-r border-white/5">
+        
+        <div>
+            <!-- Top Brand Logo: Stackly Image Logo & FITNESS ADMIN -->
+            <div class="flex items-center justify-between pb-6 pt-1">
+                <a href="index.html" class="flex items-center space-x-2.5 group">
+                    <img src="assets/images/logo_0991.webp" alt="Stackly" class="h-7 sm:h-8 w-auto object-contain transition-transform duration-200 group-hover:scale-105">
+                    <span class="text-[9px] font-bold uppercase tracking-wider text-[#00e5c9] shrink-0">FITNESS ADMIN</span>
+                </a>
+                <!-- Close Button (Mobile) -->
+                <button id="closeSidebarBtn" class="md:hidden text-slate-400 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Section Title -->
+            <div class="text-[11px] font-bold uppercase tracking-widest text-[#64748b] mt-3 mb-4 px-1">
+                DASHBOARD VIEWS
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="space-y-1.5" id="sidebarNav">
+                <!-- 1. Overview (Active Tab: Vibrant Teal #00e5c9 with Dark Text) -->
+                <button type="button" class="tab-trigger active w-full flex items-center space-x-3.5 px-3.5 py-3 rounded-xl text-sm font-bold text-gray-950 bg-[#00e5c9] shadow-[0_0_15px_rgba(0,229,201,0.35)] transition-all duration-200" data-target="tab-overview">
+                    <span class="w-6 h-6 rounded-full bg-gray-950/20 flex items-center justify-center text-gray-950 shrink-0 text-xs">
+                        <i class="fa-solid fa-chart-pie"></i>
+                    </span>
+                    <span>Overview</span>
+                </button>
+
+                <!-- 2. Client Roster -->
+                <button type="button" class="tab-trigger w-full flex items-center space-x-3.5 px-3.5 py-3 rounded-xl text-sm font-medium text-[#94a3b8] hover:text-white hover:bg-[#0f1f2e] transition-all duration-200" data-target="tab-clients">
+                    <i class="fa-solid fa-users w-6 text-center text-sm"></i>
+                    <span>Client Roster</span>
+                </button>
+
+                <!-- 3. Coach Assignments -->
+                <button type="button" class="tab-trigger w-full flex items-center space-x-3.5 px-3.5 py-3 rounded-xl text-sm font-medium text-[#94a3b8] hover:text-white hover:bg-[#0f1f2e] transition-all duration-200" data-target="tab-coaches">
+                    <i class="fa-solid fa-id-card-clip w-6 text-center text-sm"></i>
+                    <span>Coach Roster</span>
+                </button>
+
+                <!-- 4. Studio Schedule -->
+                <button type="button" class="tab-trigger w-full flex items-center space-x-3.5 px-3.5 py-3 rounded-xl text-sm font-medium text-[#94a3b8] hover:text-white hover:bg-[#0f1f2e] transition-all duration-200" data-target="tab-studio-schedule">
+                    <i class="fa-regular fa-calendar-check w-6 text-center text-sm"></i>
+                    <span>Studio Schedule</span>
+                </button>
+
+                <!-- 5. Membership Billing -->
+                <button type="button" class="tab-trigger w-full flex items-center space-x-3.5 px-3.5 py-3 rounded-xl text-sm font-medium text-[#94a3b8] hover:text-white hover:bg-[#0f1f2e] transition-all duration-200" data-target="tab-memberships">
+                    <i class="fa-solid fa-credit-card w-6 text-center text-sm"></i>
+                    <span>Billing &amp; Revenue</span>
+                </button>
+
+                <!-- 6. Admin Settings -->
+                <button type="button" class="tab-trigger w-full flex items-center space-x-3.5 px-3.5 py-3 rounded-xl text-sm font-medium text-[#94a3b8] hover:text-white hover:bg-[#0f1f2e] transition-all duration-200" data-target="tab-admin-settings">
+                    <i class="fa-solid fa-user-gear w-6 text-center text-sm"></i>
+                    <span>Admin Settings</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Bottom Pinned Logout -->
+        <div class="pt-4 border-t border-white/5">
+            <a href="login.html" class="w-full flex items-center space-x-3 px-3.5 py-3 rounded-xl text-sm font-semibold text-white bg-[#0f1f2e] hover:bg-[#152a3d] border border-white/5 transition-all duration-200 shadow-sm group">
+                <i class="fa-solid fa-arrow-right-from-bracket text-[#00e5c9] group-hover:translate-x-0.5 transition-transform"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- ==============================================
+         RIGHT MAIN CONTENT AREA
+         ============================================== -->
+    <div class="flex-1 flex flex-col h-full bg-[#f4f6fa] overflow-y-auto overflow-x-hidden min-w-0 max-w-full">
+
+        <!-- ==============================================
+             TOP STICKY NAVBAR (Pure White)
+             ============================================== -->
+        <header class="h-20 bg-white/95 backdrop-blur-md border-b border-slate-200/90 flex items-center justify-between px-4 sm:px-6 lg:px-10 sticky top-0 z-30 shadow-sm shrink-0">
+            <!-- Left Side Title & Toggle -->
+            <div class="flex items-center space-x-2 sm:space-x-3 min-w-0">
+                <button id="menuToggleBtn" class="md:hidden p-2 -ml-1 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition shrink-0">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+                <h1 class="text-xl sm:text-2xl font-bold text-[#0f172a] font-heading tracking-tight truncate" id="topPageTitle">Overview</h1>
+            </div>
+
+            <!-- Right Side Controls -->
+            <div class="flex items-center space-x-2 sm:space-x-4 shrink-0">
+                
+                <!-- Notifications Bell -->
+                <div class="relative">
+                    <button id="bellBtn" class="w-10 h-10 rounded-full bg-white hover:bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-600 transition shadow-sm relative focus:outline-none">
+                        <i class="fa-regular fa-bell text-base"></i>
+                        <span class="absolute top-2 right-2.5 w-2 h-2 rounded-full bg-[#00e5c9]"></span>
+                    </button>
+                    <!-- Bell Dropdown Panel -->
+                    <div id="bellDropdown" class="hidden absolute right-0 mt-2 w-80 bg-white rounded-2xl shadow-xl border border-slate-200 p-4 z-50">
+                        <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Studio Alerts</span>
+                            <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-teal-50 text-[#0d9488]">3 Priority</span>
+                        </div>
+                        <div class="space-y-3 mt-3 text-xs">
+                            <div class="flex items-start space-x-2.5 p-2 rounded-lg hover:bg-slate-50 transition">
+                                <span class="w-2 h-2 rounded-full bg-[#00e5c9] mt-1.5 shrink-0"></span>
+                                <div>
+                                    <div class="font-bold text-slate-800">Peak Hour Capacity Alert</div>
+                                    <div class="text-slate-500">6:00 PM private pods are 100% booked today.</div>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-2.5 p-2 rounded-lg hover:bg-slate-50 transition">
+                                <span class="w-2 h-2 rounded-full bg-[#0d9488] mt-1.5 shrink-0"></span>
+                                <div>
+                                    <div class="font-bold text-slate-800">New Client Assessment Booked</div>
+                                    <div class="text-slate-500">Trial InBody scan scheduled with Coach Elena.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin Profile Display Pill with Teal Accent -->
+                <div class="flex items-center space-x-2 sm:space-x-3 bg-white border border-slate-200 rounded-full p-1 sm:pl-1.5 sm:pr-4 sm:py-1.5 shadow-sm" id="adminProfileHeaderPill">
+                    <div class="relative shrink-0">
+                        <img id="adminHeaderAvatar" src="assets/images/alexander-vance.webp" alt="Administrator" class="w-9 h-9 rounded-full object-cover border-2 border-[#00e5c9]">
+                        <div id="adminHeaderInitials" class="w-9 h-9 rounded-full bg-[#07111a] text-[#00e5c9] font-bold text-xs border-2 border-[#00e5c9] hidden items-center justify-center">AV</div>
+                    </div>
+                    <div class="text-left hidden sm:block max-w-[190px]">
+                        <div class="text-xs font-bold text-[#0f172a] leading-snug truncate" id="adminHeaderName">Alexander Vance</div>
+                        <div class="text-[10px] font-semibold text-[#0d9488] leading-snug truncate" id="adminHeaderEmail" title="admin@stacklyfit.com">admin@stacklyfit.com</div>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- ==============================================
+             PORTAL MAIN BODY
+             ============================================== -->
+        <main class="p-4 sm:p-6 lg:p-8 space-y-6 flex-1 min-w-0 w-full overflow-x-hidden">
+
+            <!-- ==============================================
+                 TAB 1: OVERVIEW (Matching exact screenshot structure with fitness admin theme)
+                 ============================================== -->
+            <div id="tab-overview" class="tab-panel active space-y-6 min-w-0 max-w-full">
+                
+                <!-- Welcome Greeting Banner (Admin) -->
+                <div data-aos="fade-down" class="bg-gradient-to-r from-[#07111a] via-[#0c1a27] to-[#0d2232] rounded-2xl p-5 sm:p-7 border border-white/10 shadow-md text-white flex flex-col md:flex-row md:items-center justify-between gap-5 relative overflow-hidden min-w-0">
+                    <div class="absolute -right-12 -top-12 w-48 h-48 bg-[#00e5c9]/10 rounded-full blur-3xl pointer-events-none"></div>
+                    <div class="relative z-10 min-w-0 flex-1">
+                        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#00e5c9]/15 border border-[#00e5c9]/30 text-[#00e5c9] text-xs font-bold mb-2.5">
+                            <span class="w-2 h-2 rounded-full bg-[#00e5c9] animate-pulse"></span>
+                            <span>STUDIO DIRECTOR CONSOLE</span>
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold font-heading text-white tracking-tight break-words">
+                            Welcome back, <span id="adminWelcomeName" class="text-[#00e5c9] break-all">Alexander Vance</span>! <i class="fa-solid fa-bolt text-[#00e5c9] ml-1"></i>
+                        </h2>
+                        <p class="text-xs sm:text-sm text-slate-300 mt-1.5 max-w-xl break-all">
+                            Logged in as <span id="adminWelcomeEmail" class="font-semibold text-white break-all">admin@stacklyfit.com</span>. The studio floor is currently at <strong class="text-[#00e5c9]">84% booked capacity</strong> with 18 coaches on duty.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-3 relative z-10 shrink-0 w-full sm:w-auto">
+                        <button onclick="document.querySelector('[data-target=\'tab-clients\']').click()" class="flex-1 sm:flex-initial px-5 py-2.5 bg-[#00e5c9] hover:bg-[#25f4dc] text-gray-950 font-bold text-xs rounded-xl shadow-[0_0_15px_rgba(0,229,201,0.35)] transition transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-users text-xs"></i>
+                            <span>Athlete Directory</span>
+                        </button>
+                        <button onclick="document.querySelector('[data-target=\'tab-studio-schedule\']').click()" class="flex-1 sm:flex-initial px-4 py-2.5 bg-white/10 hover:bg-white/15 border border-white/10 text-white font-semibold text-xs rounded-xl transition text-center">
+                            Pod Schedule
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Row 1: 4 Stat KPI Cards (Fitness Admin Theme with Teal Accents) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <!-- Card 1: ACTIVE CLIENTS -->
+                    <div data-aos="fade-up" data-aos-delay="100" class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">ACTIVE CLIENTS</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#f0fdfa] text-[#0d9488] border border-[#ccfbf1] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">1,482</div>
+                            <div class="text-xs text-[#64748b]">Across all training programs</div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: COACHES ON DUTY -->
+                    <div data-aos="fade-up" data-aos-delay="200" class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">COACHES ON DUTY</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#ecfdf5] text-[#059669] border border-[#d1fae5] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-dumbbell"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">18 Coaches</div>
+                            <div class="text-xs text-[#64748b]">Active private training floor</div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: SESSIONS TODAY -->
+                    <div data-aos="fade-up" data-aos-delay="300" class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">SESSIONS TODAY</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#eff6ff] text-[#2563eb] border border-[#dbeafe] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-calendar-check"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">42 Booked</div>
+                            <div class="text-xs text-[#64748b]">84% studio capacity utilized</div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: CLIENT RETENTION -->
+                    <div data-aos="fade-up" data-aos-delay="400" class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">CLIENT RETENTION</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#f0fdfa] text-[#0d9488] border border-[#ccfbf1] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-trophy"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">98.4%</div>
+                            <div class="text-xs text-[#059669] font-medium"><i class="fa-solid fa-arrow-up mr-1"></i> Industry-leading results</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Row 2: 2 Charts Side-by-Side (Exact Layout matching screenshot with Teal Palette) -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    
+                    <!-- Left: Annual Studio Session Volume (Vibrant Teal Bars) -->
+                    <div class="lg:col-span-7 xl:col-span-8 bg-white rounded-2xl p-4 sm:p-7 border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
+                            <div class="flex items-center space-x-2.5">
+                                <i class="fa-solid fa-chart-column text-[#0d9488] text-base"></i>
+                                <h3 class="text-base sm:text-lg font-bold text-[#0f172a] font-heading">Monthly 1-on-1 Sessions Completed</h3>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-[#ecfdf5] text-[#059669] text-[11px] font-bold tracking-wider border border-[#a7f3d0] self-start sm:self-auto shrink-0">2026 TRAINING DATA</span>
+                        </div>
+
+                        <!-- Bar Chart SVG Container -->
+                        <div class="w-full overflow-hidden">
+                            <svg class="w-full h-64" viewBox="0 0 540 260" preserveAspectRatio="xMidYMid meet">
+                                <!-- Grid Lines & Y-Axis Labels -->
+                                <g class="chart-grid">
+                                    <text x="48" y="24" text-anchor="end" class="chart-axis-text">2500</text>
+                                    <line x1="58" y1="20" x2="525" y2="20" class="chart-grid-line" />
+
+                                    <text x="48" y="64" text-anchor="end" class="chart-axis-text">2000</text>
+                                    <line x1="58" y1="60" x2="525" y2="60" class="chart-grid-line" />
+
+                                    <text x="48" y="104" text-anchor="end" class="chart-axis-text">1500</text>
+                                    <line x1="58" y1="100" x2="525" y2="100" class="chart-grid-line" />
+
+                                    <text x="48" y="144" text-anchor="end" class="chart-axis-text">1000</text>
+                                    <line x1="58" y1="140" x2="525" y2="140" class="chart-grid-line" />
+
+                                    <text x="48" y="184" text-anchor="end" class="chart-axis-text">500</text>
+                                    <line x1="58" y1="180" x2="525" y2="180" class="chart-grid-line" />
+
+                                    <text x="48" y="224" text-anchor="end" class="chart-axis-text">0</text>
+                                    <line x1="58" y1="220" x2="525" y2="220" stroke="#cbd5e1" stroke-width="1.5" />
+                                </g>
+
+                                <!-- Monthly Bars in Vibrant Teal #00e5c9 -->
+                                <!-- May (400 sessions) -->
+                                <rect x="85" y="188" width="30" height="32" rx="5" class="chart-bar-teal" />
+                                <text x="100" y="242" text-anchor="middle" class="chart-axis-text">May</text>
+
+                                <!-- Jun (0) -->
+                                <text x="180" y="242" text-anchor="middle" class="chart-axis-text">Jun</text>
+
+                                <!-- Jul (2,300 sessions - Summer Peak) -->
+                                <rect x="245" y="36" width="30" height="184" rx="5" class="chart-bar-teal" />
+                                <text x="260" y="242" text-anchor="middle" class="chart-axis-text">Jul</text>
+
+                                <!-- Aug (0) -->
+                                <text x="340" y="242" text-anchor="middle" class="chart-axis-text">Aug</text>
+
+                                <!-- Sep (0) -->
+                                <text x="420" y="242" text-anchor="middle" class="chart-axis-text">Sep</text>
+
+                                <!-- Oct (1,450 sessions) -->
+                                <rect x="475" y="104" width="30" height="116" rx="5" class="chart-bar-teal" />
+                                <text x="490" y="242" text-anchor="middle" class="chart-axis-text">Oct</text>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Right: Membership Tier Distribution Donut Chart -->
+                    <div class="lg:col-span-5 xl:col-span-4 bg-white rounded-2xl p-4 sm:p-7 border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-4">
+                            <div class="flex items-center space-x-2">
+                                <i class="fa-solid fa-chart-pie text-[#0d9488] text-base"></i>
+                                <h3 class="text-base sm:text-lg font-bold text-[#0f172a] font-heading">Program Distribution</h3>
+                            </div>
+                            <span class="text-xs text-[#64748b]">Member Share</span>
+                        </div>
+
+                        <!-- Donut Chart SVG in Fitness Teal / Cyan / Emerald Palette -->
+                        <div class="w-full flex items-center justify-center my-2">
+                            <svg class="w-56 h-56" viewBox="0 0 200 200">
+                                <!-- Pro Transformation (#00e5c9, ~45%) -->
+                                <circle cx="100" cy="100" r="62" fill="none" stroke="#00e5c9" stroke-width="26"
+                                        stroke-dasharray="175 389.56" stroke-dashoffset="0" transform="rotate(-90 100 100)" />
+                                <!-- Starter Kickstart (#0284c7, ~25%) -->
+                                <circle cx="100" cy="100" r="62" fill="none" stroke="#0284c7" stroke-width="26"
+                                        stroke-dasharray="98 389.56" stroke-dashoffset="-178" transform="rotate(-90 100 100)" />
+                                <!-- Elite Athlete VIP (#0f766e, ~15%) -->
+                                <circle cx="100" cy="100" r="62" fill="none" stroke="#0f766e" stroke-width="26"
+                                        stroke-dasharray="58 389.56" stroke-dashoffset="-279" transform="rotate(-90 100 100)" />
+                                <!-- Hybrid Online Coaching (#10b981, ~10%) -->
+                                <circle cx="100" cy="100" r="62" fill="none" stroke="#10b981" stroke-width="26"
+                                        stroke-dasharray="39 389.56" stroke-dashoffset="-340" transform="rotate(-90 100 100)" />
+                                <!-- Rehab / Mobility (#38bdf8, ~5%) -->
+                                <circle cx="100" cy="100" r="62" fill="none" stroke="#38bdf8" stroke-width="26"
+                                        stroke-dasharray="19 389.56" stroke-dashoffset="-382" transform="rotate(-90 100 100)" />
+                            </svg>
+                        </div>
+
+                        <!-- Donut Legend with Fitness Programs -->
+                        <div class="flex items-center justify-center flex-wrap gap-x-4 gap-y-2 pt-2 text-xs text-[#475569]">
+                            <span class="inline-flex items-center space-x-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-[#00e5c9]"></span><span>Pro 1-on-1</span></span>
+                            <span class="inline-flex items-center space-x-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-[#0284c7]"></span><span>Starter</span></span>
+                            <span class="inline-flex items-center space-x-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-[#0f766e]"></span><span>Elite VIP</span></span>
+                            <span class="inline-flex items-center space-x-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-[#10b981]"></span><span>Hybrid</span></span>
+                            <span class="inline-flex items-center space-x-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-[#38bdf8]"></span><span>Rehab</span></span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ==============================================
+                 TAB 2: CLIENT ROSTER (ADMIN)
+                 ============================================== -->
+            <div id="tab-clients" class="tab-panel space-y-6 min-w-0 max-w-full">
+                
+                <!-- Row 1: 4 Athlete KPI Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Total Enrolled Athletes -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">TOTAL ENROLLED ATHLETES</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#f0fdfa] text-[#0d9488] border border-[#ccfbf1] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">1,482</div>
+                            <div class="text-xs text-emerald-600 font-medium"><i class="fa-solid fa-arrow-up mr-1"></i> +38 new athletes this month</div>
+                        </div>
+                    </div>
+
+                    <!-- Active In-Training -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">ACTIVE ON FLOOR</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#eff6ff] text-[#2563eb] border border-[#dbeafe] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-dumbbell"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">1,290</div>
+                            <div class="text-xs text-slate-500">87.0% active weekly attendance</div>
+                        </div>
+                    </div>
+
+                    <!-- Avg Body Fat Reduction -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">AVG PROGRESS RATE</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#ecfdf5] text-[#059669] border border-[#d1fae5] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">94.2%</div>
+                            <div class="text-xs text-emerald-600 font-medium">-4.2% avg body fat loss</div>
+                        </div>
+                    </div>
+
+                    <!-- Assessments Scheduled -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">ASSESSMENTS DUE</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#fff7ed] text-[#ea580c] border border-[#ffedd5] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-clipboard-check"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">19 Booked</div>
+                            <div class="text-xs text-[#ea580c] font-medium">InBody bi-weekly scans this week</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Master Athlete Directory with Live Search & Filter Pills -->
+                <div class="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-sm">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-5">
+                        <div>
+                            <h3 class="text-base sm:text-lg font-bold text-[#0f172a] font-heading">Athlete Master Directory</h3>
+                            <p class="text-xs text-slate-500 mt-0.5">Filter and manage athletes across private studio coaching programs.</p>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <button onclick="document.getElementById('enrollAthleteModal').classList.toggle('hidden')" class="px-4 py-2 bg-[#00e5c9] hover:bg-[#25f4dc] text-gray-950 text-xs font-bold rounded-xl transition shadow-sm flex items-center space-x-1.5">
+                                <i class="fa-solid fa-user-plus"></i>
+                                <span>Enroll Athlete</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Filter Pills Bar -->
+                    <div class="flex items-center justify-start sm:justify-end gap-3 mb-5 pt-1 overflow-x-auto">
+                        <!-- Filter Pills -->
+                        <div class="flex items-center space-x-1 bg-slate-100 p-1 rounded-xl text-xs font-semibold overflow-x-auto" id="athleteFilterPills">
+                            <button class="athlete-filter active px-3 py-1.5 rounded-lg bg-white text-slate-900 shadow-sm transition shrink-0" data-filter="all">All</button>
+                            <button class="athlete-filter px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition shrink-0" data-filter="Pro Transformation">Pro 1-on-1</button>
+                            <button class="athlete-filter px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition shrink-0" data-filter="Elite VIP">Elite VIP</button>
+                            <button class="athlete-filter px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition shrink-0" data-filter="Strength">Strength</button>
+                            <button class="athlete-filter px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition shrink-0" data-filter="Starter">Starter</button>
+                        </div>
+                    </div>
+
+                    <!-- Athlete Table -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm text-slate-700">
+                            <thead class="text-xs uppercase tracking-wider text-slate-400 border-b border-slate-200">
+                                <tr>
+                                    <th class="pb-3">Athlete Profile</th>
+                                    <th class="pb-3">Training Program</th>
+                                    <th class="pb-3">Assigned Coach</th>
+                                    <th class="pb-3">Sessions Left</th>
+                                    <th class="pb-3">Progress / Biometric</th>
+                                    <th class="pb-3">Status</th>
+                                    <th class="pb-3 text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 text-xs sm:text-sm" id="athleteTableBody">
+                                <!-- Athlete 1 -->
+                                <tr class="hover:bg-slate-50/70 transition" data-program="Pro Transformation">
+                                    <td class="py-4">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="w-9 h-9 rounded-full bg-[#07111a] text-[#00e5c9] font-bold text-xs flex items-center justify-center shrink-0 border border-[#00e5c9]">AV</div>
+                                            <div>
+                                                <div class="font-bold text-slate-900 athlete-name">Alexander Vance</div>
+                                                <div class="text-[11px] text-slate-400 font-mono">#STK-8842 &bull; alexander.vance@stacklyfit.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 font-semibold text-[#0d9488]">Pro Transformation</td>
+                                    <td class="py-4 text-slate-800">Marcus Vance</td>
+                                    <td class="py-4 font-bold text-slate-900">8 of 24 remaining</td>
+                                    <td class="py-4 text-emerald-600 font-bold"><i class="fa-solid fa-arrow-down mr-1"></i> -3.8% Body Fat</td>
+                                    <td class="py-4"><span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold">Active</span></td>
+                                    <td class="py-4 text-right">
+                                        <button onclick="showAdminToast('Opening Alexander Vance biometric profile...')" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-[#00e5c9] hover:text-gray-950 font-semibold text-xs transition">Manage</button>
+                                    </td>
+                                </tr>
+
+                                <!-- Athlete 2 -->
+                                <tr class="hover:bg-slate-50/70 transition" data-program="Pro Transformation">
+                                    <td class="py-4">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="w-9 h-9 rounded-full bg-[#07111a] text-[#00e5c9] font-bold text-xs flex items-center justify-center shrink-0 border border-[#00e5c9]">SJ</div>
+                                            <div>
+                                                <div class="font-bold text-slate-900 athlete-name">Sarah Jenkins</div>
+                                                <div class="text-[11px] text-slate-400 font-mono">#STK-9012 &bull; s.jenkins@outlook.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 font-semibold text-[#0d9488]">Pro Transformation</td>
+                                    <td class="py-4 text-slate-800">Marcus Vance</td>
+                                    <td class="py-4 font-bold text-slate-900">14 of 24 remaining</td>
+                                    <td class="py-4 text-emerald-600 font-bold"><i class="fa-solid fa-arrow-down mr-1"></i> -4.6% Body Fat</td>
+                                    <td class="py-4"><span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold">Active</span></td>
+                                    <td class="py-4 text-right">
+                                        <button onclick="showAdminToast('Opening Sarah Jenkins profile...')" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-[#00e5c9] hover:text-gray-950 font-semibold text-xs transition">Manage</button>
+                                    </td>
+                                </tr>
+
+                                <!-- Athlete 3 -->
+                                <tr class="hover:bg-slate-50/70 transition" data-program="Strength">
+                                    <td class="py-4">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="w-9 h-9 rounded-full bg-[#07111a] text-[#00e5c9] font-bold text-xs flex items-center justify-center shrink-0 border border-[#00e5c9]">LR</div>
+                                            <div>
+                                                <div class="font-bold text-slate-900 athlete-name">Liam Reynolds</div>
+                                                <div class="text-[11px] text-slate-400 font-mono">#STK-7741 &bull; liam.reynolds@gmail.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 font-semibold text-[#0284c7]">Strength &amp; Hypertrophy</td>
+                                    <td class="py-4 text-slate-800">Elena Rodriguez</td>
+                                    <td class="py-4 font-bold text-slate-900">22 of 30 remaining</td>
+                                    <td class="py-4 text-emerald-600 font-bold"><i class="fa-solid fa-arrow-up mr-1"></i> +5.2 lbs Muscle</td>
+                                    <td class="py-4"><span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold">Active</span></td>
+                                    <td class="py-4 text-right">
+                                        <button onclick="showAdminToast('Opening Liam Reynolds profile...')" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-[#00e5c9] hover:text-gray-950 font-semibold text-xs transition">Manage</button>
+                                    </td>
+                                </tr>
+
+                                <!-- Athlete 4 -->
+                                <tr class="hover:bg-slate-50/70 transition" data-program="Elite VIP">
+                                    <td class="py-4">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="w-9 h-9 rounded-full bg-[#07111a] text-[#00e5c9] font-bold text-xs flex items-center justify-center shrink-0 border border-[#00e5c9]">MP</div>
+                                            <div>
+                                                <div class="font-bold text-slate-900 athlete-name">Maya Patel</div>
+                                                <div class="text-[11px] text-slate-400 font-mono">#STK-8219 &bull; maya.patel@biotech.io</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 font-semibold text-amber-600">Elite VIP Coaching</td>
+                                    <td class="py-4 text-slate-800">David Chen</td>
+                                    <td class="py-4 font-bold text-amber-600">2 of 24 remaining</td>
+                                    <td class="py-4 text-emerald-600 font-bold"><i class="fa-solid fa-arrow-down mr-1"></i> -5.1% Body Fat</td>
+                                    <td class="py-4"><span class="px-2.5 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-bold">Renewal Due</span></td>
+                                    <td class="py-4 text-right">
+                                        <button onclick="showAdminToast('Renewal reminder dispatched to Maya Patel.')" class="px-3 py-1.5 rounded-lg bg-amber-100 hover:bg-amber-200 text-amber-800 font-semibold text-xs transition">Send Invoice</button>
+                                    </td>
+                                </tr>
+
+                                <!-- Athlete 5 -->
+                                <tr class="hover:bg-slate-50/70 transition" data-program="Starter">
+                                    <td class="py-4">
+                                        <div class="flex items-center space-x-3">
+                                            <div class="w-9 h-9 rounded-full bg-[#07111a] text-[#00e5c9] font-bold text-xs flex items-center justify-center shrink-0 border border-[#00e5c9]">JM</div>
+                                            <div>
+                                                <div class="font-bold text-slate-900 athlete-name">Jason Miller</div>
+                                                <div class="text-[11px] text-slate-400 font-mono">#STK-9530 &bull; jason.m@innovate.com</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 font-semibold text-slate-700">Starter Kickstart</td>
+                                    <td class="py-4 text-slate-800">Elena Rodriguez</td>
+                                    <td class="py-4 font-bold text-slate-900">4 of 10 remaining</td>
+                                    <td class="py-4 text-emerald-600 font-bold"><i class="fa-solid fa-arrow-down mr-1"></i> -2.4% Body Fat</td>
+                                    <td class="py-4"><span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold">Active</span></td>
+                                    <td class="py-4 text-right">
+                                        <button onclick="showAdminToast('Opening Jason Miller profile...')" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-[#00e5c9] hover:text-gray-950 font-semibold text-xs transition">Manage</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Hidden/Toggleable Enroll New Athlete Card -->
+                <div id="enrollAthleteModal" class="hidden bg-white rounded-2xl p-6 sm:p-7 border border-[#00e5c9]/40 shadow-lg">
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-4">
+                        <h4 class="text-base font-bold text-slate-900 font-heading">Enroll New Athlete to Studio Roster</h4>
+                        <button onclick="document.getElementById('enrollAthleteModal').classList.add('hidden')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-base"></i></button>
+                    </div>
+                    <form id="enrollAthleteForm" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Athlete Full Name</label>
+                            <input type="text" id="newAthleteName" required placeholder="e.g. Jordan Hayes" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 outline-none focus:border-[#00e5c9]">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Athlete Email</label>
+                            <input type="email" id="newAthleteEmail" required placeholder="jordan@domain.com" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 outline-none focus:border-[#00e5c9]">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Assigned Coach</label>
+                            <select id="newAthleteCoach" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 outline-none focus:border-[#00e5c9]">
+                                <option>Marcus Vance (Head Strength)</option>
+                                <option>Elena Rodriguez (Metabolic)</option>
+                                <option>David Chen (Rehab &amp; Mobility)</option>
+                            </select>
+                        </div>
+                        <div class="sm:col-span-3 flex justify-end space-x-2 pt-2">
+                            <button type="button" onclick="document.getElementById('enrollAthleteModal').classList.add('hidden')" class="px-4 py-2 bg-slate-100 text-slate-600 rounded-xl text-xs font-bold">Cancel</button>
+                            <button type="submit" class="px-5 py-2 bg-[#00e5c9] text-gray-950 rounded-xl text-xs font-bold hover:bg-[#25f4dc] shadow-sm">Save &amp; Enroll</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- ==============================================
+                 TAB 3: COACH ROSTER
+                 ============================================== -->
+            <div id="tab-coaches" class="tab-panel space-y-6 min-w-0 max-w-full">
+                
+                <!-- Row 1: 4 Coach Stats KPI Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Head Coaches -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">STAFF HEADCOUNT</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#f0fdfa] text-[#0d9488] border border-[#ccfbf1] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-id-badge"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">18 Coaches</div>
+                            <div class="text-xs text-[#0d9488] font-medium">100% Certified CSCS / NASM</div>
+                        </div>
+                    </div>
+
+                    <!-- Average Rating -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">STUDIO SATISFACTION</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#eff6ff] text-[#2563eb] border border-[#dbeafe] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1"><i class="fa-solid fa-star text-amber-400 text-2xl mr-1"></i>4.96</div>
+                            <div class="text-xs text-slate-500">From 1,420 client session reviews</div>
+                        </div>
+                    </div>
+
+                    <!-- Hours Coached -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">HOURS COACHED</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#ecfdf5] text-[#059669] border border-[#d1fae5] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-clock-rotate-left"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">3,840 Hrs</div>
+                            <div class="text-xs text-emerald-600 font-medium">+14% quarterly volume</div>
+                        </div>
+                    </div>
+
+                    <!-- Capacity Utilization -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">FLOOR UTILIZATION</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#f0fdfa] text-[#0d9488] border border-[#ccfbf1] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-gauge-high"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">88.4%</div>
+                            <div class="text-xs text-[#0d9488] font-medium">Optimal private training balance</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured Coaching Profiles (4 Cards) -->
+                <div class="bg-white rounded-2xl p-4 sm:p-7 border border-slate-200/80 shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                        <div>
+                            <h3 class="text-base sm:text-lg font-bold text-[#0f172a] font-heading">Certified Coaching Staff Directory</h3>
+                            <p class="text-xs text-slate-500 mt-0.5">Floor coverage, specializations, and client capacities.</p>
+                        </div>
+                        <button onclick="showAdminToast('Opening Staff Scheduling Portal...')" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold rounded-xl transition">
+                            <i class="fa-solid fa-calendar-days mr-1.5 text-[#0d9488]"></i> Shift Schedules
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5">
+                        <!-- Coach 1: Marcus Vance -->
+                        <div class="p-5 rounded-2xl bg-slate-50/80 border border-slate-200/80 flex flex-col justify-between hover:shadow-md transition">
+                            <div>
+                                <div class="flex items-center space-x-3.5 mb-4">
+                                    <img src="assets/images/trainer-1.webp" alt="Marcus Vance" class="w-14 h-14 rounded-xl object-cover border-2 border-[#00e5c9] shadow-sm shrink-0">
+                                    <div>
+                                        <h4 class="font-bold text-sm text-slate-900">Marcus Vance</h4>
+                                        <p class="text-[11px] text-[#0d9488] font-bold">Head Strength Coach</p>
+                                        <span class="inline-block mt-0.5 text-[10px] font-mono text-slate-400">CSCS &bull; USAW Level 2</span>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-600 mb-3">Olympic compound movements, periodized hypertrophy, and powerlifting mechanics.</p>
+                                <div class="space-y-1.5 text-xs text-slate-600 pt-3 border-t border-slate-200/60">
+                                    <div class="flex justify-between"><span>Assigned Athletes:</span> <strong class="text-slate-900">24 Clients</strong></div>
+                                    <div class="flex justify-between"><span>Floor Capacity:</span> <strong class="text-emerald-600">96% (Peak)</strong></div>
+                                    <div class="flex justify-between"><span>Current Status:</span> <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">On Floor (Pod 1)</span></div>
+                                </div>
+                            </div>
+                            <div class="pt-4 mt-4 border-t border-slate-200/60 flex items-center justify-between text-xs">
+                                <span class="font-extrabold text-slate-900"><i class="fa-solid fa-star text-amber-400 text-xs mr-1"></i>4.9 <span class="text-[10px] text-slate-400 font-normal">(420 reviews)</span></span>
+                                <button onclick="showAdminToast('Viewing Marcus Vance roster load...')" class="px-3 py-1 bg-white border border-slate-200 hover:border-[#00e5c9] rounded-lg font-bold text-[#0d9488] text-[11px] transition">Roster</button>
+                            </div>
+                        </div>
+
+                        <!-- Coach 2: Elena Rodriguez -->
+                        <div class="p-5 rounded-2xl bg-slate-50/80 border border-slate-200/80 flex flex-col justify-between hover:shadow-md transition">
+                            <div>
+                                <div class="flex items-center space-x-3.5 mb-4">
+                                    <img src="assets/images/trainer-2.webp" alt="Elena Rodriguez" class="w-14 h-14 rounded-xl object-cover border-2 border-[#00e5c9] shadow-sm shrink-0">
+                                    <div>
+                                        <h4 class="font-bold text-sm text-slate-900">Elena Rodriguez</h4>
+                                        <p class="text-[11px] text-[#0d9488] font-bold">Metabolic &amp; Nutrition Specialist</p>
+                                        <span class="inline-block mt-0.5 text-[10px] font-mono text-slate-400">CISSN &bull; NASM-PES</span>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-600 mb-3">VO2 Max stamina conditioning, metabolic circuits, and macro nutrition planning.</p>
+                                <div class="space-y-1.5 text-xs text-slate-600 pt-3 border-t border-slate-200/60">
+                                    <div class="flex justify-between"><span>Assigned Athletes:</span> <strong class="text-slate-900">28 Clients</strong></div>
+                                    <div class="flex justify-between"><span>Floor Capacity:</span> <strong class="text-emerald-600">92% (High)</strong></div>
+                                    <div class="flex justify-between"><span>Current Status:</span> <span class="px-2 py-0.5 rounded-full bg-teal-100 text-[#0d9488] text-[10px] font-bold">In Consult Suite</span></div>
+                                </div>
+                            </div>
+                            <div class="pt-4 mt-4 border-t border-slate-200/60 flex items-center justify-between text-xs">
+                                <span class="font-extrabold text-slate-900"><i class="fa-solid fa-star text-amber-400 text-xs mr-1"></i>5.0 <span class="text-[10px] text-slate-400 font-normal">(510 reviews)</span></span>
+                                <button onclick="showAdminToast('Viewing Elena Rodriguez roster load...')" class="px-3 py-1 bg-white border border-slate-200 hover:border-[#00e5c9] rounded-lg font-bold text-[#0d9488] text-[11px] transition">Roster</button>
+                            </div>
+                        </div>
+
+                        <!-- Coach 3: David Chen -->
+                        <div class="p-5 rounded-2xl bg-slate-50/80 border border-slate-200/80 flex flex-col justify-between hover:shadow-md transition">
+                            <div>
+                                <div class="flex items-center space-x-3.5 mb-4">
+                                    <img src="assets/images/trainer-3.webp" alt="David Chen" class="w-14 h-14 rounded-xl object-cover border-2 border-[#00e5c9] shadow-sm shrink-0">
+                                    <div>
+                                        <h4 class="font-bold text-sm text-slate-900">David Chen</h4>
+                                        <p class="text-[11px] text-[#0d9488] font-bold">Functional Rehab &amp; Mobility</p>
+                                        <span class="inline-block mt-0.5 text-[10px] font-mono text-slate-400">FMS Certified &bull; DPT</span>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-600 mb-3">Kinetic chain realignment, rotational core stability, and post-rehabilitation return.</p>
+                                <div class="space-y-1.5 text-xs text-slate-600 pt-3 border-t border-slate-200/60">
+                                    <div class="flex justify-between"><span>Assigned Athletes:</span> <strong class="text-slate-900">19 Clients</strong></div>
+                                    <div class="flex justify-between"><span>Floor Capacity:</span> <strong class="text-blue-600">79% (Optimal)</strong></div>
+                                    <div class="flex justify-between"><span>Current Status:</span> <span class="px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 text-[10px] font-bold">Turf Zone</span></div>
+                                </div>
+                            </div>
+                            <div class="pt-4 mt-4 border-t border-slate-200/60 flex items-center justify-between text-xs">
+                                <span class="font-extrabold text-slate-900"><i class="fa-solid fa-star text-amber-400 text-xs mr-1"></i>4.9 <span class="text-[10px] text-slate-400 font-normal">(380 reviews)</span></span>
+                                <button onclick="showAdminToast('Viewing David Chen roster load...')" class="px-3 py-1 bg-white border border-slate-200 hover:border-[#00e5c9] rounded-lg font-bold text-[#0d9488] text-[11px] transition">Roster</button>
+                            </div>
+                        </div>
+
+                        <!-- Coach 4: Jessica Wright -->
+                        <div class="p-5 rounded-2xl bg-slate-50/80 border border-slate-200/80 flex flex-col justify-between hover:shadow-md transition">
+                            <div>
+                                <div class="flex items-center space-x-3.5 mb-4">
+                                    <div class="w-14 h-14 rounded-xl bg-[#07111a] text-[#00e5c9] flex items-center justify-center font-bold text-lg border-2 border-[#00e5c9] shadow-sm shrink-0">JW</div>
+                                    <div>
+                                        <h4 class="font-bold text-sm text-slate-900">Jessica Wright</h4>
+                                        <p class="text-[11px] text-[#0d9488] font-bold">Athletic Conditioning</p>
+                                        <span class="inline-block mt-0.5 text-[10px] font-mono text-slate-400">CSCS &bull; EXOS Specialist</span>
+                                    </div>
+                                </div>
+                                <p class="text-xs text-slate-600 mb-3">Speed mechanics, reactive plyometrics, and elite female athletic performance.</p>
+                                <div class="space-y-1.5 text-xs text-slate-600 pt-3 border-t border-slate-200/60">
+                                    <div class="flex justify-between"><span>Assigned Athletes:</span> <strong class="text-slate-900">22 Clients</strong></div>
+                                    <div class="flex justify-between"><span>Floor Capacity:</span> <strong class="text-emerald-600">88% (High)</strong></div>
+                                    <div class="flex justify-between"><span>Current Status:</span> <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold">On Floor (Pod 2)</span></div>
+                                </div>
+                            </div>
+                            <div class="pt-4 mt-4 border-t border-slate-200/60 flex items-center justify-between text-xs">
+                                <span class="font-extrabold text-slate-900"><i class="fa-solid fa-star text-amber-400 text-xs mr-1"></i>4.95 <span class="text-[10px] text-slate-400 font-normal">(310 reviews)</span></span>
+                                <button onclick="showAdminToast('Viewing Jessica Wright roster load...')" class="px-3 py-1 bg-white border border-slate-200 hover:border-[#00e5c9] rounded-lg font-bold text-[#0d9488] text-[11px] transition">Roster</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Staff Performance & Payroll Matrix Table -->
+                <div class="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-sm">
+                    <h3 class="text-base sm:text-lg font-bold text-[#0f172a] font-heading mb-4">Monthly Coach Performance &amp; Retention Summary</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm text-slate-700">
+                            <thead class="text-xs uppercase tracking-wider text-slate-400 border-b border-slate-200">
+                                <tr>
+                                    <th class="pb-3">Coach Name</th>
+                                    <th class="pb-3">Primary Specialty</th>
+                                    <th class="pb-3">Active Clients</th>
+                                    <th class="pb-3">Sessions Delivered</th>
+                                    <th class="pb-3">Client Retention</th>
+                                    <th class="pb-3">Performance Tier</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 text-xs sm:text-sm">
+                                <tr>
+                                    <td class="py-4 font-bold text-slate-900">Marcus Vance</td>
+                                    <td class="py-4 text-[#0d9488] font-semibold">Head Strength &amp; Olympic Lifts</td>
+                                    <td class="py-4">24 Athletes</td>
+                                    <td class="py-4 font-bold text-slate-900">142 Sessions</td>
+                                    <td class="py-4 text-emerald-600 font-bold">99.1% Retention</td>
+                                    <td class="py-4"><span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold">Tier 1 Elite</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 font-bold text-slate-900">Elena Rodriguez</td>
+                                    <td class="py-4 text-[#0d9488] font-semibold">Metabolic &amp; Nutrition</td>
+                                    <td class="py-4">28 Athletes</td>
+                                    <td class="py-4 font-bold text-slate-900">158 Sessions</td>
+                                    <td class="py-4 text-emerald-600 font-bold">98.5% Retention</td>
+                                    <td class="py-4"><span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold">Tier 1 Elite</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 font-bold text-slate-900">David Chen</td>
+                                    <td class="py-4 text-[#0d9488] font-semibold">Rehabilitation &amp; FMS Mobility</td>
+                                    <td class="py-4">19 Athletes</td>
+                                    <td class="py-4 font-bold text-slate-900">114 Sessions</td>
+                                    <td class="py-4 text-emerald-600 font-bold">97.8% Retention</td>
+                                    <td class="py-4"><span class="px-2.5 py-1 rounded-full bg-teal-50 text-[#0d9488] text-xs font-bold">Senior Coach</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 font-bold text-slate-900">Jessica Wright</td>
+                                    <td class="py-4 text-[#0d9488] font-semibold">Athletic Conditioning &amp; Plyometrics</td>
+                                    <td class="py-4">22 Athletes</td>
+                                    <td class="py-4 font-bold text-slate-900">126 Sessions</td>
+                                    <td class="py-4 text-emerald-600 font-bold">98.2% Retention</td>
+                                    <td class="py-4"><span class="px-2.5 py-1 rounded-full bg-teal-50 text-[#0d9488] text-xs font-bold">Senior Coach</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ==============================================
+                 TAB 4: STUDIO SCHEDULE
+                 ============================================== -->
+            <div id="tab-studio-schedule" class="tab-panel space-y-6 min-w-0 max-w-full">
+                
+                <!-- Row 1: 4 Studio Operations KPI Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Today's Booked Pods -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">TODAY'S BOOKINGS</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#f0fdfa] text-[#0d9488] border border-[#ccfbf1] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-calendar-check"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">42 / 48 Slots</div>
+                            <div class="text-xs text-[#0d9488] font-medium">87.5% studio floor capacity</div>
+                        </div>
+                    </div>
+
+                    <!-- Peak Hours -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">PEAK TIME WINDOWS</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#fff7ed] text-[#ea580c] border border-[#ffedd5] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-fire"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">07–10 AM &bull; 05–08 PM</div>
+                            <div class="text-xs text-slate-500">100% reserved in all heavy pods</div>
+                        </div>
+                    </div>
+
+                    <!-- Sanitization & Turnaround -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">POD TURNAROUND</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#eff6ff] text-[#2563eb] border border-[#dbeafe] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-pump-medical"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">15 Mins</div>
+                            <div class="text-xs text-slate-500">Buffer cleaning protocol between athletes</div>
+                        </div>
+                    </div>
+
+                    <!-- Floor Director -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">DUTY SUPERVISOR</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#ecfdf5] text-[#059669] border border-[#d1fae5] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-user-shield"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">Marcus Vance</div>
+                            <div class="text-xs text-[#059669] font-medium">Floor Lead &bull; Active on Radio</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Visual Studio Pod Allocation Matrix (6 Facility Zones) -->
+                <div class="bg-white rounded-2xl p-4 sm:p-7 border border-slate-200/80 shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+                        <div>
+                            <h3 class="text-base sm:text-lg font-bold text-[#0f172a] font-heading">Real-Time Studio Pod Allocations</h3>
+                            <p class="text-xs text-slate-500 mt-0.5">Live status of private training pods, racks, and assessment suites.</p>
+                        </div>
+                        <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200 self-start sm:self-auto shrink-0">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <span>Live Floor Telemetry</span>
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Pod 1 -->
+                        <div class="p-4 rounded-xl border border-teal-200 bg-teal-50/40">
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <span class="text-xs font-bold text-slate-800 truncate">POD 1: OLYMPIC PLATFORMS</span>
+                                <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold shrink-0">Occupied</span>
+                            </div>
+                            <div class="text-sm font-bold text-slate-900 truncate">Coach Marcus &bull; Alexander Vance</div>
+                            <div class="text-xs text-slate-500 mt-0.5 truncate">Compound Deadlift &bull; 08:00 AM – 09:00 AM</div>
+                            <div class="w-full bg-slate-200 h-1.5 rounded-full mt-3 overflow-hidden">
+                                <div class="bg-[#00e5c9] h-full rounded-full" style="width: 75%"></div>
+                            </div>
+                            <div class="text-[11px] text-slate-500 mt-1 flex justify-between">
+                                <span>Elapsed: 45m</span>
+                                <span>15m remaining</span>
+                            </div>
+                        </div>
+
+                        <!-- Pod 2 -->
+                        <div class="p-4 rounded-xl border border-teal-200 bg-teal-50/40">
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <span class="text-xs font-bold text-slate-800 truncate">POD 2: POWER RACK &amp; BENCH</span>
+                                <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold shrink-0">Occupied</span>
+                            </div>
+                            <div class="text-sm font-bold text-slate-900 truncate">Coach Jessica &bull; Chloe Bennett</div>
+                            <div class="text-xs text-slate-500 mt-0.5 truncate">Barbell Squats &bull; 08:30 AM – 09:30 AM</div>
+                            <div class="w-full bg-slate-200 h-1.5 rounded-full mt-3 overflow-hidden">
+                                <div class="bg-[#00e5c9] h-full rounded-full" style="width: 45%"></div>
+                            </div>
+                            <div class="text-[11px] text-slate-500 mt-1 flex justify-between">
+                                <span>Elapsed: 25m</span>
+                                <span>35m remaining</span>
+                            </div>
+                        </div>
+
+                        <!-- Pod 3 -->
+                        <div class="p-4 rounded-xl border border-emerald-200 bg-emerald-50/30">
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <span class="text-xs font-bold text-slate-800 truncate">POD 3: SLED TURF &amp; AGILITY</span>
+                                <span class="px-2 py-0.5 rounded-full bg-teal-100 text-[#0d9488] text-[10px] font-bold shrink-0">Available</span>
+                            </div>
+                            <div class="text-sm font-bold text-slate-900 truncate">Reserved for David Chen</div>
+                            <div class="text-xs text-slate-500 mt-0.5 truncate">Next Session: 09:30 AM (Mobility &amp; Agility)</div>
+                            <div class="w-full bg-slate-200 h-1.5 rounded-full mt-3 overflow-hidden">
+                                <div class="bg-emerald-400 h-full rounded-full" style="width: 100%"></div>
+                            </div>
+                            <div class="text-[11px] text-emerald-600 mt-1 font-semibold">Sanitized &amp; Ready</div>
+                        </div>
+
+                        <!-- Pod 4 -->
+                        <div class="p-4 rounded-xl border border-teal-200 bg-teal-50/40">
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <span class="text-xs font-bold text-slate-800 truncate">POD 4: CABLE &amp; HYPERTROPHY</span>
+                                <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold shrink-0">Occupied</span>
+                            </div>
+                            <div class="text-sm font-bold text-slate-900 truncate">Coach Elena &bull; Sarah Jenkins</div>
+                            <div class="text-xs text-slate-500 mt-0.5 truncate">Push Hypertrophy &bull; 08:15 AM – 09:15 AM</div>
+                            <div class="w-full bg-slate-200 h-1.5 rounded-full mt-3 overflow-hidden">
+                                <div class="bg-[#00e5c9] h-full rounded-full" style="width: 80%"></div>
+                            </div>
+                            <div class="text-[11px] text-slate-500 mt-1 flex justify-between">
+                                <span>Elapsed: 48m</span>
+                                <span>12m remaining</span>
+                            </div>
+                        </div>
+
+                        <!-- Pod 5 -->
+                        <div class="p-4 rounded-xl border border-emerald-200 bg-emerald-50/30">
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <span class="text-xs font-bold text-slate-800 truncate">POD 5: METABOLIC CARDIO DECK</span>
+                                <span class="px-2 py-0.5 rounded-full bg-teal-100 text-[#0d9488] text-[10px] font-bold shrink-0">Available</span>
+                            </div>
+                            <div class="text-sm font-bold text-slate-900 truncate">Open Studio Slots</div>
+                            <div class="text-xs text-slate-500 mt-0.5 truncate">Assault Bikes &amp; Concept2 Rowers Ready</div>
+                            <div class="w-full bg-slate-200 h-1.5 rounded-full mt-3 overflow-hidden">
+                                <div class="bg-emerald-400 h-full rounded-full" style="width: 100%"></div>
+                            </div>
+                            <div class="text-[11px] text-emerald-600 mt-1 font-semibold">Standby Available</div>
+                        </div>
+
+                        <!-- Suite A -->
+                        <div class="p-4 rounded-xl border border-blue-200 bg-blue-50/30">
+                            <div class="flex items-center justify-between gap-2 mb-2">
+                                <span class="text-xs font-bold text-slate-800 truncate">SUITE A: INBODY BIOMETRIC SCAN</span>
+                                <span class="px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 text-[10px] font-bold shrink-0">Scan in Session</span>
+                            </div>
+                            <div class="text-sm font-bold text-slate-900 truncate">InBody 770 Clinical Analyzer</div>
+                            <div class="text-xs text-slate-500 mt-0.5 truncate">Bi-Weekly Assessment &bull; Athlete Liam Reynolds</div>
+                            <div class="w-full bg-slate-200 h-1.5 rounded-full mt-3 overflow-hidden">
+                                <div class="bg-blue-500 h-full rounded-full" style="width: 60%"></div>
+                            </div>
+                            <div class="text-[11px] text-blue-700 mt-1 font-semibold">Printing Analysis Report</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Master Daily Schedule Timeline -->
+                <div class="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
+                        <div>
+                            <h3 class="text-base sm:text-lg font-bold text-[#0f172a] font-heading">Today's Studio Master Timeline</h3>
+                            <p class="text-xs text-slate-500 mt-0.5">Complete list of private bookings and trainer sessions for today.</p>
+                        </div>
+                        <!-- Schedule Time Filter -->
+                        <div class="flex items-center space-x-1 bg-slate-100 p-1 rounded-xl text-xs font-semibold" id="scheduleTimeFilters">
+                            <button class="sched-filter active px-3 py-1.5 rounded-lg bg-white text-slate-900 shadow-sm transition" data-filter="all">All Hours</button>
+                            <button class="sched-filter px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition" data-filter="morning">Morning</button>
+                            <button class="sched-filter px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition" data-filter="afternoon">Afternoon</button>
+                            <button class="sched-filter px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition" data-filter="evening">Evening</button>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm text-slate-700">
+                            <thead class="text-xs uppercase tracking-wider text-slate-400 border-b border-slate-200">
+                                <tr>
+                                    <th class="pb-3">Time Window</th>
+                                    <th class="pb-3">Studio Pod</th>
+                                    <th class="pb-3">Assigned Coach</th>
+                                    <th class="pb-3">Athlete</th>
+                                    <th class="pb-3">Training Focus</th>
+                                    <th class="pb-3">Status</th>
+                                    <th class="pb-3 text-right">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 text-xs sm:text-sm" id="scheduleTableBody">
+                                <tr data-time="morning">
+                                    <td class="py-4 font-bold text-slate-900">08:00 AM – 09:00 AM</td>
+                                    <td class="py-4 font-semibold text-[#0d9488]">Pod 1 (Olympic Platform)</td>
+                                    <td class="py-4 text-slate-800">Marcus Vance</td>
+                                    <td class="py-4 font-bold text-slate-900">Alexander Vance</td>
+                                    <td class="py-4 text-slate-600">Compound Deadlift &amp; Power</td>
+                                    <td class="py-4"><span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold">In Progress</span></td>
+                                    <td class="py-4 text-right"><button onclick="showAdminToast('Session telemetry checked.')" class="px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 text-xs font-semibold">View</button></td>
+                                </tr>
+                                <tr data-time="morning">
+                                    <td class="py-4 font-bold text-slate-900">08:15 AM – 09:15 AM</td>
+                                    <td class="py-4 font-semibold text-[#0d9488]">Pod 4 (Cables)</td>
+                                    <td class="py-4 text-slate-800">Elena Rodriguez</td>
+                                    <td class="py-4 font-bold text-slate-900">Sarah Jenkins</td>
+                                    <td class="py-4 text-slate-600">Push &amp; Shoulder Hypertrophy</td>
+                                    <td class="py-4"><span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold">In Progress</span></td>
+                                    <td class="py-4 text-right"><button onclick="showAdminToast('Session telemetry checked.')" class="px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 text-xs font-semibold">View</button></td>
+                                </tr>
+                                <tr data-time="morning">
+                                    <td class="py-4 font-bold text-slate-900">09:30 AM – 10:30 AM</td>
+                                    <td class="py-4 font-semibold text-blue-600">Pod 3 (Turf)</td>
+                                    <td class="py-4 text-slate-800">David Chen</td>
+                                    <td class="py-4 font-bold text-slate-900">Maya Patel</td>
+                                    <td class="py-4 text-slate-600">Rotational Core &amp; Sled Conditioning</td>
+                                    <td class="py-4"><span class="px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold">Confirmed</span></td>
+                                    <td class="py-4 text-right"><button onclick="showAdminToast('Opening session check-in...')" class="px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 text-xs font-semibold">Check-in</button></td>
+                                </tr>
+                                <tr data-time="afternoon">
+                                    <td class="py-4 font-bold text-slate-900">01:30 PM – 02:30 PM</td>
+                                    <td class="py-4 font-semibold text-slate-700">Pod 2 (Rack)</td>
+                                    <td class="py-4 text-slate-800">Jessica Wright</td>
+                                    <td class="py-4 font-bold text-slate-900">Jason Miller</td>
+                                    <td class="py-4 text-slate-600">Posterior Chain Squats</td>
+                                    <td class="py-4"><span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-bold">Scheduled</span></td>
+                                    <td class="py-4 text-right"><button onclick="showAdminToast('Viewing booking details...')" class="px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 text-xs font-semibold">Details</button></td>
+                                </tr>
+                                <tr data-time="evening">
+                                    <td class="py-4 font-bold text-slate-900">05:30 PM – 06:30 PM</td>
+                                    <td class="py-4 font-semibold text-[#0d9488]">Pod 1 (Olympic Platform)</td>
+                                    <td class="py-4 text-slate-800">Marcus Vance</td>
+                                    <td class="py-4 font-bold text-slate-900">Liam Reynolds</td>
+                                    <td class="py-4 text-slate-600">Heavy Bench Press &amp; Triceps</td>
+                                    <td class="py-4"><span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-bold">Scheduled</span></td>
+                                    <td class="py-4 text-right"><button onclick="showAdminToast('Viewing booking details...')" class="px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 text-xs font-semibold">Details</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ==============================================
+                 TAB 5: MEMBERSHIP BILLING
+                 ============================================== -->
+            <div id="tab-memberships" class="tab-panel space-y-6 min-w-0 max-w-full">
+                
+                <!-- Row 1: 4 Financial KPI Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- MRR -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">MONTHLY RECURRING (MRR)</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#f0fdfa] text-[#0d9488] border border-[#ccfbf1] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-dollar-sign"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">$142,650</div>
+                            <div class="text-xs text-emerald-600 font-medium"><i class="fa-solid fa-arrow-trend-up mr-1"></i> +8.4% growth this month</div>
+                        </div>
+                    </div>
+
+                    <!-- ARR -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">ANNUAL RUN RATE (ARR)</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#eff6ff] text-[#2563eb] border border-[#dbeafe] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-chart-pie"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">$1.71 M</div>
+                            <div class="text-xs text-slate-500">Projected annualized run rate</div>
+                        </div>
+                    </div>
+
+                    <!-- Paid Members -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">PAID SUBSCRIBERS</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#ecfdf5] text-[#059669] border border-[#d1fae5] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-credit-card"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">1,482 Active</div>
+                            <div class="text-xs text-emerald-600 font-medium">99.2% successful auto-debit</div>
+                        </div>
+                    </div>
+
+                    <!-- ARPU -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">AVG REVENUE PER ATHLETE</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#fff7ed] text-[#ea580c] border border-[#ffedd5] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-receipt"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">$96.25 / mo</div>
+                            <div class="text-xs text-[#ea580c] font-medium">+4.8% via VIP upgrades</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Membership Tier Breakdown Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="p-6 rounded-2xl bg-white border border-teal-200/80 shadow-sm">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-[#0d9488]">Pro Transformation</span>
+                            <span class="px-2 py-0.5 rounded-full bg-teal-50 text-[#0d9488] text-[11px] font-bold">47.3% Share</span>
+                        </div>
+                        <div class="text-3xl font-extrabold text-slate-900 font-heading">$99 <span class="text-sm font-normal text-slate-500">/ month</span></div>
+                        <p class="text-xs text-slate-500 mt-1">682 active subscribers &bull; $67,518 MRR</p>
+                        <div class="w-full bg-slate-100 h-1.5 rounded-full mt-4 overflow-hidden">
+                            <div class="bg-[#00e5c9] h-full rounded-full" style="width: 47%"></div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-white border border-blue-200/80 shadow-sm">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-blue-700">Starter Kickstart</span>
+                            <span class="px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 text-[11px] font-bold">18.5% Share</span>
+                        </div>
+                        <div class="text-3xl font-extrabold text-slate-900 font-heading">$49 <span class="text-sm font-normal text-slate-500">/ month</span></div>
+                        <p class="text-xs text-slate-500 mt-1">540 active subscribers &bull; $26,460 MRR</p>
+                        <div class="w-full bg-slate-100 h-1.5 rounded-full mt-4 overflow-hidden">
+                            <div class="bg-blue-500 h-full rounded-full" style="width: 19%"></div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-white border border-emerald-200/80 shadow-sm">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Elite VIP Private Coaching</span>
+                            <span class="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[11px] font-bold">34.2% Share</span>
+                        </div>
+                        <div class="text-3xl font-extrabold text-slate-900 font-heading">$189 <span class="text-sm font-normal text-slate-500">/ month</span></div>
+                        <p class="text-xs text-slate-500 mt-1">260 active subscribers &bull; $49,140 MRR</p>
+                        <div class="w-full bg-slate-100 h-1.5 rounded-full mt-4 overflow-hidden">
+                            <div class="bg-emerald-500 h-full rounded-full" style="width: 34%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-Time Billing Transactions & Invoices Table -->
+                <div class="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
+                        <div>
+                            <h3 class="text-base sm:text-lg font-bold text-[#0f172a] font-heading">Recent Membership Billing Ledger</h3>
+                            <p class="text-xs text-slate-500 mt-0.5">Automated Stripe payments and subscription renewals.</p>
+                        </div>
+                        <button onclick="showAdminToast('Exporting transaction ledger CSV...')" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold rounded-xl transition inline-flex items-center space-x-1.5">
+                            <i class="fa-solid fa-download text-[#0d9488]"></i>
+                            <span>Export CSV</span>
+                        </button>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm text-slate-700">
+                            <thead class="text-xs uppercase tracking-wider text-slate-400 border-b border-slate-200">
+                                <tr>
+                                    <th class="pb-3">Invoice ID</th>
+                                    <th class="pb-3">Athlete Member</th>
+                                    <th class="pb-3">Plan / Program</th>
+                                    <th class="pb-3">Amount</th>
+                                    <th class="pb-3">Payment Method</th>
+                                    <th class="pb-3">Processed Date</th>
+                                    <th class="pb-3">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 text-xs sm:text-sm">
+                                <tr>
+                                    <td class="py-4 font-mono font-bold text-[#0d9488]">#INV-2026-9041</td>
+                                    <td class="py-4 font-bold text-slate-900">Alexander Vance</td>
+                                    <td class="py-4 text-slate-600">Pro Transformation (Monthly)</td>
+                                    <td class="py-4 font-bold text-slate-900">$99.00</td>
+                                    <td class="py-4 text-slate-500"><i class="fa-brands fa-cc-visa text-blue-600 mr-1"></i> &bull;&bull;&bull;&bull; 4242</td>
+                                    <td class="py-4 text-slate-500">Oct 23, 2026</td>
+                                    <td class="py-4"><span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold">Auto-Renewed</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 font-mono font-bold text-[#0d9488]">#INV-2026-9040</td>
+                                    <td class="py-4 font-bold text-slate-900">Sarah Jenkins</td>
+                                    <td class="py-4 text-slate-600">Pro Transformation (Monthly)</td>
+                                    <td class="py-4 font-bold text-slate-900">$99.00</td>
+                                    <td class="py-4 text-slate-500"><i class="fa-brands fa-cc-mastercard text-amber-600 mr-1"></i> &bull;&bull;&bull;&bull; 8821</td>
+                                    <td class="py-4 text-slate-500">Oct 23, 2026</td>
+                                    <td class="py-4"><span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold">Auto-Renewed</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 font-mono font-bold text-[#0d9488]">#INV-2026-9039</td>
+                                    <td class="py-4 font-bold text-slate-900">Maya Patel</td>
+                                    <td class="py-4 text-slate-600">Elite VIP Private Coaching</td>
+                                    <td class="py-4 font-bold text-slate-900">$189.00</td>
+                                    <td class="py-4 text-slate-500"><i class="fa-brands fa-cc-amex text-blue-700 mr-1"></i> &bull;&bull;&bull;&bull; 1009</td>
+                                    <td class="py-4 text-slate-500">Oct 22, 2026</td>
+                                    <td class="py-4"><span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold">Paid</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 font-mono font-bold text-[#0d9488]">#INV-2026-9038</td>
+                                    <td class="py-4 font-bold text-slate-900">Liam Reynolds</td>
+                                    <td class="py-4 text-slate-600">Starter Kickstart</td>
+                                    <td class="py-4 font-bold text-slate-900">$49.00</td>
+                                    <td class="py-4 text-slate-500"><i class="fa-brands fa-cc-visa text-blue-600 mr-1"></i> &bull;&bull;&bull;&bull; 6311</td>
+                                    <td class="py-4 text-slate-500">Oct 21, 2026</td>
+                                    <td class="py-4"><span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold">Paid</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ==============================================
+                 TAB 6: ADMIN SETTINGS
+                 ============================================== -->
+            <div id="tab-admin-settings" class="tab-panel space-y-6 min-w-0 max-w-full">
+                
+                <!-- Studio Facility Profile & Director Form -->
+                <div class="bg-white rounded-2xl p-4 sm:p-7 border border-slate-200/80 shadow-sm min-w-0">
+                    <h3 class="text-base sm:text-lg font-bold text-[#0f172a] font-heading mb-5">Studio Operations &amp; Facility Profile</h3>
+                    
+                    <form id="adminSettingsForm" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-500 mb-1.5">Facility Legal Name</label>
+                                <input type="text" value="Stackly Personal Training &amp; Athletic Performance Center" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 outline-none focus:border-[#00e5c9]">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-500 mb-1.5">Operating Hours</label>
+                                <input type="text" value="Mon–Fri: 06:00 AM – 10:00 PM | Sat–Sun: 07:00 AM – 08:00 PM" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 outline-none focus:border-[#00e5c9]">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-500 mb-1.5">Studio Director Name</label>
+                                <input type="text" id="adminDirectorName" value="Alexander Vance" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 outline-none focus:border-[#00e5c9]">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-500 mb-1.5">Administrative Email Address</label>
+                                <input type="email" id="adminDirectorEmail" value="admin@stacklyfit.com" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 outline-none focus:border-[#00e5c9]">
+                            </div>
+
+                            <div class="sm:col-span-2">
+                                <label class="block text-xs font-bold uppercase text-slate-500 mb-1.5">Studio Physical Address</label>
+                                <input type="text" value="450 Performance Way, Elite District, NY 10001" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 outline-none focus:border-[#00e5c9]">
+                            </div>
+                        </div>
+
+                        <!-- Capacity & Scheduling Rules -->
+                        <div class="pt-5 border-t border-slate-100">
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Capacity &amp; Booking Rules Configuration</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+                                <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50">
+                                    <label class="block font-bold text-slate-800 mb-1">Max Athletes / Pod</label>
+                                    <select class="w-full bg-white border border-slate-200 rounded-lg p-2 text-xs outline-none">
+                                        <option>1 Athlete (Private 1-on-1 Only)</option>
+                                        <option selected>2 Athletes (Partner / Semi-Private)</option>
+                                    </select>
+                                </div>
+                                <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50">
+                                    <label class="block font-bold text-slate-800 mb-1">Late Cancellation Window</label>
+                                    <select class="w-full bg-white border border-slate-200 rounded-lg p-2 text-xs outline-none">
+                                        <option>6 Hours Prior</option>
+                                        <option selected>12 Hours Prior</option>
+                                        <option>24 Hours Prior</option>
+                                    </select>
+                                </div>
+                                <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50">
+                                    <label class="block font-bold text-slate-800 mb-1">InBody Re-Scan Interval</label>
+                                    <select class="w-full bg-white border border-slate-200 rounded-lg p-2 text-xs outline-none">
+                                        <option selected>Every 14 Days (Bi-Weekly)</option>
+                                        <option>Every 30 Days (Monthly)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Staff Security Toggles -->
+                        <div class="pt-4 border-t border-slate-100 space-y-3">
+                            <div class="flex items-center justify-between text-xs">
+                                <div>
+                                    <div class="font-bold text-slate-800">Enforce Two-Factor Authentication (2FA) for Trainers</div>
+                                    <div class="text-slate-500">Require coach verification before modifying athlete training logs.</div>
+                                </div>
+                                <input type="checkbox" checked class="w-4 h-4 rounded text-[#00e5c9] accent-[#00e5c9] cursor-pointer">
+                            </div>
+
+                            <div class="flex items-center justify-between text-xs">
+                                <div>
+                                    <div class="font-bold text-slate-800">Automated Daily Revenue &amp; Floor Report</div>
+                                    <div class="text-slate-500">Email daily studio capacity and settlement stats to director at 10:00 PM.</div>
+                                </div>
+                                <input type="checkbox" checked class="w-4 h-4 rounded text-[#00e5c9] accent-[#00e5c9] cursor-pointer">
+                            </div>
+                        </div>
+
+                        <div class="pt-2">
+                            <button type="submit" class="px-6 py-3 bg-[#00e5c9] hover:bg-[#25f4dc] text-gray-950 font-bold text-xs rounded-xl shadow-[0_0_15px_rgba(0,229,201,0.3)] transition">
+                                <i class="fa-solid fa-floppy-disk mr-1.5"></i> Save Operations &amp; Facility Settings
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Floating Global Admin Toast Notification -->
+    <div id="adminToast" class="fixed bottom-6 right-6 z-50 bg-[#07111a] text-white px-5 py-3.5 rounded-2xl shadow-2xl border border-[#00e5c9]/40 flex items-center space-x-3 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="w-8 h-8 rounded-xl bg-[#00e5c9]/20 text-[#00e5c9] flex items-center justify-center shrink-0">
+            <i class="fa-solid fa-circle-check text-base"></i>
+        </div>
+        <div class="text-xs font-semibold" id="adminToastMsg">Admin operation executed successfully!</div>
+    </div>
+
+    <!-- Interactive Tabs & Sidebar Toggle Script -->
+    <script>
+        // Toast Notification Helper
+        let toastTimeout;
+        function showAdminToast(message) {
+            const toast = document.getElementById('adminToast');
+            const msgEl = document.getElementById('adminToastMsg');
+            if (!toast || !msgEl) return;
+            
+            msgEl.textContent = message;
+            toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+            }, 3200);
+        }
+
+        // 1. Mobile Sidebar Toggle
+        const menuToggleBtn = document.getElementById('menuToggleBtn');
+        const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+        const portalSidebar = document.getElementById('portalSidebar');
+        const backdrop = document.getElementById('mobileSidebarBackdrop');
+
+        function toggleSidebar(open) {
+            if (open) {
+                portalSidebar.classList.remove('-translate-x-full');
+                backdrop.classList.remove('hidden');
+            } else {
+                portalSidebar.classList.add('-translate-x-full');
+                backdrop.classList.add('hidden');
+            }
+        }
+
+        if (menuToggleBtn) menuToggleBtn.addEventListener('click', () => toggleSidebar(true));
+        if (closeSidebarBtn) closeSidebarBtn.addEventListener('click', () => toggleSidebar(false));
+        if (backdrop) backdrop.addEventListener('click', () => toggleSidebar(false));
+
+        // 2. Bell Dropdown Toggle
+        const bellBtn = document.getElementById('bellBtn');
+        const bellDropdown = document.getElementById('bellDropdown');
+        if (bellBtn && bellDropdown) {
+            bellBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                bellDropdown.classList.toggle('hidden');
+            });
+            document.addEventListener('click', (e) => {
+                if (!bellDropdown.contains(e.target) && e.target !== bellBtn) {
+                    bellDropdown.classList.add('hidden');
+                }
+            });
+        }
+
+        // 3. Tab Switching Logic with Vibrant Teal Active State
+        const tabTriggers = document.querySelectorAll('.tab-trigger');
+        const tabPanels = document.querySelectorAll('.tab-panel');
+        const topPageTitle = document.getElementById('topPageTitle');
+
+        tabTriggers.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetId = btn.getAttribute('data-target');
+                const titleText = btn.querySelector('span:last-child').textContent;
+
+                // Reset Active Tab Buttons
+                tabTriggers.forEach(t => {
+                    t.classList.remove('active', 'bg-[#00e5c9]', 'text-gray-950', 'font-bold', 'shadow-[0_0_15px_rgba(0,229,201,0.35)]');
+                    t.classList.add('text-[#94a3b8]', 'font-medium');
+                    const circle = t.querySelector('.w-6');
+                    if (circle) {
+                        circle.classList.remove('bg-gray-950/20', 'text-gray-950');
+                        circle.classList.add('text-[#94a3b8]');
+                    }
+                });
+
+                // Set Active Tab Button to Teal
+                btn.classList.add('active', 'bg-[#00e5c9]', 'text-gray-950', 'font-bold', 'shadow-[0_0_15px_rgba(0,229,201,0.35)]');
+                btn.classList.remove('text-[#94a3b8]', 'font-medium');
+                const activeCircle = btn.querySelector('.w-6');
+                if (activeCircle) {
+                    activeCircle.classList.add('bg-gray-950/20', 'text-gray-950');
+                    activeCircle.classList.remove('text-[#94a3b8]');
+                }
+
+                // Switch Panels
+                tabPanels.forEach(panel => panel.classList.remove('active'));
+                const activePanel = document.getElementById(targetId);
+                if (activePanel) activePanel.classList.add('active');
+
+                // Update Header Title
+                if (topPageTitle) topPageTitle.textContent = titleText;
+
+                // Close sidebar on mobile
+                if (window.innerWidth < 768) {
+                    toggleSidebar(false);
+                }
+            });
+        });
+
+        // 4. Live Athlete Directory Search & Filters
+        const athleteSearchInput = document.getElementById('athleteSearchInput');
+        const athleteRows = document.querySelectorAll('#athleteTableBody tr');
+        const athleteFilterPills = document.querySelectorAll('#athleteFilterPills .athlete-filter');
+
+        function filterAthletes() {
+            const query = (athleteSearchInput ? athleteSearchInput.value.toLowerCase().trim() : '');
+            const activeFilterBtn = document.querySelector('#athleteFilterPills .athlete-filter.active');
+            const activeFilter = activeFilterBtn ? activeFilterBtn.getAttribute('data-filter') : 'all';
+
+            athleteRows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                const prog = row.getAttribute('data-program') || '';
+                const matchesQuery = !query || text.includes(query);
+                const matchesFilter = (activeFilter === 'all') || prog.includes(activeFilter);
+
+                if (matchesQuery && matchesFilter) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        if (athleteSearchInput) athleteSearchInput.addEventListener('input', filterAthletes);
+
+        athleteFilterPills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                athleteFilterPills.forEach(p => {
+                    p.classList.remove('active', 'bg-white', 'text-slate-900', 'shadow-sm');
+                    p.classList.add('text-slate-600');
+                });
+                pill.classList.add('active', 'bg-white', 'text-slate-900', 'shadow-sm');
+                pill.classList.remove('text-slate-600');
+                filterAthletes();
+            });
+        });
+
+        // 5. Enroll New Athlete Form (Validation & 404 Redirection)
+        const enrollAthleteForm = document.getElementById('enrollAthleteForm');
+        if (enrollAthleteForm) {
+            enrollAthleteForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const nameInput = document.getElementById('newAthleteName');
+                const coachInput = document.getElementById('newAthleteCoach');
+                
+                if (!nameInput || !nameInput.value.trim()) {
+                    if (nameInput) {
+                        nameInput.reportValidity();
+                        nameInput.focus();
+                    }
+                    showAdminToast('Please enter athlete full name.');
+                    return;
+                }
+                if (!coachInput || !coachInput.value.trim()) {
+                    if (coachInput) {
+                        coachInput.reportValidity();
+                        coachInput.focus();
+                    }
+                    showAdminToast('Please select an assigned coach.');
+                    return;
+                }
+                
+                // Form validated successfully -> Redirect to 404 page
+                window.location.href = '404.html';
+            });
+        }
+
+        // 6. Schedule Master Time Filter
+        const schedFilters = document.querySelectorAll('#scheduleTimeFilters .sched-filter');
+        const schedRows = document.querySelectorAll('#scheduleTableBody tr');
+        schedFilters.forEach(sBtn => {
+            sBtn.addEventListener('click', () => {
+                schedFilters.forEach(b => {
+                    b.classList.remove('active', 'bg-white', 'text-slate-900', 'shadow-sm');
+                    b.classList.add('text-slate-600');
+                });
+                sBtn.classList.add('active', 'bg-white', 'text-slate-900', 'shadow-sm');
+                sBtn.classList.remove('text-slate-600');
+
+                const filterVal = sBtn.getAttribute('data-filter');
+                schedRows.forEach(row => {
+                    if (filterVal === 'all' || row.getAttribute('data-time') === filterVal) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // 7. Admin Settings Form (Validation & 404 Redirection)
+        const adminSettingsForm = document.getElementById('adminSettingsForm');
+        if (adminSettingsForm) {
+            adminSettingsForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const nameInput = document.getElementById('adminDirectorName');
+                const emailInput = document.getElementById('adminDirectorEmail');
+                
+                if (!nameInput || !nameInput.value.trim()) {
+                    if (nameInput) {
+                        nameInput.reportValidity();
+                        nameInput.focus();
+                    }
+                    showAdminToast('Please enter director name.');
+                    return;
+                }
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailInput || !emailInput.value.trim() || !emailRegex.test(emailInput.value.trim())) {
+                    if (emailInput) {
+                        emailInput.setCustomValidity('Please enter a valid email address.');
+                        emailInput.reportValidity();
+                        emailInput.focus();
+                        emailInput.addEventListener('input', () => emailInput.setCustomValidity(''), { once: true });
+                    }
+                    showAdminToast('Please enter a valid email address.');
+                    return;
+                }
+                
+                // Form validated successfully -> Redirect to 404 page
+                window.location.href = '404.html';
+            });
+        }
+
+        // ----------------------------------------------------
+        // 404 REDIRECTION FOR ALL CONTENT LINKS & BUTTONS (EXCEPT SIDEBAR MENUS)
+        // ----------------------------------------------------
+        document.addEventListener('click', (e) => {
+            // Keep sidebar menus and mobile toggles functional
+            if (e.target.closest('#portalSidebar, #menuToggleBtn, #closeSidebarBtn, #mobileSidebarBackdrop')) {
+                return;
+            }
+
+            // Allow typing/selecting in forms without navigation
+            if (e.target.closest('input, textarea, select, label')) {
+                return;
+            }
+
+            // Allow form submit buttons to trigger form validation first
+            const submitBtn = e.target.closest('button[type="submit"], input[type="submit"]');
+            if (submitBtn) {
+                return;
+            }
+
+            // All other links and buttons inside the dashboard go to 404
+            const clickable = e.target.closest('a, button');
+            if (clickable) {
+                e.preventDefault();
+                window.location.href = '404.html';
+            }
+        });
+
+        // 8. Dynamic Admin Name & Email Hydration (From Login)
+        function formatNameFromEmail(email) {
+            if (!email || !email.includes('@')) return 'Alexander Vance';
+            const usernamePart = email.split('@')[0];
+            const parts = usernamePart.split(/[._+-]+/).filter(Boolean);
+            if (!parts.length) return 'Director';
+            const formatted = parts.map(part => {
+                const clean = part.replace(/\d+$/, '');
+                const word = clean || part;
+                return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+            }).join(' ');
+            return formatted || 'Director';
+        }
+
+        function getInitials(name) {
+            if (!name) return 'AD';
+            const parts = name.trim().split(/\s+/);
+            if (parts.length >= 2) {
+                return (parts[0][0] + parts[1][0]).toUpperCase();
+            }
+            return name.slice(0, 2).toUpperCase();
+        }
+
+        function initAdminDetails() {
+            const params = new URLSearchParams(window.location.search);
+            const paramEmail = params.get('email');
+            const paramName = params.get('name');
+            
+            let email = paramEmail || '';
+            let name = paramName || '';
+            
+            try {
+                if (!email) email = localStorage.getItem('stackly_logged_user') || '';
+                if (!name) name = localStorage.getItem('stackly_user_name') || '';
+            } catch (e) {}
+
+            if (email && !name) {
+                name = formatNameFromEmail(email);
+            }
+
+            // Defaults if opened directly without prior login
+            if (!email) email = 'admin@stacklyfit.com';
+            if (!name) name = 'Alexander Vance';
+
+            const isCustom = (email.toLowerCase() !== 'admin@stacklyfit.com' && email.toLowerCase() !== 'alexander.vance@stacklyfit.com');
+
+            // Update Header Profile Logo Pill
+            const adminHeaderName = document.getElementById('adminHeaderName');
+            const adminHeaderEmail = document.getElementById('adminHeaderEmail');
+            const adminHeaderAvatar = document.getElementById('adminHeaderAvatar');
+            const adminHeaderInitials = document.getElementById('adminHeaderInitials');
+
+            if (adminHeaderName) adminHeaderName.textContent = name;
+            if (adminHeaderEmail) {
+                adminHeaderEmail.textContent = email;
+                adminHeaderEmail.setAttribute('title', email);
+            }
+
+            if (isCustom && adminHeaderAvatar && adminHeaderInitials) {
+                adminHeaderAvatar.classList.add('hidden');
+                adminHeaderInitials.classList.remove('hidden');
+                adminHeaderInitials.classList.add('flex');
+                adminHeaderInitials.textContent = getInitials(name);
+            }
+
+            // Update Overview Welcome Greeting
+            const adminWelcomeName = document.getElementById('adminWelcomeName');
+            const adminWelcomeEmail = document.getElementById('adminWelcomeEmail');
+            if (adminWelcomeName) adminWelcomeName.textContent = name;
+            if (adminWelcomeEmail) adminWelcomeEmail.textContent = email;
+
+            // Update Admin Settings Inputs
+            const adminDirectorName = document.getElementById('adminDirectorName');
+            const adminDirectorEmail = document.getElementById('adminDirectorEmail');
+            if (adminDirectorName) adminDirectorName.value = name;
+            if (adminDirectorEmail) adminDirectorEmail.value = email;
+        }
+
+        initAdminDetails();
+    </script>
+
+    <!-- AOS (Animate On Scroll) JS CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({ duration: 750, easing: 'ease-out-cubic', once: true, offset: 40 });
+    </script>
+</body>
+</html>

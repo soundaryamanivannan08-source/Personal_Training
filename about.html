@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Stackly Personal Training & Athletic Performance</title>
+    <meta name="description" content="Discover Stackly Fitness: our science-backed 1-on-1 private pod training methodology, 12,000 sq ft performance studio, world-class certified coaches, and clinical InBody biometric tracking.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        teal: {
+                            400: '#2dd4bf',
+                            500: '#14b8a6',
+                            accent: '#00e5c9',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+                        heading: ['Outfit', '"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- AOS (Animate On Scroll) Animation CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css?v=2">
+</head>
+<body class="bg-[#07111a] text-slate-100 font-sans selection:bg-[#00e5c9] selection:text-black min-h-screen flex flex-col overflow-x-hidden antialiased">
+
+    <!-- ========================================================
+         NAVIGATION HEADER (Sticky Pure Navy with Glass Effect)
+         ======================================================== -->
+    <header>
+        <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 sm:py-5 bg-[#07111a]/95 backdrop-blur-md border-b border-white/5">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between">
+                    <!-- Brand Logo -->
+                    <a href="index.html" class="flex items-center group cursor-pointer focus:outline-none">
+                        <img src="assets/images/logo_0991.webp" alt="Stackly" class="h-8 sm:h-9 md:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+                    </a>
+
+                    <!-- Desktop Navigation Links -->
+                    <div class="hidden md:flex items-center space-x-8 text-[15px] font-medium">
+                        <a href="index.html" class="text-gray-300 hover:text-[#00e5c9] transition py-2">Home</a>
+                        <div class="relative py-2">
+                            <a href="about.html" class="text-[#00e5c9] font-bold transition">About</a>
+                            <span class="absolute bottom-0 left-0 right-0 h-[3px] bg-[#00e5c9] rounded-full shadow-[0_0_8px_#00e5c9]"></span>
+                        </div>
+                        <a href="service.html" class="text-gray-300 hover:text-[#00e5c9] transition py-2">Service</a>
+                        <a href="blog.html" class="text-gray-300 hover:text-[#00e5c9] transition py-2">Blog</a>
+                        <a href="contact.html" class="text-gray-300 hover:text-[#00e5c9] transition py-2">Contact</a>
+                    </div>
+
+                    <!-- Right Controls / Login Button -->
+                    <div class="hidden md:flex items-center space-x-4">
+                        <a href="login.html" class="flex items-center space-x-2 border border-[#00e5c9]/80 text-white hover:text-gray-950 hover:bg-[#00e5c9] px-6 py-2 rounded-full text-sm font-semibold transition duration-200 shadow-sm hover:shadow-[0_0_15px_rgba(0,229,201,0.4)]">
+                            <i class="fa-solid fa-user text-xs text-[#00e5c9] group-hover:text-gray-950"></i>
+                            <span>Login</span>
+                        </a>
+                    </div>
+
+                    <!-- Mobile Menu Hamburger Button -->
+                    <div class="flex md:hidden items-center">
+                        <button id="mobile-menu-btn" aria-label="Open Navigation Menu" class="p-2 rounded-xl text-gray-200 hover:text-[#00e5c9] focus:outline-none">
+                            <i class="fa-solid fa-bars-staggered text-2xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Drawer & Backdrop -->
+    <div id="mobile-menu-backdrop" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden transition-opacity duration-300"></div>
+    <div id="mobile-menu-drawer" class="fixed top-0 right-0 bottom-0 w-[290px] max-w-[85%] z-50 bg-[#07111a] border-l border-white/10 p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
+        <div>
+            <div class="flex items-center justify-between pb-6 border-b border-white/10">
+                <a href="index.html" class="flex items-center">
+                    <img src="assets/images/logo_0991.webp" alt="Stackly" class="h-7 w-auto object-contain">
+                </a>
+                <button id="mobile-menu-close" aria-label="Close Navigation Menu" class="p-2 text-gray-400 hover:text-white transition">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+            <div class="flex flex-col space-y-3 mt-6">
+                <a href="index.html" class="mobile-nav-link py-2.5 text-gray-300 hover:text-white font-medium border-b border-white/5">Home</a>
+                <a href="about.html" class="mobile-nav-link py-2.5 text-[#00e5c9] font-bold border-b border-white/5">About</a>
+                <a href="service.html" class="mobile-nav-link py-2.5 text-gray-300 hover:text-white font-medium border-b border-white/5">Service</a>
+                <a href="blog.html" class="mobile-nav-link py-2.5 text-gray-300 hover:text-white font-medium border-b border-white/5">Blog</a>
+                <a href="contact.html" class="mobile-nav-link py-2.5 text-gray-300 hover:text-white font-medium border-b border-white/5">Contact</a>
+            </div>
+        </div>
+        <div class="pt-6 border-t border-white/10 space-y-3">
+            <a href="login.html" class="w-full flex items-center justify-center space-x-2 border border-[#00e5c9] text-white hover:bg-[#00e5c9] hover:text-gray-950 py-3 rounded-full font-semibold transition text-sm">
+                <i class="fa-solid fa-user text-xs"></i>
+                <span>Login</span>
+            </a>
+            <a href="contact.html" class="w-full flex items-center justify-center space-x-2 bg-[#00e5c9] hover:bg-[#25f4dc] text-gray-950 py-3 rounded-full font-bold transition text-sm shadow-[0_0_15px_rgba(0,229,201,0.3)]">
+                <span>Book Free Session</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- MAIN BODY CONTENT -->
+    <main class="flex-grow">
+
+        <!-- ========================================================
+             SECTION 1: HERO STORY & CREDIBILITY METRICS
+             ======================================================== -->
+        <section class="pt-32 sm:pt-36 pb-16 sm:pb-24 bg-gradient-to-b from-[#040a10] via-[#07111a] to-[#081522] relative overflow-hidden border-b border-white/5">
+            <div class="absolute -right-24 -top-24 w-96 h-96 bg-[#00e5c9]/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -left-24 bottom-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <!-- Badge -->
+                <div data-aos="fade-down" data-aos-duration="600" class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#00e5c9]/10 border border-[#00e5c9]/30 text-[#00e5c9] text-xs font-extrabold uppercase tracking-widest mb-6 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-[#00e5c9] animate-pulse"></span>
+                    <span>ABOUT STACKLY &bull; ESTABLISHED 2018</span>
+                </div>
+
+                <!-- Main Heading -->
+                <h1 data-aos="fade-up" data-aos-delay="100" class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white font-heading tracking-tight max-w-5xl mx-auto leading-tight mb-6">
+                    Forged by Science. Driven by <span class="text-[#00e5c9] teal-text-glow">Human Potential.</span>
+                </h1>
+
+                <!-- Subtitle -->
+                <p data-aos="fade-up" data-aos-delay="200" class="text-gray-300 max-w-3xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed mb-10">
+                    We eliminated the broken commercial gym industry—replacing crowded floors, generic workout templates, and starvation fads with clinical diagnostic precision, dedicated 1-on-1 private pods, and permanent recomposition results.
+                </p>
+
+                <!-- Hero Action CTAs -->
+                <div data-aos="fade-up" data-aos-delay="300" class="flex flex-wrap items-center justify-center gap-4 mb-16">
+                    <a href="404.html" class="w-full sm:w-auto px-8 py-4 bg-[#00e5c9] hover:bg-[#25f4dc] text-gray-950 font-black rounded-full transition shadow-[0_0_20px_rgba(0,229,201,0.35)] flex items-center justify-center space-x-2 text-sm sm:text-base">
+                        <span>Explore Our Philosophy</span>
+                        <i class="fa-solid fa-arrow-down text-xs"></i>
+                    </a>
+                    <a href="404.html" class="w-full sm:w-auto px-8 py-4 bg-[#0d1924] hover:bg-[#122434] text-white border border-white/10 hover:border-[#00e5c9]/40 font-bold rounded-full transition flex items-center justify-center space-x-2 text-sm sm:text-base">
+                        <i class="fa-solid fa-users text-[#00e5c9]"></i>
+                        <span>Meet The Coaches</span>
+                    </a>
+                </div>
+
+                <!-- 4 High-Impact KPI Credibility Cards -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 pt-10 border-t border-white/10 text-left">
+                    <div data-aos="fade-up" data-aos-delay="100" class="group p-5 sm:p-6 rounded-2xl bg-[#0d1924]/80 border border-white/10 shadow-sm hover:border-[#00e5c9]/40 hover-lift transition">
+                        <div class="w-12 h-12 rounded-xl bg-[#00e5c9]/10 border border-[#00e5c9]/20 text-[#00e5c9] flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition duration-300">
+                            <i class="fa-solid fa-trophy"></i>
+                        </div>
+                        <div class="text-2xl sm:text-4xl font-extrabold text-white font-heading">
+                            <span data-counter-target="15000" data-counter-suffix="+">15,000+</span>
+                        </div>
+                        <div class="text-xs sm:text-sm text-gray-400 mt-1 font-medium">Athletes Transformed</div>
+                    </div>
+
+                    <div data-aos="fade-up" data-aos-delay="200" class="group p-5 sm:p-6 rounded-2xl bg-[#0d1924]/80 border border-white/10 shadow-sm hover:border-[#00e5c9]/40 hover-lift transition">
+                        <div class="w-12 h-12 rounded-xl bg-[#00e5c9]/10 border border-[#00e5c9]/20 text-[#00e5c9] flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition duration-300">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </div>
+                        <div class="text-2xl sm:text-4xl font-extrabold text-[#00e5c9] font-heading">
+                            <span data-counter-target="98.4" data-counter-decimals="1" data-counter-suffix="%">98.4%</span>
+                        </div>
+                        <div class="text-xs sm:text-sm text-gray-400 mt-1 font-medium">Client Retention Rate</div>
+                    </div>
+
+                    <div data-aos="fade-up" data-aos-delay="300" class="group p-5 sm:p-6 rounded-2xl bg-[#0d1924]/80 border border-white/10 shadow-sm hover:border-[#00e5c9]/40 hover-lift transition">
+                        <div class="w-12 h-12 rounded-xl bg-[#00e5c9]/10 border border-[#00e5c9]/20 text-[#00e5c9] flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition duration-300">
+                            <i class="fa-solid fa-user-graduate"></i>
+                        </div>
+                        <div class="text-2xl sm:text-4xl font-extrabold text-white font-heading">
+                            <span data-counter-target="50" data-counter-suffix="+">50+</span>
+                        </div>
+                        <div class="text-xs sm:text-sm text-gray-400 mt-1 font-medium">CSCS &amp; DPT Coaches</div>
+                    </div>
+
+                    <div data-aos="fade-up" data-aos-delay="400" class="group p-5 sm:p-6 rounded-2xl bg-[#0d1924]/80 border border-white/10 shadow-sm hover:border-[#00e5c9]/40 hover-lift transition">
+                        <div class="w-12 h-12 rounded-xl bg-[#00e5c9]/10 border border-[#00e5c9]/20 text-[#00e5c9] flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition duration-300">
+                            <i class="fa-solid fa-building"></i>
+                        </div>
+                        <div class="text-2xl sm:text-4xl font-extrabold text-white font-heading">
+                            <span data-counter-target="12000">12,000</span>
+                        </div>
+                        <div class="text-xs sm:text-sm text-gray-400 mt-1 font-medium">Sq. Ft Private Studio</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 2: ORIGIN STORY & FOUNDER'S MANIFESTO
+             ======================================================== -->
+        <section id="philosophy" class="py-20 sm:py-28 bg-[#07111a] border-b border-white/5 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                    
+                    <!-- Left: Narrative Text -->
+                    <div class="lg:col-span-7" data-aos="fade-up" data-aos-delay="100">
+                        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#00e5c9]/10 text-[#00e5c9] text-xs font-bold uppercase tracking-wider mb-4">
+                            <span>OUR ORIGIN STORY</span>
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-heading tracking-tight mb-6 leading-tight">
+                            Why We Built Stackly: Beyond The <span class="text-[#00e5c9]">Broken Gym Model.</span>
+                        </h2>
+                        
+                        <p class="text-gray-300 text-base sm:text-lg leading-relaxed mb-6">
+                            Traditional commercial gyms are designed around a cynical financial truth: <strong class="text-white">they sell memberships betting you will never show up.</strong> They crowd 300 members onto a loud, disorganized floor, leaving you waiting 20 minutes for a squat rack while guessing your way through random routines that leave you injured and burnt out.
+                        </p>
+                        
+                        <p class="text-gray-400 text-sm sm:text-base leading-relaxed mb-8">
+                            In 2018, Alexander Vance founded Stackly with an uncompromising proposition: What if private coaching was stripped of fads and rebuilt upon clinical exercise physiology, private training pods, and genuine human mentorship? We created an ecosystem where clients never fight for weights, never receive generic cookie-cutter plans, and never train without real-time biometric feedback.
+                        </p>
+
+                        <!-- 3 Feature Highlight Checkmarks -->
+                        <div class="space-y-4 pt-6 border-t border-white/10">
+                            <div class="flex items-start space-x-3.5">
+                                <div class="w-6 h-6 rounded-full bg-[#00e5c9]/15 text-[#00e5c9] flex items-center justify-center shrink-0 mt-0.5 text-xs">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-base font-bold text-white">100% Reserved Private Pods</h4>
+                                    <p class="text-xs sm:text-sm text-gray-400 mt-0.5">Your private station with calibrated Olympic Rogue &amp; Eleiko gear reserved exclusively for your session.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-3.5">
+                                <div class="w-6 h-6 rounded-full bg-[#00e5c9]/15 text-[#00e5c9] flex items-center justify-center shrink-0 mt-0.5 text-xs">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-base font-bold text-white">Individualized Kinesiology &amp; Posture</h4>
+                                    <p class="text-xs sm:text-sm text-gray-400 mt-0.5">Every movement is screened against your joint mechanics, injury history, and structural mobility.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-3.5">
+                                <div class="w-6 h-6 rounded-full bg-[#00e5c9]/15 text-[#00e5c9] flex items-center justify-center shrink-0 mt-0.5 text-xs">
+                                    <i class="fa-solid fa-check"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-base font-bold text-white">Non-Restrictive Metabolic Fueling</h4>
+                                    <p class="text-xs sm:text-sm text-gray-400 mt-0.5">No starvation diets or unscientific liquid cleanses. We prescribe macro-nutrient flexibility tailored to your RMR.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Visual Image with Floating Frosted Badges -->
+                    <div class="lg:col-span-5 relative" data-aos="fade-up" data-aos-delay="200">
+                        <div class="relative rounded-3xl overflow-hidden border border-white/15 shadow-2xl group">
+                            <img src="assets/images/about-fitness.webp" alt="Stackly High Performance Private Pod Training" class="w-full h-[420px] sm:h-[500px] object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#07111a] via-transparent to-transparent opacity-80"></div>
+                            
+                            <!-- Bottom Overlay Card -->
+                            <div class="absolute bottom-5 left-5 right-5 p-4 rounded-2xl bg-[#07111a]/90 backdrop-blur-md border border-[#00e5c9]/30 shadow-xl">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 rounded-xl bg-[#00e5c9] text-gray-950 flex items-center justify-center font-bold text-lg shrink-0">
+                                        <i class="fa-solid fa-shield-halved"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs font-bold text-[#00e5c9] uppercase tracking-wider">Zero Distractions Guarantee</div>
+                                        <div class="text-sm font-extrabold text-white">100% Dedicated Private Pods</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Secondary Floating Stat Badge -->
+                        <div class="absolute -top-4 -right-2 sm:-right-4 bg-[#0d1924]/95 border border-white/15 rounded-2xl p-4 shadow-2xl backdrop-blur-md hidden sm:flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-full bg-emerald-500/20 text-[#00e5c9] flex items-center justify-center text-sm">
+                                <i class="fa-solid fa-heart-pulse"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-400 font-medium">InBody 770 Clinical Testing</div>
+                                <div class="text-sm font-extrabold text-white">Every 14 Days Active</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 3: 4-PILLAR TRANSFORMATION METHODOLOGY
+             ======================================================== -->
+        <section class="py-20 sm:py-28 bg-[#050c14] border-b border-white/5 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div data-aos="fade-up" class="text-center max-w-3xl mx-auto mb-16">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#00e5c9]/10 text-[#00e5c9] text-xs font-bold uppercase tracking-wider mb-4">
+                        SYSTEM ARCHITECTURE
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-heading tracking-tight mb-4">
+                        The Stackly <span class="text-[#00e5c9]">4-Pillar Blueprint</span>
+                    </h2>
+                    <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
+                        A systematic, peer-reviewed methodology engineered to build athletic strength, drop stubborn body fat, and optimize joint longevity with zero guesswork.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Pillar 1 -->
+                    <div data-aos="fade-up" data-aos-delay="100" class="p-6 sm:p-7 rounded-3xl bg-[#0b1724] border border-white/10 hover-lift flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-2xl bg-[#00e5c9]/15 text-[#00e5c9] flex items-center justify-center text-xl mb-6 shadow-sm">
+                                <i class="fa-solid fa-dna"></i>
+                            </div>
+                            <span class="text-xs font-mono font-bold text-[#00e5c9] tracking-wider uppercase">PILLAR 01</span>
+                            <h3 class="text-xl font-bold text-white font-heading mt-1 mb-3">Biometric Kinetic Assessment</h3>
+                            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6">
+                                We map visceral fat, segmental limb muscle mass, fluid ratios with InBody 770, and perform a 12-point joint kinetic screen before touching a barbell.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-white/5 text-xs font-semibold text-slate-300 flex items-center">
+                            <i class="fa-solid fa-check text-[#00e5c9] mr-2"></i> Clinical Baselines Established
+                        </div>
+                    </div>
+
+                    <!-- Pillar 2 -->
+                    <div data-aos="fade-up" data-aos-delay="200" class="p-6 sm:p-7 rounded-3xl bg-[#0b1724] border border-[#00e5c9]/30 hover-lift flex flex-col justify-between relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-24 h-24 bg-[#00e5c9]/10 rounded-full blur-xl pointer-events-none"></div>
+                        <div>
+                            <div class="w-12 h-12 rounded-2xl bg-[#00e5c9] text-gray-950 flex items-center justify-center text-xl mb-6 shadow-md">
+                                <i class="fa-solid fa-dumbbell"></i>
+                            </div>
+                            <span class="text-xs font-mono font-bold text-[#00e5c9] tracking-wider uppercase">PILLAR 02</span>
+                            <h3 class="text-xl font-bold text-white font-heading mt-1 mb-3">Periodized Progressive Overload</h3>
+                            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6">
+                                Wave-loaded mechanical tension, calibrated bar speed, and RPE (Rate of Perceived Exertion) pacing to safely elicit continuous hypertrophy and strength.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-white/5 text-xs font-semibold text-slate-300 flex items-center">
+                            <i class="fa-solid fa-check text-[#00e5c9] mr-2"></i> Safe, Injury-Proof Progression
+                        </div>
+                    </div>
+
+                    <!-- Pillar 3 -->
+                    <div data-aos="fade-up" data-aos-delay="300" class="p-6 sm:p-7 rounded-3xl bg-[#0b1724] border border-white/10 hover-lift flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-2xl bg-[#00e5c9]/15 text-[#00e5c9] flex items-center justify-center text-xl mb-6 shadow-sm">
+                                <i class="fa-solid fa-utensils"></i>
+                            </div>
+                            <span class="text-xs font-mono font-bold text-[#00e5c9] tracking-wider uppercase">PILLAR 03</span>
+                            <h3 class="text-xl font-bold text-white font-heading mt-1 mb-3">Precision Sports Nutrition</h3>
+                            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6">
+                                Individualized macronutrient splits, daily caloric phasing, and targeted hydration protocols curated by board-certified sports dietitians.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-white/5 text-xs font-semibold text-slate-300 flex items-center">
+                            <i class="fa-solid fa-check text-[#00e5c9] mr-2"></i> Sustainable Real-World Fueling
+                        </div>
+                    </div>
+
+                    <!-- Pillar 4 -->
+                    <div data-aos="fade-up" data-aos-delay="400" class="p-6 sm:p-7 rounded-3xl bg-[#0b1724] border border-white/10 hover-lift flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-2xl bg-[#00e5c9]/15 text-[#00e5c9] flex items-center justify-center text-xl mb-6 shadow-sm">
+                                <i class="fa-solid fa-mobile-screen-button"></i>
+                            </div>
+                            <span class="text-xs font-mono font-bold text-[#00e5c9] tracking-wider uppercase">PILLAR 04</span>
+                            <h3 class="text-xl font-bold text-white font-heading mt-1 mb-3">Real-Time Digital Accountability</h3>
+                            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6">
+                                Direct coach chat, workout streak tracking, and bi-weekly diagnostic milestone check-ins seamlessly integrated in your Stackly Member Portal.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-white/5 text-xs font-semibold text-slate-300 flex items-center">
+                            <i class="fa-solid fa-check text-[#00e5c9] mr-2"></i> Unbroken Support 24/7
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 4: 12,000 SQ. FT PRIVATE FACILITY TOUR
+             ======================================================== -->
+        <section class="py-20 sm:py-28 bg-[#07111a] border-b border-white/5 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div data-aos="fade-up" class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+                    <div>
+                        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#00e5c9]/10 text-[#00e5c9] text-xs font-bold uppercase tracking-wider mb-4">
+                            STATE-OF-THE-ART ENVIRONMENT
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-heading tracking-tight">
+                            Inside Our <span class="text-[#00e5c9]">12,000 Sq. Ft</span> Studio
+                        </h2>
+                    </div>
+                    <p class="text-gray-400 max-w-md text-sm sm:text-base">
+                        Engineered for absolute focus and zero crowds. Every square foot is reserved for intentional, monitored performance.
+                    </p>
+                </div>
+
+                <!-- 4 Zone Visual Cards Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                    <!-- Zone 1 -->
+                    <div data-aos="fade-up" data-aos-delay="100" class="rounded-3xl bg-[#0b1724] border border-white/10 overflow-hidden group hover-lift flex flex-col">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="assets/images/program-strength.webp" alt="Olympic Lifting Pods" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0b1724] via-transparent to-transparent"></div>
+                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-[#07111a]/85 backdrop-blur-md text-[#00e5c9] text-xs font-bold border border-[#00e5c9]/30">
+                                Zone 01
+                            </span>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-lg font-bold text-white font-heading mb-2">Olympic Lifting Pods</h3>
+                                <p class="text-xs text-gray-400 leading-relaxed">
+                                    Calibrated Eleiko competition bars, bumper plates, monolifts, and acoustic shock-absorbing drop platforms.
+                                </p>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-white/5 text-[11px] font-semibold text-slate-300 flex items-center justify-between">
+                                <span>6 Private Pods</span>
+                                <span class="text-[#00e5c9]">Calibrated Specs</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Zone 2 -->
+                    <div data-aos="fade-up" data-aos-delay="200" class="rounded-3xl bg-[#0b1724] border border-white/10 overflow-hidden group hover-lift flex flex-col">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="assets/images/program-hiit.webp" alt="High-Velocity Turf Agility" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0b1724] via-transparent to-transparent"></div>
+                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-[#07111a]/85 backdrop-blur-md text-[#00e5c9] text-xs font-bold border border-[#00e5c9]/30">
+                                Zone 02
+                            </span>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-lg font-bold text-white font-heading mb-2">High-Velocity Turf Corridor</h3>
+                                <p class="text-xs text-gray-400 leading-relaxed">
+                                    40-yard continuous sprint turf, Rogue Dog sleds, VertiMax arrays, and plyometric jump boxes for rotational power.
+                                </p>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-white/5 text-[11px] font-semibold text-slate-300 flex items-center justify-between">
+                                <span>40-Yard Sprint Deck</span>
+                                <span class="text-[#00e5c9]">Explosive Power</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Zone 3 -->
+                    <div data-aos="fade-up" data-aos-delay="300" class="rounded-3xl bg-[#0b1724] border border-white/10 overflow-hidden group hover-lift flex flex-col">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="assets/images/diagnostic-suite.webp?v=2" alt="InBody 770 Clinical Suite" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0b1724] via-transparent to-transparent"></div>
+                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-[#07111a]/85 backdrop-blur-md text-[#00e5c9] text-xs font-bold border border-[#00e5c9]/30">
+                                Zone 03
+                            </span>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-lg font-bold text-white font-heading mb-2">Clinical Diagnostic Suite</h3>
+                                <p class="text-xs text-gray-400 leading-relaxed">
+                                    Medical InBody 770 analyzer, 3D postural scanner, VO2 max treadmill ergometer, and private consultation rooms.
+                                </p>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-white/5 text-[11px] font-semibold text-slate-300 flex items-center justify-between">
+                                <span>Medical-Grade 770</span>
+                                <span class="text-[#00e5c9]">99% Accuracy</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Zone 4 -->
+                    <div data-aos="fade-up" data-aos-delay="400" class="rounded-3xl bg-[#0b1724] border border-white/10 overflow-hidden group hover-lift flex flex-col">
+                        <div class="relative h-56 overflow-hidden">
+                            <img src="assets/images/cryo-recovery.webp?v=2" alt="Cryo &amp; Mobility Recovery Deck" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0b1724] via-transparent to-transparent"></div>
+                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-[#07111a]/85 backdrop-blur-md text-[#00e5c9] text-xs font-bold border border-[#00e5c9]/30">
+                                Zone 04
+                            </span>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-lg font-bold text-white font-heading mb-2">Cryo &amp; Mobility Deck</h3>
+                                <p class="text-xs text-gray-400 leading-relaxed">
+                                    Hyperice Normatec compression, infrared sauna suites, active assisted mobility tables, and contrast ice tubs.
+                                </p>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-white/5 text-[11px] font-semibold text-slate-300 flex items-center justify-between">
+                                <span>Active Recovery</span>
+                                <span class="text-[#00e5c9]">Zero Downtime</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Facility Hygiene & Air Standards Strip -->
+                <div data-aos="fade-up" data-aos-delay="200" class="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-[#0d1924] via-[#0b1724] to-[#07111a] border border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 rounded-2xl bg-[#00e5c9]/15 text-[#00e5c9] flex items-center justify-center text-xl shrink-0">
+                            <i class="fa-solid fa-wind"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-base font-bold text-white">Hospital-Grade Clean Air &amp; Sanitation Protocol</h4>
+                            <p class="text-xs sm:text-sm text-gray-400 mt-0.5">Medical HEPA air filtration replaces 100% of studio air every 5 minutes. Pods are fully disinfected between every client.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3 shrink-0">
+                        <span class="px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-xs font-bold text-gray-300">
+                            <i class="fa-solid fa-shield-virus text-[#00e5c9] mr-1.5"></i> 100% Sanitized Floor
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 5: THE SCIENCE BEHIND STACKLY (INBODY 770)
+             ======================================================== -->
+        <section class="py-20 sm:py-28 bg-[#050c14] border-b border-white/5 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                    
+                    <!-- Left: Clinical Overview -->
+                    <div class="lg:col-span-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#00e5c9]/10 text-[#00e5c9] text-xs font-bold uppercase tracking-wider mb-4">
+                            BIOMETRIC ACCURACY
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-heading tracking-tight mb-6 leading-tight">
+                            Data-Driven Training. <span class="text-[#00e5c9]">No Guesswork, Ever.</span>
+                        </h2>
+                        <p class="text-gray-300 text-base leading-relaxed mb-8">
+                            A standard bathroom scale is meaningless—it cannot distinguish between losing 5 lbs of dehydration water or 5 lbs of metabolically active muscle tissue. At Stackly, every client is scanned on our clinical InBody 770 analyzer every 14 days.
+                        </p>
+
+                        <div class="space-y-4">
+                            <div class="p-4 rounded-2xl bg-[#0b1724] border border-white/10">
+                                <div class="flex items-center justify-between mb-1">
+                                    <h4 class="text-sm font-bold text-white flex items-center">
+                                        <i class="fa-solid fa-chart-pie text-[#00e5c9] mr-2"></i> Segmental Lean Muscle Analysis
+                                    </h4>
+                                    <span class="text-xs text-[#00e5c9] font-bold">Limb-Specific</span>
+                                </div>
+                                <p class="text-xs text-gray-400">Measures exact lean muscle in each arm, leg, and trunk to eliminate structural muscle imbalances and optimize athletic power output.</p>
+                            </div>
+
+                            <div class="p-4 rounded-2xl bg-[#0b1724] border border-white/10">
+                                <div class="flex items-center justify-between mb-1">
+                                    <h4 class="text-sm font-bold text-white flex items-center">
+                                        <i class="fa-solid fa-heart-circle-check text-[#00e5c9] mr-2"></i> Visceral Adipose Indexing
+                                    </h4>
+                                    <span class="text-xs text-[#00e5c9] font-bold">Health Score</span>
+                                </div>
+                                <p class="text-xs text-gray-400">Tracks deep hormonal organ fat to directly reduce systemic inflammation and optimize metabolic lipid biomarkers.</p>
+                            </div>
+
+                            <div class="p-4 rounded-2xl bg-[#0b1724] border border-white/10">
+                                <div class="flex items-center justify-between mb-1">
+                                    <h4 class="text-sm font-bold text-white flex items-center">
+                                        <i class="fa-solid fa-droplet text-[#00e5c9] mr-2"></i> Intra-to-Extracellular Fluid Ratio
+                                    </h4>
+                                    <span class="text-xs text-[#00e5c9] font-bold">Cellular Hydration</span>
+                                </div>
+                                <p class="text-xs text-gray-400">Identifies chronic overtraining and localized edema to fine-tune weekly training volume and electrolyte protocols.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Clinical Biometric Diagnostics Image Showcase -->
+                    <div class="lg:col-span-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="rounded-3xl overflow-hidden border border-[#00e5c9]/30 relative shadow-2xl group">
+                            <img src="assets/images/inbody-biometrics.webp" alt="Clinical InBody 770 Biometric Body Composition Analysis" class="w-full h-[420px] sm:h-[480px] object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#07111a]/90 via-[#07111a]/20 to-transparent"></div>
+                            
+                            <!-- Top Badge -->
+                            <div class="absolute top-4 left-4 bg-[#07111a]/85 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/10 text-xs font-semibold text-[#00e5c9] flex items-center">
+                                <i class="fa-solid fa-chart-line mr-2"></i> Clinical InBody 770 Diagnostics
+                            </div>
+                            
+                            <!-- Bottom Info Overlay -->
+                            <div class="absolute bottom-4 left-4 right-4 bg-[#0b1724]/90 backdrop-blur-md p-4 rounded-2xl border border-white/10 flex items-center justify-between text-xs">
+                                <div class="flex items-center space-x-2.5">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-[#00e5c9] animate-pulse"></span>
+                                    <span class="text-white font-bold">14-Day Biometric Delta Tracking</span>
+                                </div>
+                                <span class="font-bold text-[#00e5c9]">99% Clinical Accuracy</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 6: MEET OUR MASTER COACHING STAFF
+             ======================================================== -->
+        <section id="coaches" class="py-20 sm:py-28 bg-[#07111a] border-b border-white/5 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div data-aos="fade-up" class="text-center max-w-3xl mx-auto mb-16">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#00e5c9]/10 text-[#00e5c9] text-xs font-bold uppercase tracking-wider mb-4">
+                        ELITE PEDIGREE
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-heading tracking-tight mb-4">
+                        Meet Our <span class="text-[#00e5c9]">Master Coaching Staff</span>
+                    </h2>
+                    <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
+                        We do not hire weekend-certified gym floor attendants. Stackly coaches hold university degrees in Kinesiology, CSCS credentials, and national athletic championships.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Coach 1: Marcus Vance -->
+                    <div data-aos="fade-up" data-aos-delay="100" class="rounded-3xl bg-[#0b1724] border border-white/10 overflow-hidden group hover-lift flex flex-col justify-between">
+                        <div>
+                            <div class="relative h-64 overflow-hidden">
+                                <img src="assets/images/trainer-1.webp" alt="Coach Marcus Vance" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#0b1724] via-transparent to-transparent"></div>
+                                <span class="absolute top-4 left-4 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-[#00e5c9] text-[10px] font-bold border border-[#00e5c9]/30">
+                                    Head Strength Coach
+                                </span>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-white font-heading">Marcus Vance</h3>
+                                <p class="text-xs text-[#00e5c9] font-semibold mt-0.5 mb-2">Olympic Lifting &amp; Hypertrophy</p>
+                                <div class="flex flex-wrap gap-1.5 mb-4">
+                                    <span class="px-2 py-0.5 rounded-md bg-white/5 text-[10px] font-mono text-gray-300">CSCS</span>
+                                    <span class="px-2 py-0.5 rounded-md bg-white/5 text-[10px] font-mono text-gray-300">USAW Level 2</span>
+                                </div>
+                                <p class="text-xs text-gray-400 leading-relaxed mb-4">
+                                    Former collegiate powerlifting coach specializing in bar trajectory velocity, heavy posterior chain loading, and central nervous recovery.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-3 border-t border-white/5 flex items-center justify-between text-xs">
+                            <span class="text-amber-400 font-bold flex items-center"><i class="fa-solid fa-star text-xs mr-1"></i>4.9 <span class="text-gray-400 font-normal ml-1">(420+ athletes)</span></span>
+                            <a href="404.html" class="inline-flex items-center space-x-1.5 text-[#00e5c9] font-bold hover:text-[#25f4dc] transition group/profile">
+                                <span>Profile</span>
+                                <i class="fa-solid fa-arrow-right text-xs transition-transform group-hover/profile:translate-x-1"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Coach 2: Elena Rodriguez -->
+                    <div data-aos="fade-up" data-aos-delay="200" class="rounded-3xl bg-[#0b1724] border border-white/10 overflow-hidden group hover-lift flex flex-col justify-between">
+                        <div>
+                            <div class="relative h-64 overflow-hidden">
+                                <img src="assets/images/trainer-2.webp" alt="Coach Elena Rodriguez" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#0b1724] via-transparent to-transparent"></div>
+                                <span class="absolute top-4 left-4 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-[#00e5c9] text-[10px] font-bold border border-[#00e5c9]/30">
+                                    Director of Nutrition
+                                </span>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-white font-heading">Elena Rodriguez</h3>
+                                <p class="text-xs text-[#00e5c9] font-semibold mt-0.5 mb-2">Metabolic Conditioning &amp; Macros</p>
+                                <div class="flex flex-wrap gap-1.5 mb-4">
+                                    <span class="px-2 py-0.5 rounded-md bg-white/5 text-[10px] font-mono text-gray-300">CISSN Dietitian</span>
+                                    <span class="px-2 py-0.5 rounded-md bg-white/5 text-[10px] font-mono text-gray-300">NASM-PES</span>
+                                </div>
+                                <p class="text-xs text-gray-400 leading-relaxed mb-4">
+                                    Specializes in metabolic flexibility, fat oxidation intervals, hormonal recovery protocols, and real-life macro nutrition adherence.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-3 border-t border-white/5 flex items-center justify-between text-xs">
+                            <span class="text-amber-400 font-bold flex items-center"><i class="fa-solid fa-star text-xs mr-1"></i>5.0 <span class="text-gray-400 font-normal ml-1">(510+ athletes)</span></span>
+                            <a href="404.html" class="inline-flex items-center space-x-1.5 text-[#00e5c9] font-bold hover:text-[#25f4dc] transition group/profile">
+                                <span>Profile</span>
+                                <i class="fa-solid fa-arrow-right text-xs transition-transform group-hover/profile:translate-x-1"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Coach 3: David Chen -->
+                    <div data-aos="fade-up" data-aos-delay="300" class="rounded-3xl bg-[#0b1724] border border-white/10 overflow-hidden group hover-lift flex flex-col justify-between">
+                        <div>
+                            <div class="relative h-64 overflow-hidden">
+                                <img src="assets/images/trainer-3.webp" alt="Coach David Chen" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#0b1724] via-transparent to-transparent"></div>
+                                <span class="absolute top-4 left-4 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-[#00e5c9] text-[10px] font-bold border border-[#00e5c9]/30">
+                                    Lead Physical Therapist
+                                </span>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-white font-heading">David Chen</h3>
+                                <p class="text-xs text-[#00e5c9] font-semibold mt-0.5 mb-2">Kinetic Mobility &amp; Rehab</p>
+                                <div class="flex flex-wrap gap-1.5 mb-4">
+                                    <span class="px-2 py-0.5 rounded-md bg-white/5 text-[10px] font-mono text-gray-300">Doctor of PT (DPT)</span>
+                                    <span class="px-2 py-0.5 rounded-md bg-white/5 text-[10px] font-mono text-gray-300">FMS Level 2</span>
+                                </div>
+                                <p class="text-xs text-gray-400 leading-relaxed mb-4">
+                                    Focuses on rotational thoracic spine mechanics, scapular stability, and helping desk-bound executives eradicate lower back and shoulder pain.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-3 border-t border-white/5 flex items-center justify-between text-xs">
+                            <span class="text-amber-400 font-bold flex items-center"><i class="fa-solid fa-star text-xs mr-1"></i>4.9 <span class="text-gray-400 font-normal ml-1">(380+ athletes)</span></span>
+                            <a href="404.html" class="inline-flex items-center space-x-1.5 text-[#00e5c9] font-bold hover:text-[#25f4dc] transition group/profile">
+                                <span>Profile</span>
+                                <i class="fa-solid fa-arrow-right text-xs transition-transform group-hover/profile:translate-x-1"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Coach 4: Alexander Vance -->
+                    <div data-aos="fade-up" data-aos-delay="400" class="rounded-3xl bg-[#0b1724] border border-[#00e5c9]/30 overflow-hidden group hover-lift flex flex-col justify-between">
+                        <div>
+                            <div class="relative h-64 overflow-hidden">
+                                <img src="assets/images/alexander-vance.webp" alt="Alexander Vance Founder" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#0b1724] via-transparent to-transparent"></div>
+                                <span class="absolute top-4 left-4 px-2.5 py-1 rounded-full bg-[#00e5c9] text-gray-950 text-[10px] font-extrabold shadow-sm">
+                                    Founder &amp; Director
+                                </span>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-white font-heading">Alexander Vance</h3>
+                                <p class="text-xs text-[#00e5c9] font-semibold mt-0.5 mb-2">Performance Architecture</p>
+                                <div class="flex flex-wrap gap-1.5 mb-4">
+                                    <span class="px-2 py-0.5 rounded-md bg-white/5 text-[10px] font-mono text-gray-300">M.S. Kinesiology</span>
+                                    <span class="px-2 py-0.5 rounded-md bg-white/5 text-[10px] font-mono text-gray-300">12+ Yrs Coaching</span>
+                                </div>
+                                <p class="text-xs text-gray-400 leading-relaxed mb-4">
+                                    Founder of Stackly. Devoted to bridging clinical sports biomechanics with real-world executive lifestyle transformations.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-3 border-t border-white/5 flex items-center justify-between text-xs">
+                            <span class="text-amber-400 font-bold flex items-center"><i class="fa-solid fa-star text-xs mr-1"></i>5.0 <span class="text-gray-400 font-normal ml-1">(Founder)</span></span>
+                            <a href="404.html" class="inline-flex items-center space-x-1.5 text-[#00e5c9] font-bold hover:text-[#25f4dc] transition group/profile">
+                                <span>Profile</span>
+                                <i class="fa-solid fa-arrow-right text-xs transition-transform group-hover/profile:translate-x-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 7: THE 6 CORE STACKLY STANDARDS & VALUES
+             ======================================================== -->
+        <section class="py-20 sm:py-28 bg-[#050c14] border-b border-white/5 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div data-aos="fade-up" class="text-center max-w-3xl mx-auto mb-16">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#00e5c9]/10 text-[#00e5c9] text-xs font-bold uppercase tracking-wider mb-4">
+                        OUR ETHICAL COMPASS
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-heading tracking-tight mb-4">
+                        The Stackly Creed: <span class="text-[#00e5c9]">6 Core Standards</span>
+                    </h2>
+                    <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
+                        The non-negotiable principles that drive every single rep, set, and coaching consultation on our floor.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                    <!-- Standard 1 -->
+                    <div data-aos="fade-up" data-aos-delay="100" class="p-8 rounded-3xl bg-[#0b1724] border border-white/10 hover-lift">
+                        <div class="w-12 h-12 rounded-xl bg-[#00e5c9]/15 text-[#00e5c9] border border-[#00e5c9]/30 flex items-center justify-center text-xl mb-6">
+                            <i class="fa-solid fa-flask-vial"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 font-heading">01. Evidence Over Gimmicks</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            We ignore viral TikTok workouts and miracle fat-loss detoxes. Every protocol we prescribe is anchored in verified peer-reviewed sports exercise literature.
+                        </p>
+                    </div>
+
+                    <!-- Standard 2 -->
+                    <div data-aos="fade-up" data-aos-delay="150" class="p-8 rounded-3xl bg-[#0b1724] border border-white/10 hover-lift">
+                        <div class="w-12 h-12 rounded-xl bg-[#00e5c9]/15 text-[#00e5c9] border border-[#00e5c9]/30 flex items-center justify-center text-xl mb-6">
+                            <i class="fa-solid fa-bone"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 font-heading">02. Joint Longevity First</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Lifting heavy means nothing if your shoulders and knees deteriorate. We protect your joints, restore posture, and build movement vitality that lasts decades.
+                        </p>
+                    </div>
+
+                    <!-- Standard 3 -->
+                    <div data-aos="fade-up" data-aos-delay="200" class="p-8 rounded-3xl bg-[#0b1724] border border-white/10 hover-lift">
+                        <div class="w-12 h-12 rounded-xl bg-[#00e5c9]/15 text-[#00e5c9] border border-[#00e5c9]/30 flex items-center justify-center text-xl mb-6">
+                            <i class="fa-solid fa-hands-holding-child"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 font-heading">03. Empathetic Accountability</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            We do not scream like drill sergeants. We partner with you through tough business travel, demanding family weeks, and mental fatigue to keep your streak alive.
+                        </p>
+                    </div>
+
+                    <!-- Standard 4 -->
+                    <div data-aos="fade-up" data-aos-delay="250" class="p-8 rounded-3xl bg-[#0b1724] border border-white/10 hover-lift">
+                        <div class="w-12 h-12 rounded-xl bg-[#00e5c9]/15 text-[#00e5c9] border border-[#00e5c9]/30 flex items-center justify-center text-xl mb-6">
+                            <i class="fa-solid fa-scale-balanced"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 font-heading">04. Radical Transparency</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            No hidden maintenance fees, no predatory 3-year contracts, and no secret pricing. Everything is clearly mapped out from day one with honest feedback.
+                        </p>
+                    </div>
+
+                    <!-- Standard 5 -->
+                    <div data-aos="fade-up" data-aos-delay="300" class="p-8 rounded-3xl bg-[#0b1724] border border-white/10 hover-lift">
+                        <div class="w-12 h-12 rounded-xl bg-[#00e5c9]/15 text-[#00e5c9] border border-[#00e5c9]/30 flex items-center justify-center text-xl mb-6">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 font-heading">05. Continuous Education</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Stackly coaches complete mandatory 100+ annual continuing education hours to master emerging research in neuromuscular conditioning and sports dietetics.
+                        </p>
+                    </div>
+
+                    <!-- Standard 6 -->
+                    <div data-aos="fade-up" data-aos-delay="350" class="p-8 rounded-3xl bg-[#0b1724] border border-[#00e5c9]/30 hover-lift">
+                        <div class="w-12 h-12 rounded-xl bg-[#00e5c9]/15 text-[#00e5c9] border border-[#00e5c9]/30 flex items-center justify-center text-xl mb-6">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3 font-heading">06. Zero-Ego Floor Culture</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Whether you're deadlifting 500 lbs or picking up a 10 lb dumbbell for the very first time, you receive identical world-class attention and respect.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 8: STACKLY VS COMMERCIAL GYMS COMPARISON
+             ======================================================== -->
+        <section class="py-20 sm:py-28 bg-[#07111a] border-b border-white/5 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div data-aos="fade-up" class="text-center max-w-3xl mx-auto mb-16">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#00e5c9]/10 text-[#00e5c9] text-xs font-bold uppercase tracking-wider mb-4">
+                        THE UNFAIR ADVANTAGE
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-heading tracking-tight mb-4">
+                        Why Stackly Outperforms <span class="text-[#00e5c9]">Commercial Gyms</span>
+                    </h2>
+                    <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
+                        A direct head-to-head comparison between private high-performance coaching and standard big-box memberships.
+                    </p>
+                </div>
+
+                <!-- Comparison Table Wrapper (Scrollable on small screens) -->
+                <div data-aos="fade-up" data-aos-delay="150" class="rounded-3xl bg-[#0b1724] border border-white/10 overflow-hidden shadow-2xl">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse min-w-[640px]">
+                            <thead>
+                                <tr class="border-b border-white/10 bg-[#07111a]/60">
+                                    <th class="py-5 px-6 text-sm font-bold uppercase tracking-wider text-gray-400">Core Experience</th>
+                                    <th class="py-5 px-6 text-base font-extrabold text-[#00e5c9] bg-[#00e5c9]/10 border-x border-[#00e5c9]/20">
+                                        <i class="fa-solid fa-crown mr-2"></i> Stackly Private Studio
+                                    </th>
+                                    <th class="py-5 px-6 text-sm font-bold uppercase tracking-wider text-gray-400">Traditional Commercial Gym</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-white/5 text-xs sm:text-sm">
+                                <tr class="hover:bg-white/[0.02] transition">
+                                    <td class="py-5 px-6 font-semibold text-white">Floor Environment</td>
+                                    <td class="py-5 px-6 font-bold text-[#00e5c9] bg-[#00e5c9]/5 border-x border-[#00e5c9]/20">
+                                        <i class="fa-solid fa-circle-check mr-2"></i> 100% Reserved Private 1-on-1 Pods
+                                    </td>
+                                    <td class="py-5 px-6 text-gray-400">
+                                        <i class="fa-solid fa-circle-xmark mr-2 text-rose-500"></i> Overcrowded; 20-min wait for racks
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-white/[0.02] transition">
+                                    <td class="py-5 px-6 font-semibold text-white">Coaching Standards</td>
+                                    <td class="py-5 px-6 font-bold text-[#00e5c9] bg-[#00e5c9]/5 border-x border-[#00e5c9]/20">
+                                        <i class="fa-solid fa-circle-check mr-2"></i> Kinesiology Graduates &amp; CSCS Specialists
+                                    </td>
+                                    <td class="py-5 px-6 text-gray-400">
+                                        <i class="fa-solid fa-circle-xmark mr-2 text-rose-500"></i> Unsupervised or weekend-certified staff
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-white/[0.02] transition">
+                                    <td class="py-5 px-6 font-semibold text-white">Biometric Diagnostics</td>
+                                    <td class="py-5 px-6 font-bold text-[#00e5c9] bg-[#00e5c9]/5 border-x border-[#00e5c9]/20">
+                                        <i class="fa-solid fa-circle-check mr-2"></i> InBody 770 Clinical Testing every 14 days
+                                    </td>
+                                    <td class="py-5 px-6 text-gray-400">
+                                        <i class="fa-solid fa-circle-xmark mr-2 text-rose-500"></i> None; arbitrary bathroom scale only
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-white/[0.02] transition">
+                                    <td class="py-5 px-6 font-semibold text-white">Nutrition Guidance</td>
+                                    <td class="py-5 px-6 font-bold text-[#00e5c9] bg-[#00e5c9]/5 border-x border-[#00e5c9]/20">
+                                        <i class="fa-solid fa-circle-check mr-2"></i> Custom Macro Ratios &amp; Sports Dietitian
+                                    </td>
+                                    <td class="py-5 px-6 text-gray-400">
+                                        <i class="fa-solid fa-circle-xmark mr-2 text-rose-500"></i> Generic PDF diet sheets or nothing
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-white/[0.02] transition">
+                                    <td class="py-5 px-6 font-semibold text-white">Hygiene &amp; Air Quality</td>
+                                    <td class="py-5 px-6 font-bold text-[#00e5c9] bg-[#00e5c9]/5 border-x border-[#00e5c9]/20">
+                                        <i class="fa-solid fa-circle-check mr-2"></i> Medical HEPA air cycle + Pod sanitized every rep
+                                    </td>
+                                    <td class="py-5 px-6 text-gray-400">
+                                        <i class="fa-solid fa-circle-xmark mr-2 text-rose-500"></i> Shared sweaty benches &amp; poor ventilation
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-white/[0.02] transition">
+                                    <td class="py-5 px-6 font-semibold text-white">Daily Accountability</td>
+                                    <td class="py-5 px-6 font-bold text-[#00e5c9] bg-[#00e5c9]/5 border-x border-[#00e5c9]/20">
+                                        <i class="fa-solid fa-circle-check mr-2"></i> Digital Member Portal + 24/7 direct coach chat
+                                    </td>
+                                    <td class="py-5 px-6 text-gray-400">
+                                        <i class="fa-solid fa-circle-xmark mr-2 text-rose-500"></i> Zero accountability if you don't show up
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 9: REAL CLIENT TRANSFORMATION STORIES
+             ======================================================== -->
+        <section class="py-20 sm:py-28 bg-[#050c14] border-b border-white/5 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div data-aos="fade-up" class="text-center max-w-3xl mx-auto mb-16">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#00e5c9]/10 text-[#00e5c9] text-xs font-bold uppercase tracking-wider mb-4">
+                        PROVEN COMMUNITY RESULTS
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-heading tracking-tight mb-4">
+                        15,000+ Stories. <span class="text-[#00e5c9]">Real Life Results.</span>
+                    </h2>
+                    <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
+                        Read how our private training environment transformed our athletes' body composition, energy, and joint health.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                    <!-- Transformation 1 -->
+                    <div data-aos="fade-up" data-aos-delay="100" class="p-7 rounded-3xl bg-[#0b1724] border border-white/10 hover-lift flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center space-x-3 mb-5">
+                                <img src="assets/images/testimonial-sarah.webp" alt="Sarah Jenkins" class="w-12 h-12 rounded-full object-cover border-2 border-[#00e5c9] shrink-0 shadow-[0_0_10px_rgba(0,229,201,0.25)]">
+                                <div>
+                                    <h4 class="text-base font-bold text-white">Sarah Jenkins</h4>
+                                    <p class="text-xs text-gray-400">Tech Executive &bull; 6 Months Client</p>
+                                </div>
+                            </div>
+                            <div class="flex text-amber-400 text-xs mb-3">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-xs sm:text-sm text-gray-300 leading-relaxed italic mb-6">
+                                "Stackly changed my life. As an executive working 60-hour weeks, commercial gyms were overwhelming. In 6 months with Coach Marcus, I dropped 28 lbs of body fat and completely cured 4 years of chronic desk posture back pain."
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-white/5 flex items-center justify-between text-xs">
+                            <span class="text-gray-400">Recomposition:</span>
+                            <span class="font-extrabold text-[#00e5c9]">-28 lbs Fat &bull; +4.2 lbs Muscle</span>
+                        </div>
+                    </div>
+
+                    <!-- Transformation 2 -->
+                    <div data-aos="fade-up" data-aos-delay="200" class="p-7 rounded-3xl bg-[#0b1724] border border-[#00e5c9]/30 hover-lift flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center space-x-3 mb-5">
+                                <img src="assets/images/testimonial-liam.webp" alt="Liam Reynolds" class="w-12 h-12 rounded-full object-cover border-2 border-[#00e5c9] shrink-0 shadow-[0_0_10px_rgba(0,229,201,0.25)]">
+                                <div>
+                                    <h4 class="text-base font-bold text-white">Liam Reynolds</h4>
+                                    <p class="text-xs text-gray-400">Endurance Athlete &bull; 8 Months Client</p>
+                                </div>
+                            </div>
+                            <div class="flex text-amber-400 text-xs mb-3">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-xs sm:text-sm text-gray-300 leading-relaxed italic mb-6">
+                                "The private pod system means I can come in at 6:00 AM, hit an intense barbell strength cycle with zero delays, and shower in luxury before my morning meetings. My deadlift jumped from 225 lbs to 405 lbs without joint aches."
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-white/5 flex items-center justify-between text-xs">
+                            <span class="text-gray-400">Strength Gain:</span>
+                            <span class="font-extrabold text-[#00e5c9]">+180 lbs Deadlift &bull; Sub-20 5K</span>
+                        </div>
+                    </div>
+
+                    <!-- Transformation 3 -->
+                    <div data-aos="fade-up" data-aos-delay="300" class="p-7 rounded-3xl bg-[#0b1724] border border-white/10 hover-lift flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center space-x-3 mb-5">
+                                <img src="assets/images/testimonial-chloe.webp" alt="Chloe Bennett" class="w-12 h-12 rounded-full object-cover border-2 border-[#00e5c9] shrink-0 shadow-[0_0_10px_rgba(0,229,201,0.25)]">
+                                <div>
+                                    <h4 class="text-base font-bold text-white">Chloe Bennett</h4>
+                                    <p class="text-xs text-gray-400">Architect &bull; 4 Months Client</p>
+                                </div>
+                            </div>
+                            <div class="flex text-amber-400 text-xs mb-3">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-xs sm:text-sm text-gray-300 leading-relaxed italic mb-6">
+                                "Elena's macro coaching was a revelation. I never had to cut carbs or starve myself. Paired with 3 weekly pod workouts, I achieved the athletic muscle definition I tried chasing for five years on my own."
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-white/5 flex items-center justify-between text-xs">
+                            <span class="text-gray-400">Recomposition:</span>
+                            <span class="font-extrabold text-[#00e5c9]">14.8% Body Fat &bull; 18 Strict Pull-Ups</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 10: FREQUENTLY ASKED QUESTIONS (ACCORDION)
+             ======================================================== -->
+        <section class="py-20 sm:py-28 bg-[#07111a] border-b border-white/5 relative">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div data-aos="fade-up" class="text-center mb-16">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#00e5c9]/10 text-[#00e5c9] text-xs font-bold uppercase tracking-wider mb-4">
+                        COMMON QUESTIONS
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-heading tracking-tight mb-4">
+                        Frequently Asked <span class="text-[#00e5c9]">Questions</span>
+                    </h2>
+                    <p class="text-gray-400 text-sm sm:text-base">
+                        Everything you need to know about starting your private training journey with Stackly.
+                    </p>
+                </div>
+
+                <!-- Accordion Items -->
+                <div class="space-y-4">
+                    <!-- Q1 -->
+                    <div data-aos="fade-up" data-aos-delay="100" class="rounded-2xl bg-[#0b1724] border border-white/10 overflow-hidden transition">
+                        <button type="button" class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between font-bold text-white text-base sm:text-lg focus:outline-none">
+                            <span>Who is Stackly designed for?</span>
+                            <i class="fa-solid fa-chevron-down faq-icon transition-transform duration-300 text-gray-400 shrink-0 ml-4"></i>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-6 text-xs sm:text-sm text-gray-400 leading-relaxed border-t border-white/5 pt-4">
+                            Stackly is designed for busy professionals, entrepreneurs, and fitness enthusiasts who value their time, want complete privacy, and demand measurable, science-backed results. Whether you are recovering from a previous injury, looking to drop body fat sustainably, or aiming to deadlift double your body weight, our coaches tailor the environment to you.
+                        </div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div data-aos="fade-up" data-aos-delay="150" class="rounded-2xl bg-[#0b1724] border border-white/10 overflow-hidden transition">
+                        <button type="button" class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between font-bold text-white text-base sm:text-lg focus:outline-none">
+                            <span>How does private pod training work?</span>
+                            <i class="fa-solid fa-chevron-down faq-icon transition-transform duration-300 text-gray-400 shrink-0 ml-4"></i>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-6 text-xs sm:text-sm text-gray-400 leading-relaxed border-t border-white/5 pt-4">
+                            Unlike commercial gyms where you wander around waiting for machines, your Stackly coach reserves a dedicated private training pod for your entire 60-minute session. That pod is equipped with calibrated Olympic barbells, dumbbells, cables, bands, and benches sanitized and loaded specifically for your prescribed routine. Zero lines, zero crowds.
+                        </div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div data-aos="fade-up" data-aos-delay="200" class="rounded-2xl bg-[#0b1724] border border-white/10 overflow-hidden transition">
+                        <button type="button" class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between font-bold text-white text-base sm:text-lg focus:outline-none">
+                            <span>Do I need to be in shape before starting?</span>
+                            <i class="fa-solid fa-chevron-down faq-icon transition-transform duration-300 text-gray-400 shrink-0 ml-4"></i>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-6 text-xs sm:text-sm text-gray-400 leading-relaxed border-t border-white/5 pt-4">
+                            Not at all. More than 60% of our new athletes haven't lifted in years or are stepping onto a private gym floor for the first time. We start with a comprehensive movement screening and gentle baseline adaptation workouts to build your foundational stability and confidence safely.
+                        </div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div data-aos="fade-up" data-aos-delay="250" class="rounded-2xl bg-[#0b1724] border border-white/10 overflow-hidden transition">
+                        <button type="button" class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between font-bold text-white text-base sm:text-lg focus:outline-none">
+                            <span>What happens during the free discovery consultation?</span>
+                            <i class="fa-solid fa-chevron-down faq-icon transition-transform duration-300 text-gray-400 shrink-0 ml-4"></i>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-6 text-xs sm:text-sm text-gray-400 leading-relaxed border-t border-white/5 pt-4">
+                            Your 45-minute consultation includes a medical-grade InBody 770 biometric scan ($150 clinical value), an active joint kinetic screening, a private studio tour, and an honest 90-day physical blueprint review with one of our master coaches. There is zero high-pressure sales pitch.
+                        </div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div data-aos="fade-up" data-aos-delay="300" class="rounded-2xl bg-[#0b1724] border border-white/10 overflow-hidden transition">
+                        <button type="button" class="faq-trigger w-full px-6 py-5 text-left flex items-center justify-between font-bold text-white text-base sm:text-lg focus:outline-none">
+                            <span>How does nutrition and macro coaching work?</span>
+                            <i class="fa-solid fa-chevron-down faq-icon transition-transform duration-300 text-gray-400 shrink-0 ml-4"></i>
+                        </button>
+                        <div class="faq-content hidden px-6 pb-6 text-xs sm:text-sm text-gray-400 leading-relaxed border-t border-white/5 pt-4">
+                            Our sports dietitians calculate your Basal Metabolic Rate and design a personalized, non-restrictive macronutrient roadmap. We incorporate your favorite meals, business dinners, and travel schedules so you can enjoy dining out while still steadily losing body fat.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========================================================
+         FOOTER (Premium Matching Brand Dark Theme)
+         ======================================================== -->
+    <footer class="bg-[#040a10] border-t border-white/10 text-gray-400 text-sm py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                
+                <!-- Col 1: Brand Info -->
+                <div class="space-y-4">
+                    <a href="index.html" class="flex items-center group">
+                        <img src="assets/images/logo_0991.webp" alt="Stackly" class="h-8 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+                    </a>
+                    <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">
+                        Science-backed 1-on-1 personal training, private studio pod access, and clinical nutrition precision engineered for sustainable physical excellence.
+                    </p>
+                    <div class="flex space-x-3 pt-2">
+                        <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-full bg-[#0d1924] border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#00e5c9] hover:border-[#00e5c9] transition">
+                            <i class="fa-brands fa-instagram text-xs"></i>
+                        </a>
+                        <a href="#" aria-label="YouTube" class="w-9 h-9 rounded-full bg-[#0d1924] border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#00e5c9] hover:border-[#00e5c9] transition">
+                            <i class="fa-brands fa-youtube text-xs"></i>
+                        </a>
+                        <a href="#" aria-label="LinkedIn" class="w-9 h-9 rounded-full bg-[#0d1924] border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#00e5c9] hover:border-[#00e5c9] transition">
+                            <i class="fa-brands fa-linkedin-in text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Navigation Links -->
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4 font-heading">Quick Links</h4>
+                    <ul class="space-y-2.5 text-xs sm:text-sm">
+                        <li><a href="index.html" class="hover:text-[#00e5c9] transition">Home</a></li>
+                        <li><a href="about.html" class="text-[#00e5c9] font-bold">About Us</a></li>
+                        <li><a href="service.html" class="hover:text-[#00e5c9] transition">Training Programs</a></li>
+                        <li><a href="blog.html" class="hover:text-[#00e5c9] transition">Fitness Blog</a></li>
+                        <li><a href="contact.html" class="hover:text-[#00e5c9] transition">Contact &amp; Studio</a></li>
+                        <li><a href="login.html" class="hover:text-[#00e5c9] transition">Member Portal Login</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Programs -->
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4 font-heading">Programs</h4>
+                    <ul class="space-y-2.5 text-xs sm:text-sm">
+                        <li><a href="service.html" class="hover:text-[#00e5c9] transition">1-on-1 Private Pod Coaching</a></li>
+                        <li><a href="service.html" class="hover:text-[#00e5c9] transition">Strength &amp; Hypertrophy</a></li>
+                        <li><a href="service.html" class="hover:text-[#00e5c9] transition">HIIT &amp; Metabolic Conditioning</a></li>
+                        <li><a href="service.html" class="hover:text-[#00e5c9] transition">InBody Biometric Diagnostics</a></li>
+                        <li><a href="service.html" class="hover:text-[#00e5c9] transition">Clinical Sports Nutrition</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Studio Location & Hours -->
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4 font-heading">Studio Facility</h4>
+                    <p class="text-xs sm:text-sm text-gray-400 mb-2">
+                        <i class="fa-solid fa-location-dot text-[#00e5c9] mr-2"></i> MMR Complex, Chinna Thirupathi, near Chinna Muniyappan Kovil, Salem, Tamil Nadu 636008
+                    </p>
+                    <p class="text-xs sm:text-sm text-gray-400 mb-2">
+                        <i class="fa-solid fa-phone text-[#00e5c9] mr-2"></i> <a href="tel:9876543210" class="hover:text-[#00e5c9] transition">9876543210</a>
+                    </p>
+                    <p class="text-xs sm:text-sm text-gray-400 mb-4">
+                        <i class="fa-solid fa-envelope text-[#00e5c9] mr-2"></i> <a href="mailto:info@stackly.com" class="hover:text-[#00e5c9] transition">info@stackly.com</a>
+                    </p>
+                    <div class="text-xs text-gray-400 space-y-1">
+                        <div>Mon - Fri: 5:30 AM – 9:00 PM</div>
+                        
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Copyright & Legal -->
+            <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
+                <p>&copy; 2026 Stackly Personal Training &amp; Athletic Performance. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-gray-300 transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-gray-300 transition">Terms of Service</a>
+                    <a href="#" class="hover:text-gray-300 transition">Health Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- AOS (Animate On Scroll) JS CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <!-- Main JavaScript -->
+    <script src="assets/js/main.js?v=3"></script>
+</body>
+</html>

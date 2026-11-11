@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact & Studio Visit - Stackly Personal Training</title>
+    <meta name="description" content="Connect with Stackly Fitness: book your complimentary 45-minute discovery consultation, clinical InBody 770 scan, and tour our 12,000 sq ft private pod facility.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        teal: {
+                            400: '#2dd4bf',
+                            500: '#14b8a6',
+                            accent: '#00e5c9',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+                        heading: ['Outfit', '"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- AOS (Animate On Scroll) Animation CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css?v=2">
+</head>
+<body class="bg-[#07111a] text-slate-100 font-sans selection:bg-[#00e5c9] selection:text-black min-h-screen flex flex-col">
+
+    <!-- Header / Navbar -->
+    <header>
+        <nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-5 bg-[#07111a]/95 backdrop-blur-md border-b border-white/5">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between">
+                    <a href="index.html" class="flex items-center group cursor-pointer focus:outline-none">
+                        <img src="assets/images/logo_0991.webp" alt="Stackly" class="h-8 sm:h-9 md:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+                    </a>
+
+                    <div class="hidden md:flex items-center space-x-8 text-[15px] font-medium">
+                        <a href="index.html" class="text-gray-300 hover:text-[#00e5c9] transition py-2">Home</a>
+                        <a href="about.html" class="text-gray-300 hover:text-[#00e5c9] transition py-2">About</a>
+                        <a href="service.html" class="text-gray-300 hover:text-[#00e5c9] transition py-2">Service</a>
+                        <a href="blog.html" class="text-gray-300 hover:text-[#00e5c9] transition py-2">Blog</a>
+                        <div class="relative py-2">
+                            <a href="contact.html" class="text-[#00e5c9] font-semibold transition">Contact</a>
+                            <span class="absolute bottom-0 left-0 right-0 h-[3px] bg-[#00e5c9] rounded-full"></span>
+                        </div>
+                    </div>
+
+                    <div class="hidden md:flex items-center space-x-4">
+                        <a href="login.html" class="flex items-center space-x-2 border border-[#00e5c9]/80 text-white hover:text-black hover:bg-[#00e5c9] px-6 py-2 rounded-full text-sm font-semibold transition">
+                            <i class="fa-solid fa-user text-xs text-[#00e5c9]"></i>
+                            <span>Login</span>
+                        </a>
+                    </div>
+
+                    <div class="flex md:hidden items-center">
+                        <button id="mobile-menu-btn" aria-label="Open Navigation Menu" class="p-2.5 rounded-xl text-gray-200 hover:text-[#00e5c9]">
+                            <i class="fa-solid fa-bars-staggered text-2xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-menu-backdrop" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden transition-opacity"></div>
+    <div id="mobile-menu-drawer" class="fixed top-0 right-0 bottom-0 w-[290px] max-w-[85%] z-50 bg-[#07111a] border-l border-white/10 p-6 flex flex-col justify-between transform translate-x-full transition-transform">
+        <div>
+            <div class="flex items-center justify-between pb-6 border-b border-white/10">
+                <a href="index.html" class="flex items-center">
+                    <img src="assets/images/logo_0991.webp" alt="Stackly" class="h-7 w-auto object-contain">
+                </a>
+                <button id="mobile-menu-close" aria-label="Close Navigation Menu" class="p-2 text-gray-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <div class="flex flex-col space-y-4 mt-8">
+                <a href="index.html" class="mobile-nav-link py-2 text-gray-300 border-b border-white/5">Home</a>
+                <a href="about.html" class="mobile-nav-link py-2 text-gray-300 border-b border-white/5">About</a>
+                <a href="service.html" class="mobile-nav-link py-2 text-gray-300 border-b border-white/5">Service</a>
+                <a href="blog.html" class="mobile-nav-link py-2 text-gray-300 border-b border-white/5">Blog</a>
+                <a href="contact.html" class="mobile-nav-link py-2 text-[#00e5c9] font-bold border-b border-white/5">Contact</a>
+            </div>
+        </div>
+        <div class="pt-6 border-t border-white/10">
+            <a href="login.html" class="w-full flex items-center justify-center space-x-2 border border-[#00e5c9] text-white py-3 rounded-full font-semibold">Login</a>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT WRAPPER -->
+    <main class="flex-grow">
+
+        <!-- ========================================================
+             SECTION 1: HERO HEADER & DIRECT VIP ACCESS CHANNELS
+             ======================================================== -->
+        <section class="pt-32 sm:pt-40 pb-16 bg-[#050c14] relative overflow-hidden border-b border-white/5">
+            <!-- Ambient Glow Effect -->
+            <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 sm:w-[600px] sm:h-[600px] bg-[#00e5c9]/5 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <div data-aos="fade-down" class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#00e5c9]/10 border border-[#00e5c9]/25 text-[#00e5c9] text-xs font-bold uppercase tracking-wider mb-5">
+                    <i class="fa-solid fa-headset text-xs"></i>
+                    <span>DIRECT COACHING INTAKE &amp; SANCTUARY ACCESS</span>
+                </div>
+
+                <h1 data-aos="fade-up" class="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white font-heading tracking-tight mb-6">
+                    Connect With Our <br class="hidden sm:inline">
+                    <span class="text-[#00e5c9]">Performance Faculty</span>
+                </h1>
+
+                <p data-aos="fade-up" data-aos-delay="100" class="text-gray-300 max-w-3xl mx-auto text-sm sm:text-lg leading-relaxed mb-12">
+                    Whether you are scheduling your complimentary 45-minute InBody 770 diagnostic consultation, planning executive travel training, or touring our private pod suites, our directors are here to assist.
+                </p>
+
+                <!-- 4 Quick-Connect VIP Cards -->
+                <div data-aos="fade-up" data-aos-delay="150" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 text-left">
+                    
+                    <!-- Channel 1 -->
+                    <div class="p-5 sm:p-6 rounded-2xl bg-[#0b1724] border border-white/10 hover:border-[#00e5c9]/40 hover-lift transition">
+                        <div class="w-12 h-12 rounded-xl bg-[#00e5c9]/10 text-[#00e5c9] border border-[#00e5c9]/20 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div class="text-xs text-[#00e5c9] font-bold uppercase tracking-wider mb-1">Direct Phone Intake</div>
+                        <div class="text-base sm:text-lg font-bold text-white font-heading"><a href="tel:9876543210" class="hover:text-[#00e5c9] transition">9876543210</a></div>
+                        <div class="text-xs text-gray-400 mt-1">Direct Call • Mon-Sat 5:30 AM - 9:00 PM</div>
+                    </div>
+
+                    <!-- Channel 2 -->
+                    <div class="p-5 sm:p-6 rounded-2xl bg-[#0b1724] border border-white/10 hover:border-[#00e5c9]/40 hover-lift transition">
+                        <div class="w-12 h-12 rounded-xl bg-[#00e5c9]/10 text-[#00e5c9] border border-[#00e5c9]/20 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <div class="text-xs text-[#00e5c9] font-bold uppercase tracking-wider mb-1">Executive WhatsApp</div>
+                        <div class="text-base sm:text-lg font-bold text-white font-heading"><a href="https://wa.me/919876543210" target="_blank" class="hover:text-[#00e5c9] transition">9876543210</a></div>
+                        <div class="text-xs text-gray-400 mt-1">Average Response: Under 15 Minutes</div>
+                    </div>
+
+                    <!-- Channel 3 -->
+                    <div class="p-5 sm:p-6 rounded-2xl bg-[#0b1724] border border-white/10 hover:border-[#00e5c9]/40 hover-lift transition">
+                        <div class="w-12 h-12 rounded-xl bg-[#00e5c9]/10 text-[#00e5c9] border border-[#00e5c9]/20 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div class="text-xs text-[#00e5c9] font-bold uppercase tracking-wider mb-1">Consultation Desk</div>
+                        <div class="text-base sm:text-lg font-bold text-white font-heading"><a href="mailto:info@stackly.com" class="hover:text-[#00e5c9] transition">info@stackly.com</a></div>
+                        <div class="text-xs text-gray-400 mt-1">Direct Studio &amp; Intake Enquiries</div>
+                    </div>
+
+                    <!-- Channel 4 -->
+                    <div class="p-5 sm:p-6 rounded-2xl bg-[#0b1724] border border-white/10 hover:border-[#00e5c9]/40 hover-lift transition">
+                        <div class="w-12 h-12 rounded-xl bg-[#00e5c9]/10 text-[#00e5c9] border border-[#00e5c9]/20 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="text-xs text-[#00e5c9] font-bold uppercase tracking-wider mb-1">Sanctuary Address</div>
+                        <div class="text-sm sm:text-base font-bold text-white font-heading">MMR Complex, Chinna Thirupathi</div>
+                        <div class="text-xs text-gray-400 mt-1">near Chinna Muniyappan Kovil, Salem, Tamil Nadu 636008</div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 2: BOOKING FORM & STUDIO ARRIVAL EXPERIENCE
+             ======================================================== -->
+        <section id="booking-suite" class="py-20 sm:py-28 bg-[#07111a] border-b border-white/5 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+                    
+                    <!-- Left: Studio Arrival Experience & Showcase -->
+                    <div data-aos="fade-up" class="lg:col-span-5 space-y-8">
+                        <div>
+                            <span class="text-[#00e5c9] text-xs font-bold uppercase tracking-widest bg-[#00e5c9]/10 px-3.5 py-1 rounded-full border border-[#00e5c9]/20">
+                                What to Expect
+                            </span>
+                            <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white font-heading mt-3 mb-4">
+                                The Private Pod Arrival Experience
+                            </h2>
+                            <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+                                Stackly is strictly capped to ensure total privacy. You will never wait for a squat rack, never encounter crowds, and never be interrupted during your diagnostic or coaching blocks.
+                            </p>
+                        </div>
+
+                        <!-- Photo Showcase -->
+                        <div class="rounded-3xl overflow-hidden border border-white/10 relative shadow-2xl group">
+                            <img src="assets/images/studio-facility.webp" alt="Stackly 12,000 Sq Ft Private Training Sanctuary" class="w-full h-64 sm:h-72 object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#07111a] via-transparent to-transparent"></div>
+                            <div class="absolute top-4 left-4 bg-[#07111a]/85 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/10 text-xs font-bold text-[#00e5c9]">
+                                <span class="w-2 h-2 rounded-full bg-[#00e5c9] inline-block mr-1.5 animate-pulse"></span>
+                                12,000 Sq. Ft Sanctuary
+                            </div>
+                            <div class="absolute bottom-4 left-4 right-4 bg-[#07111a]/90 backdrop-blur-md p-3 rounded-xl border border-white/10 flex items-center justify-between text-xs">
+                                <span class="text-gray-300">Sanctuary Privacy:</span>
+                                <span class="font-bold text-[#00e5c9]">100% Guaranteed Zero Crowds</span>
+                            </div>
+                        </div>
+
+                        <!-- Facility Standards List -->
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-4 p-4 rounded-2xl bg-[#0b1724] border border-white/5">
+                                <div class="w-9 h-9 rounded-xl bg-[#00e5c9]/15 text-[#00e5c9] flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-square-parking text-sm"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-white font-bold text-sm">Complimentary Private Valet</h3>
+                                    <p class="text-gray-400 text-xs mt-0.5">Direct underground garage parking with private elevator access directly to Suite 400.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4 p-4 rounded-2xl bg-[#0b1724] border border-white/5">
+                                <div class="w-9 h-9 rounded-xl bg-[#00e5c9]/15 text-[#00e5c9] flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-shower text-sm"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-white font-bold text-sm">Luxury Private Rain Showers</h3>
+                                    <p class="text-gray-400 text-xs mt-0.5">Individual marble suites stocked with Malin+Goetz amenities, Dyson hair care, and plush Turkish towels.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start space-x-4 p-4 rounded-2xl bg-[#0b1724] border border-white/5">
+                                <div class="w-9 h-9 rounded-xl bg-[#00e5c9]/15 text-[#00e5c9] flex items-center justify-center shrink-0 mt-0.5">
+                                    <i class="fa-solid fa-shield-halved text-sm"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-white font-bold text-sm">Hospital-Grade Air Purification</h3>
+                                    <p class="text-gray-400 text-xs mt-0.5">Medical HEPA-14 filtration exchanging 100% fresh atmospheric air throughout the studio every 8 minutes.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Right: Interactive Consultation Form -->
+                    <div data-aos="fade-up" data-aos-delay="100" class="lg:col-span-7 bg-[#0b1724] border border-white/10 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+                        <div class="absolute -right-12 -top-12 w-44 h-44 bg-[#00e5c9]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                        <div class="mb-8">
+                            <span class="text-xs font-mono font-bold text-[#00e5c9] tracking-wider uppercase">NO COMMITMENT • 100% COMPLIMENTARY</span>
+                            <h3 class="text-2xl sm:text-3xl font-extrabold text-white font-heading mt-1">
+                                Request Discovery Consultation
+                            </h3>
+                            <p class="text-gray-400 text-xs sm:text-sm mt-1">
+                                Includes 45-minute clinical InBody 770 scan, joint mobility screen, and personalized 90-day athletic trajectory.
+                            </p>
+                        </div>
+
+                        <form id="contact-consultation-form" class="space-y-5">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2">First Name *</label>
+                                    <input type="text" required placeholder="Alexander" class="w-full bg-[#07111a] border border-white/10 focus:border-[#00e5c9] rounded-xl px-4 py-3.5 text-white text-sm outline-none transition">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2">Last Name *</label>
+                                    <input type="text" required placeholder="Vance" class="w-full bg-[#07111a] border border-white/10 focus:border-[#00e5c9] rounded-xl px-4 py-3.5 text-white text-sm outline-none transition">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2">Email Address *</label>
+                                    <input type="email" required placeholder="alex@company.com" class="w-full bg-[#07111a] border border-white/10 focus:border-[#00e5c9] rounded-xl px-4 py-3.5 text-white text-sm outline-none transition">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2">Mobile Phone *</label>
+                                    <input type="tel" required placeholder="+1 (555) 000-0000" class="w-full bg-[#07111a] border border-white/10 focus:border-[#00e5c9] rounded-xl px-4 py-3.5 text-white text-sm outline-none transition">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2">Primary Fitness Target *</label>
+                                    <select class="w-full bg-[#07111a] border border-white/10 focus:border-[#00e5c9] rounded-xl px-4 py-3.5 text-white text-sm outline-none transition">
+                                        <option value="body-recomp">Body Recomposition &amp; Fat Loss</option>
+                                        <option value="strength-hypertrophy">Strength &amp; Barbell Hypertrophy</option>
+                                        <option value="posture-rehab">Posture Correction &amp; Joint Longevity</option>
+                                        <option value="executive-hybrid">Executive Hybrid Coaching (Travel)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2">Preferred Training Window *</label>
+                                    <select class="w-full bg-[#07111a] border border-white/10 focus:border-[#00e5c9] rounded-xl px-4 py-3.5 text-white text-sm outline-none transition">
+                                        <option value="early-morning">Early Morning (5:30 AM – 8:30 AM)</option>
+                                        <option value="mid-day">Mid-Day (11:00 AM – 2:00 PM)</option>
+                                        <option value="evening">Evening (5:00 PM – 8:30 PM)</option>
+                                        <option value="weekend">Saturday / Sunday Mornings</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-300 mb-2">Injuries, Limitations, or Health Notes</label>
+                                <textarea rows="3" placeholder="E.g. Lower back stiffness from desk work, past shoulder impingement, or high-cholesterol targets..." class="w-full bg-[#07111a] border border-white/10 focus:border-[#00e5c9] rounded-xl px-4 py-3 text-white text-sm outline-none transition"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-[#00e5c9] hover:bg-[#25f4dc] text-gray-950 font-black py-4 rounded-xl transition duration-300 shadow-[0_0_20px_rgba(0,229,201,0.35)] text-sm sm:text-base flex items-center justify-center space-x-2">
+                                <span>Schedule My Discovery Session</span>
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </button>
+
+                            <div class="flex items-center justify-between text-[11px] text-gray-400 pt-2">
+                                <span class="flex items-center"><i class="fa-solid fa-lock text-[#00e5c9] mr-1.5"></i> 256-Bit SSL Encrypted &amp; HIPAA Compliant</span>
+                                <span class="flex items-center"><i class="fa-solid fa-shield text-[#00e5c9] mr-1.5"></i> Zero Sales Pressure Guarantee</span>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 3: WHAT HAPPENS DURING YOUR 45-MIN CONSULTATION
+             ======================================================== -->
+        <section class="py-20 sm:py-28 bg-[#050c14] border-b border-white/5 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div data-aos="fade-up" class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-[#00e5c9] text-xs font-bold uppercase tracking-widest bg-[#00e5c9]/10 px-3.5 py-1 rounded-full border border-[#00e5c9]/20">
+                        THE STACKLY PROTOCOL
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-heading mt-3 mb-4">
+                        What Happens in Your <span class="text-[#00e5c9]">45-Minute Session</span>
+                    </h2>
+                    <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
+                        We do not throw you under a heavy barbell on day one. We establish clinical baselines so every subsequent workout is 100% safe and calibrated.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                    
+                    <!-- Step 1 -->
+                    <div data-aos="fade-up" data-aos-delay="100" class="p-6 sm:p-7 rounded-3xl bg-[#0b1724] border border-white/10 hover-lift flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-2xl bg-[#00e5c9]/15 text-[#00e5c9] flex items-center justify-center text-xl mb-6">
+                                <i class="fa-solid fa-dna"></i>
+                            </div>
+                            <span class="text-xs font-mono font-bold text-[#00e5c9] tracking-wider uppercase">STAGE 01 • 15 MINS</span>
+                            <h3 class="text-lg font-bold text-white font-heading mt-1 mb-3">InBody 770 Clinical Diagnostic</h3>
+                            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6">
+                                Multi-frequency body composition scan revealing segmental lean muscle per limb, deep visceral fat rating, and extracellular water hydration index.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-white/5 text-xs text-gray-300 font-semibold flex items-center">
+                            <i class="fa-solid fa-check text-[#00e5c9] mr-2"></i> $150 Clinical Value Included Free
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div data-aos="fade-up" data-aos-delay="200" class="p-6 sm:p-7 rounded-3xl bg-[#0b1724] border border-white/10 hover-lift flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-2xl bg-[#00e5c9]/15 text-[#00e5c9] flex items-center justify-center text-xl mb-6">
+                                <i class="fa-solid fa-bone"></i>
+                            </div>
+                            <span class="text-xs font-mono font-bold text-[#00e5c9] tracking-wider uppercase">STAGE 02 • 15 MINS</span>
+                            <h3 class="text-lg font-bold text-white font-heading mt-1 mb-3">12-Point Kinetic Joint Screen</h3>
+                            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6">
+                                Comprehensive assessment of ankle dorsiflexion, thoracic rotation, hip socket clearance, and shoulder impingement to eliminate injury risks.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-white/5 text-xs text-gray-300 font-semibold flex items-center">
+                            <i class="fa-solid fa-check text-[#00e5c9] mr-2"></i> Uncovers Structural Asymmetries
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div data-aos="fade-up" data-aos-delay="300" class="p-6 sm:p-7 rounded-3xl bg-[#0b1724] border border-white/10 hover-lift flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-2xl bg-[#00e5c9]/15 text-[#00e5c9] flex items-center justify-center text-xl mb-6">
+                                <i class="fa-solid fa-chart-pie"></i>
+                            </div>
+                            <span class="text-xs font-mono font-bold text-[#00e5c9] tracking-wider uppercase">STAGE 03 • 10 MINS</span>
+                            <h3 class="text-lg font-bold text-white font-heading mt-1 mb-3">Custom 90-Day Architecture</h3>
+                            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6">
+                                Translating scan and screening data into a calibrated training schedule, bar speed velocity thresholds, and personalized sports nutrition splits.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-white/5 text-xs text-gray-300 font-semibold flex items-center">
+                            <i class="fa-solid fa-check text-[#00e5c9] mr-2"></i> Tailored Around Your Work Schedule
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div data-aos="fade-up" data-aos-delay="400" class="p-6 sm:p-7 rounded-3xl bg-[#0b1724] border border-[#00e5c9]/30 hover-lift flex flex-col justify-between relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-20 h-20 bg-[#00e5c9]/10 rounded-full blur-xl pointer-events-none"></div>
+                        <div>
+                            <div class="w-12 h-12 rounded-2xl bg-[#00e5c9] text-gray-950 flex items-center justify-center text-xl mb-6 shadow-md">
+                                <i class="fa-solid fa-handshake"></i>
+                            </div>
+                            <span class="text-xs font-mono font-bold text-[#00e5c9] tracking-wider uppercase">STAGE 04 • 5 MINS</span>
+                            <h3 class="text-lg font-bold text-white font-heading mt-1 mb-3">Pod Tour &amp; Coach Match</h3>
+                            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6">
+                                Walk through the private pods, test the equipment feel, and pair with your dedicated master coach based on personality and training goals.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-white/5 text-xs text-gray-300 font-semibold flex items-center">
+                            <i class="fa-solid fa-check text-[#00e5c9] mr-2"></i> Zero High-Pressure Sales Pitch
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 4: VIRTUAL STUDIO TOUR & FACILITY ZONES
+             ======================================================== -->
+        <section class="py-20 sm:py-28 bg-[#07111a] border-b border-white/5 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div data-aos="fade-up" class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-[#00e5c9] text-xs font-bold uppercase tracking-widest bg-[#00e5c9]/10 px-3.5 py-1 rounded-full border border-[#00e5c9]/20">
+                        SANCTUARY ARCHITECTURE
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-heading mt-3 mb-4">
+                        Inside Our 12,000 Sq. Ft Facility
+                    </h2>
+                    <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
+                        Every square inch of Stackly is purpose-built for distraction-free performance, acoustic privacy, and anatomical recovery.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Zone 1 -->
+                    <div data-aos="fade-up" data-aos-delay="100" class="hover-lift bg-[#0b1724] border border-white/10 rounded-3xl overflow-hidden group">
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="assets/images/elite-coaching.webp" alt="Private Strength Pods" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0b1724] via-transparent to-transparent"></div>
+                            <span class="absolute top-4 left-4 bg-[#00e5c9] text-gray-950 text-xs font-bold px-3 py-1 rounded-full uppercase">Zone 01</span>
+                        </div>
+                        <div class="p-6 sm:p-7">
+                            <h3 class="text-xl font-bold text-white mb-2 font-heading group-hover:text-[#00e5c9] transition">
+                                Private 1-on-1 Strength Pods
+                            </h3>
+                            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-4">
+                                Individualized acoustic-paneled pods with custom matte-black Rogue power cages, Eleiko calibrated competition barbells, and Prime Fitness adjustable dumbbells.
+                            </p>
+                            <div class="text-xs text-[#00e5c9] font-bold flex items-center">
+                                <i class="fa-solid fa-lock text-xs mr-2"></i> Zero Shared Equipment During Session
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Zone 2 -->
+                    <div data-aos="fade-up" data-aos-delay="200" class="hover-lift bg-[#0b1724] border border-white/10 rounded-3xl overflow-hidden group">
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="assets/images/diagnostic-suite.webp" alt="Clinical Biometric Diagnostics Suite" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0b1724] via-transparent to-transparent"></div>
+                            <span class="absolute top-4 left-4 bg-[#00e5c9] text-gray-950 text-xs font-bold px-3 py-1 rounded-full uppercase">Zone 02</span>
+                        </div>
+                        <div class="p-6 sm:p-7">
+                            <h3 class="text-xl font-bold text-white mb-2 font-heading group-hover:text-[#00e5c9] transition">
+                                Clinical Diagnostic Suite
+                            </h3>
+                            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-4">
+                                Medical-grade InBody 770 body composition analyzer, 3D postural laser scanner, Woodway VO2 max treadmill, and private consultation offices.
+                            </p>
+                            <div class="text-xs text-[#00e5c9] font-bold flex items-center">
+                                <i class="fa-solid fa-microscope text-xs mr-2"></i> 99.4% Multi-Frequency Accuracy
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Zone 3 -->
+                    <div data-aos="fade-up" data-aos-delay="300" class="hover-lift bg-[#0b1724] border border-white/10 rounded-3xl overflow-hidden group">
+                        <div class="relative h-64 overflow-hidden">
+                            <img src="assets/images/cryo-recovery.webp" alt="Contrast Therapy Recovery Deck" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0b1724] via-transparent to-transparent"></div>
+                            <span class="absolute top-4 left-4 bg-[#00e5c9] text-gray-950 text-xs font-bold px-3 py-1 rounded-full uppercase">Zone 03</span>
+                        </div>
+                        <div class="p-6 sm:p-7">
+                            <h3 class="text-xl font-bold text-white mb-2 font-heading group-hover:text-[#00e5c9] transition">
+                                Contrast Hydro &amp; Cryo Deck
+                            </h3>
+                            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-4">
+                                Dedicated recovery lounge featuring 200°F Finnish dry cedar saunas, filtered 42°F contrast plunge pools, and Normatec 3 compression boots.
+                            </p>
+                            <div class="text-xs text-[#00e5c9] font-bold flex items-center">
+                                <i class="fa-solid fa-temperature-arrow-down text-xs mr-2"></i> Rapid Central Nervous System Reset
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 5: INTERACTIVE MAP, TRANSIT & PARKING PROTOCOLS
+             ======================================================== -->
+        <section class="py-20 sm:py-28 bg-[#050c14] border-b border-white/5 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Left: Interactive Map Card -->
+                    <div data-aos="fade-up" class="lg:col-span-7 bg-[#0b1724] border border-white/10 rounded-3xl overflow-hidden shadow-2xl relative">
+                        <!-- Stylized Map Display -->
+                        <div class="relative h-80 sm:h-96 w-full bg-[#07111a] flex items-center justify-center p-6 text-center overflow-hidden">
+                            <!-- Background Map Grid Pattern -->
+                            <div class="absolute inset-0 bg-[radial-gradient(#00e5c9_1px,transparent_1px)] [background-size:24px_24px] opacity-10"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0b1724] via-transparent to-transparent"></div>
+                            
+                            <!-- Visual Landmark Pins -->
+                            <div class="relative z-10 flex flex-col items-center">
+                                <div class="w-16 h-16 rounded-full bg-[#00e5c9]/20 border-2 border-[#00e5c9] text-[#00e5c9] flex items-center justify-center text-2xl shadow-[0_0_30px_rgba(0,229,201,0.5)] mb-3 animate-bounce">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <h3 class="text-xl sm:text-2xl font-black text-white font-heading">Stackly Sanctuary Floor</h3>
+                                <p class="text-xs sm:text-sm text-gray-300 max-w-sm mt-1">MMR Complex, Chinna Thirupathi, near Chinna Muniyappan Kovil, Salem, Tamil Nadu 636008</p>
+                                <a href="https://maps.google.com/?q=MMR+Complex+Chinna+Thirupathi+Salem" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center space-x-2 bg-[#00e5c9] hover:bg-[#25f4dc] text-gray-950 font-bold px-5 py-2.5 rounded-full text-xs transition shadow-md">
+                                    <i class="fa-solid fa-diamond-turn-right text-xs"></i>
+                                    <span>Open in Google Maps / Apple Maps</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Location Badges -->
+                        <div class="p-6 sm:p-7 border-t border-white/10 grid grid-cols-2 sm:grid-cols-3 gap-4 text-xs">
+                            <div>
+                                <span class="text-gray-400 block">District</span>
+                                <span class="text-white font-bold">Chinna Thirupathi, Salem</span>
+                            </div>
+                            <div>
+                                <span class="text-gray-400 block">Landmark</span>
+                                <span class="text-white font-bold">Near Chinna Muniyappan Kovil</span>
+                            </div>
+                            <div>
+                                <span class="text-gray-400 block">Postal Code</span>
+                                <span class="text-white font-bold">Salem 636008, TN</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Transit & Parking Guidance -->
+                    <div data-aos="fade-up" data-aos-delay="100" class="lg:col-span-5 space-y-6">
+                        <span class="text-[#00e5c9] text-xs font-bold uppercase tracking-widest bg-[#00e5c9]/10 px-3.5 py-1 rounded-full border border-[#00e5c9]/20">
+                            Effortless Access
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white font-heading">
+                            How to Reach the Studio
+                        </h2>
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            Positioned strategically in San Francisco's performance corridor with seamless highway access, private underground EV chargers, and private elevator entry.
+                        </p>
+
+                        <div class="space-y-4 pt-2">
+                            <div class="p-4 rounded-2xl bg-[#0b1724] border border-white/5 flex items-start space-x-4">
+                                <div class="w-9 h-9 rounded-xl bg-[#00e5c9]/10 text-[#00e5c9] flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-car text-sm"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-white font-bold text-sm">Underground Private Valet</h3>
+                                    <p class="text-gray-400 text-xs mt-0.5">Pull directly into the dedicated Stackly subterranean arrival lane on 4th Street. Our valet attendants handle vehicle storage and key security.</p>
+                                </div>
+                            </div>
+
+                            <div class="p-4 rounded-2xl bg-[#0b1724] border border-white/5 flex items-start space-x-4">
+                                <div class="w-9 h-9 rounded-xl bg-[#00e5c9]/10 text-[#00e5c9] flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-train-subway text-sm"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-white font-bold text-sm">Public Transit &amp; Caltrain</h3>
+                                    <p class="text-gray-400 text-xs mt-0.5">Located 350 meters from the 4th &amp; King Caltrain Station and Muni T-Line stop, offering rapid transit from Silicon Valley and downtown.</p>
+                                </div>
+                            </div>
+
+                            <div class="p-4 rounded-2xl bg-[#0b1724] border border-white/5 flex items-start space-x-4">
+                                <div class="w-9 h-9 rounded-xl bg-[#00e5c9]/10 text-[#00e5c9] flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-shield-halved text-sm"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-white font-bold text-sm">Concierge Building Check-In</h3>
+                                    <p class="text-gray-400 text-xs mt-0.5">Check in with building reception on the ground floor. State your name and your dedicated coach will welcome you up to Suite 400.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 6: FIRST-VISIT & CONSULTATION FREQUENTLY ASKED QUESTIONS
+             ======================================================== -->
+        <section class="py-20 sm:py-28 bg-[#050c14] border-b border-white/5 relative">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div data-aos="fade-up" class="text-center mb-16">
+                    <span class="text-[#00e5c9] text-xs font-bold uppercase tracking-widest bg-[#00e5c9]/10 px-3.5 py-1 rounded-full border border-[#00e5c9]/20">
+                        CLEAR ANSWERS
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-heading mt-3 mb-4">
+                        Discovery Session FAQ
+                    </h2>
+                    <p class="text-gray-400 text-sm sm:text-base leading-relaxed">
+                        Everything you need to know prior to walking through our private sanctuary doors.
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    
+                    <!-- FAQ 1 -->
+                    <div class="border border-white/10 bg-[#0b1724] rounded-2xl overflow-hidden transition">
+                        <button type="button" aria-expanded="false" class="faq-trigger w-full flex items-center justify-between p-5 text-left text-white font-bold text-sm sm:text-base hover:text-[#00e5c9] transition focus:outline-none">
+                            <span>What should I wear and bring to my complimentary discovery consultation?</span>
+                            <i class="faq-icon fa-solid fa-chevron-down text-xs text-gray-400 transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-content hidden px-5 pb-5 text-xs sm:text-sm text-gray-400 leading-relaxed border-t border-white/5 pt-3">
+                            Wear comfortable athletic clothing (shorts/leggings and a training shirt) and training sneakers so we can accurately assess joint mobility during the 12-point movement screening. You do not need to bring towels, water bottles, or locks — our private locker suites are fully stocked.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="border border-white/10 bg-[#0b1724] rounded-2xl overflow-hidden transition">
+                        <button type="button" aria-expanded="false" class="faq-trigger w-full flex items-center justify-between p-5 text-left text-white font-bold text-sm sm:text-base hover:text-[#00e5c9] transition focus:outline-none">
+                            <span>Is there truly zero commitment or aggressive sales pressure?</span>
+                            <i class="faq-icon fa-solid fa-chevron-down text-xs text-gray-400 transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-content hidden px-5 pb-5 text-xs sm:text-sm text-gray-400 leading-relaxed border-t border-white/5 pt-3">
+                            100% zero pressure. The 45-minute discovery consultation exists to give you actionable clinical data (your full InBody 770 biometric breakdown and joint screen report). If you choose to train with us, we will match you with a coach; if not, you keep all scan results with our compliments.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="border border-white/10 bg-[#0b1724] rounded-2xl overflow-hidden transition">
+                        <button type="button" aria-expanded="false" class="faq-trigger w-full flex items-center justify-between p-5 text-left text-white font-bold text-sm sm:text-base hover:text-[#00e5c9] transition focus:outline-none">
+                            <span>Can I train if I have existing back, shoulder, or knee pain?</span>
+                            <i class="faq-icon fa-solid fa-chevron-down text-xs text-gray-400 transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-content hidden px-5 pb-5 text-xs sm:text-sm text-gray-400 leading-relaxed border-t border-white/5 pt-3">
+                            Yes — in fact, the majority of our executive clients come to us specifically to resolve chronic desk posture, lumbar aches, and shoulder stiffness. Our coaches hold DPT (Doctor of Physical Therapy) and CSCS credentials, and every exercise is modified to rebuild joint integrity before adding external load.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="border border-white/10 bg-[#0b1724] rounded-2xl overflow-hidden transition">
+                        <button type="button" aria-expanded="false" class="faq-trigger w-full flex items-center justify-between p-5 text-left text-white font-bold text-sm sm:text-base hover:text-[#00e5c9] transition focus:outline-none">
+                            <span>How flexible is scheduling if I travel frequently for work?</span>
+                            <i class="faq-icon fa-solid fa-chevron-down text-xs text-gray-400 transition-transform duration-300"></i>
+                        </button>
+                        <div class="faq-content hidden px-5 pb-5 text-xs sm:text-sm text-gray-400 leading-relaxed border-t border-white/5 pt-3">
+                            We offer total scheduling autonomy. Book or reschedule private pod hours with 12 hours notice directly inside your Stackly Member App. For travel weeks, your coach transitions your program to our Hybrid Remote Coaching module with custom hotel gym workouts and daily app syncing.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================================
+             SECTION 7: 30-DAY RISK-FREE PERFORMANCE GUARANTEE CTA
+             ======================================================== -->
+        <section class="py-20 sm:py-28 bg-[#07111a] relative overflow-hidden">
+            <!-- Background Radial Glow -->
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,229,201,0.08)_0,transparent_70%)] pointer-events-none"></div>
+
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+                <div data-aos="fade-down" class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#00e5c9]/10 border border-[#00e5c9]/30 text-[#00e5c9] text-xs font-bold uppercase tracking-wider mb-6">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>THE STACKLY PERFORMANCE GUARANTEE</span>
+                </div>
+
+                <h2 data-aos="fade-up" class="text-3xl sm:text-4xl md:text-5xl font-black text-white font-heading tracking-tight mb-6">
+                    Stop Guessing. <br class="hidden sm:inline">
+                    <span class="text-[#00e5c9]">Start Transforming.</span>
+                </h2>
+
+                <p data-aos="fade-up" data-aos-delay="100" class="text-gray-300 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed mb-10">
+                    If after 30 days of consistent training you do not document measurable skeletal muscle gain or body fat reduction on your InBody scan, we refund 100% of your coaching investment. No questions asked.
+                </p>
+
+                <!-- Value Props Ticker -->
+                <div data-aos="fade-up" data-aos-delay="150" class="flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs sm:text-sm text-gray-300 mb-10">
+                    <div class="flex items-center"><i class="fa-solid fa-circle-check text-[#00e5c9] mr-2"></i> Free InBody 770 Scan ($150 Value)</div>
+                    <div class="flex items-center"><i class="fa-solid fa-circle-check text-[#00e5c9] mr-2"></i> 1-on-1 Movement Screening</div>
+                    <div class="flex items-center"><i class="fa-solid fa-circle-check text-[#00e5c9] mr-2"></i> 30-Day Money-Back Guarantee</div>
+                </div>
+
+                <!-- CTA Actions -->
+                <div data-aos="fade-up" data-aos-delay="200" class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="#booking-suite" class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 bg-[#00e5c9] hover:bg-[#25f4dc] text-gray-950 font-bold px-8 py-4 rounded-full text-sm transition shadow-lg hover:scale-105">
+                        <span>Claim Free Discovery Session</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                    <a href="service.html" class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 bg-[#0b1724] hover:bg-white/10 text-white border border-white/10 px-8 py-4 rounded-full text-sm font-semibold transition">
+                        <span>Explore Coaching Programs</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========================================================
+         LUXURY 5-COLUMN FOOTER
+         ======================================================== -->
+    <footer class="bg-[#040a10] border-t border-white/10 text-gray-400 text-sm pt-16 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+                
+                <!-- Col 1: Brand & Bio -->
+                <div class="lg:col-span-2 space-y-4">
+                    <a href="index.html" class="flex items-center group">
+                        <img src="assets/images/logo_0991.webp" alt="Stackly" class="h-8 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+                    </a>
+                    <p class="text-xs sm:text-sm text-gray-400 leading-relaxed max-w-sm">
+                        High-performance 1-on-1 private pod personal training. Combining clinical InBody diagnostics, human biomechanics, and personalized macro nutrition to deliver guaranteed athletic outcomes.
+                    </p>
+                    <div class="flex space-x-3 text-gray-400">
+                        <a href="404.html" aria-label="Instagram" class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:text-[#00e5c9] hover:border-[#00e5c9] transition"><i class="fa-brands fa-instagram text-xs"></i></a>
+                        <a href="404.html" aria-label="YouTube" class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:text-[#00e5c9] hover:border-[#00e5c9] transition"><i class="fa-brands fa-youtube text-xs"></i></a>
+                        <a href="404.html" aria-label="LinkedIn" class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:text-[#00e5c9] hover:border-[#00e5c9] transition"><i class="fa-brands fa-linkedin-in text-xs"></i></a>
+                        <a href="404.html" aria-label="Facebook" class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:text-[#00e5c9] hover:border-[#00e5c9] transition"><i class="fa-brands fa-facebook-f text-xs"></i></a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Navigation -->
+                <div class="space-y-3">
+                    <h4 class="text-white font-bold text-xs font-mono uppercase tracking-widest">Navigation</h4>
+                    <ul class="space-y-2 text-xs sm:text-sm">
+                        <li><a href="index.html" class="hover:text-[#00e5c9] transition">Home</a></li>
+                        <li><a href="about.html" class="hover:text-[#00e5c9] transition">About Stackly</a></li>
+                        <li><a href="service.html" class="hover:text-[#00e5c9] transition">Training Services</a></li>
+                        <li><a href="blog.html" class="hover:text-[#00e5c9] transition">The Stackly Journal</a></li>
+                        <li><a href="contact.html" class="text-[#00e5c9] font-semibold transition">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Training Programs -->
+                <div class="space-y-3">
+                    <h4 class="text-white font-bold text-xs font-mono uppercase tracking-widest">Programs</h4>
+                    <ul class="space-y-2 text-xs sm:text-sm">
+                        <li><a href="service.html" class="hover:text-[#00e5c9] transition">Elite 1-on-1 Pods</a></li>
+                        <li><a href="service.html" class="hover:text-[#00e5c9] transition">Barbell Hypertrophy</a></li>
+                        <li><a href="service.html" class="hover:text-[#00e5c9] transition">Sports Nutrition Phasing</a></li>
+                        <li><a href="service.html" class="hover:text-[#00e5c9] transition">Contrast Cryo Deck</a></li>
+                        <li><a href="service.html" class="hover:text-[#00e5c9] transition">Hybrid Remote App</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Studio Contact -->
+                <div class="space-y-3">
+                    <h4 class="text-white font-bold text-xs font-mono uppercase tracking-widest">Private Facility</h4>
+                    <p class="text-xs text-gray-400">
+                        MMR Complex, Chinna Thirupathi, near Chinna Muniyappan Kovil<br>
+                        Salem, Tamil Nadu 636008
+                    </p>
+                    <div class="text-xs space-y-1 text-gray-400 pt-2">
+                        <div><i class="fa-solid fa-phone text-[#00e5c9] mr-2"></i> <a href="tel:9876543210" class="hover:text-[#00e5c9] transition">9876543210</a></div>
+                        <div><i class="fa-solid fa-envelope text-[#00e5c9] mr-2"></i> <a href="mailto:info@stackly.com" class="hover:text-[#00e5c9] transition">info@stackly.com</a></div>
+                        <div><i class="fa-solid fa-clock text-[#00e5c9] mr-2"></i> Mon-Sat: 5:30 AM - 9:00 PM</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Subfooter -->
+            <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400">
+                <p>&copy; 2026 Stackly Personal Training Inc. All rights reserved. Peer-reviewed athletic conditioning.</p>
+                <div class="mt-4 sm:mt-0 flex space-x-6">
+                    <a href="404.html" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="404.html" class="hover:text-white transition">Terms of Service</a>
+                    <a href="404.html" class="hover:text-white transition">Medical Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Interactive Toast Notification Container -->
+    <div id="contact-toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-[#0b1724] border border-[#00e5c9] text-white px-6 py-3.5 rounded-2xl shadow-2xl flex items-center space-x-3 text-xs sm:text-sm font-semibold transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <i class="fa-solid fa-circle-check text-[#00e5c9] text-base"></i>
+        <span id="contact-toast-msg">Consultation request dispatched</span>
+    </div>
+
+    <!-- AOS (Animate On Scroll) JS CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="assets/js/main.js?v=2"></script>
+
+    <!-- Contact-Specific Interactive JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            initContactFormToast();
+        });
+
+        function showContactToast(message) {
+            const toast = document.getElementById('contact-toast');
+            const toastMsg = document.getElementById('contact-toast-msg');
+            if (!toast || !toastMsg) return;
+            toastMsg.textContent = message;
+            toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+                toast.classList.remove('translate-y-0', 'opacity-100');
+            }, 4000);
+        }
+
+        function initContactFormToast() {
+            const form = document.getElementById('contact-consultation-form');
+            if (!form) return;
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                showContactToast('Consultation confirmed! Our intake director will call you within 15 minutes.');
+                form.reset();
+            });
+        }
+    </script>
+</body>
+</html>

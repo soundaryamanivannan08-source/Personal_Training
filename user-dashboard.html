@@ -1,0 +1,1989 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full overflow-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stackly Fitness Portal | Member Dashboard</title>
+    
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: { 
+                extend: {
+                    colors: {
+                        theme: {
+                            teal: '#00e5c9',
+                            tealHover: '#1cf5dc',
+                            tealDark: '#0d9488',
+                            tealBg: 'rgba(0, 229, 201, 0.12)',
+                            dark: '#07111a',
+                            darkCard: '#0d1924',
+                        },
+                        sidebar: {
+                            DEFAULT: '#07111a',
+                            hover: '#0f1f2e',
+                            active: '#00e5c9',
+                        },
+                        portal: {
+                            bg: '#f4f6fa',
+                            navy: '#0f172a',
+                            teal: '#00e5c9',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+                        heading: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- AOS (Animate On Scroll) Animation CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f4f6fa;
+            color: #0f172a;
+        }
+        .portal-sidebar {
+            width: 250px;
+            background-color: #07111a;
+        }
+        .chart-grid-line {
+            stroke: #e2e8f0;
+            stroke-width: 1;
+            stroke-dasharray: 0;
+        }
+        .chart-axis-text {
+            font-size: 11px;
+            font-weight: 500;
+            fill: #64748b;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .chart-bar-teal {
+            fill: #00e5c9;
+            transition: all 0.3s ease;
+        }
+        .chart-bar-teal:hover {
+            fill: #22f5dc;
+            filter: drop-shadow(0 4px 10px rgba(0, 229, 201, 0.5));
+        }
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+        .tab-panel {
+            display: none;
+        }
+        .tab-panel.active {
+            display: block;
+        }
+        @keyframes wave-hand {
+            0%, 100% { transform: rotate(0deg); }
+            20%, 60% { transform: rotate(14deg); }
+            40%, 80% { transform: rotate(-14deg); }
+        }
+        .wave-hand-icon {
+            display: inline-block;
+            transform-origin: 70% 70%;
+            animation: wave-hand 2.2s infinite ease-in-out;
+        }
+        .fa-hand-wave,
+        i.fa-hand-wave {
+            display: inline-block;
+            width: 1.1em;
+            height: 1.1em;
+            vertical-align: -0.15em;
+            background-color: currentColor;
+            -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M.975 7q0-2.5 1.763-4.262T7 .974V3Q5.35 3 4.175 4.175T3 7zM5.3 18.725Q3.025 16.45 3.025 13.25T5.3 7.775L7.05 6l.3.3q.725.725.725 1.762T7.35 9.826l-.35.35q-.3.3-.3.713t.3.712l.9.9q.65.65.65 1.575T7.9 15.65l1.075 1.075q1.1-1.1 1.1-2.637T8.95 11.425l-.55-.55q.65-.65.925-1.463T9.55 7.75l4.475-4.475q.3-.3.713-.3t.712.3t.3.712t-.3.713l-4.675 4.675l1.05 1.05l6.025-6q.3-.3.7-.3t.7.3t.3.7t-.3.7l-6 6.025l1.05 1.05l5.3-5.3q.3-.3.713-.3t.712.3t.3.713t-.3.712l-5.3 5.3l1.05 1.05l4.05-4.05q.3-.3.713-.3t.712.3t.3.713t-.3.712l-6 5.975Q13.975 21 10.775 21T5.3 18.725m11.7 4.3V21q1.65 0 2.825-1.175T21 17h2.025q0 2.5-1.763 4.263T17 23.025'/%3E%3C/svg%3E") no-repeat center / contain;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M.975 7q0-2.5 1.763-4.262T7 .974V3Q5.35 3 4.175 4.175T3 7zM5.3 18.725Q3.025 16.45 3.025 13.25T5.3 7.775L7.05 6l.3.3q.725.725.725 1.762T7.35 9.826l-.35.35q-.3.3-.3.713t.3.712l.9.9q.65.65.65 1.575T7.9 15.65l1.075 1.075q1.1-1.1 1.1-2.637T8.95 11.425l-.55-.55q.65-.65.925-1.463T9.55 7.75l4.475-4.475q.3-.3.713-.3t.712.3t.3.712t-.3.713l-4.675 4.675l1.05 1.05l6.025-6q.3-.3.7-.3t.7.3t.3.7t-.3.7l-6 6.025l1.05 1.05l5.3-5.3q.3-.3.713-.3t.712.3t.3.713t-.3.712l-5.3 5.3l1.05 1.05l4.05-4.05q.3-.3.713-.3t.712.3t.3.713t-.3.712l-6 5.975Q13.975 21 10.775 21T5.3 18.725m11.7 4.3V21q1.65 0 2.825-1.175T21 17h2.025q0 2.5-1.763 4.263T17 23.025'/%3E%3C/svg%3E") no-repeat center / contain;
+        }
+    </style>
+</head>
+<body class="h-full overflow-hidden flex flex-col md:flex-row antialiased bg-[#f4f6fa]">
+
+    <!-- Mobile Sidebar Backdrop Overlay -->
+    <div id="mobileSidebarBackdrop" class="fixed inset-0 bg-black/60 z-40 hidden md:hidden transition-opacity"></div>
+
+    <!-- ==============================================
+         LEFT SIDEBAR NAVIGATION (Deep Slate Navy #07111a)
+         ============================================== -->
+    <aside id="portalSidebar" class="portal-sidebar fixed md:sticky top-0 h-screen z-50 flex flex-col justify-between shrink-0 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out p-5 select-none shadow-2xl md:shadow-none border-r border-white/5">
+        
+        <div>
+            <!-- Top Brand Logo: Stackly Image Logo & FITNESS PORTAL -->
+            <div class="flex items-center justify-between pb-6 pt-1">
+                <a href="index.html" class="flex items-center space-x-2.5 group">
+                    <img src="assets/images/logo_0991.webp" alt="Stackly" class="h-7 sm:h-8 w-auto object-contain transition-transform duration-200 group-hover:scale-105">
+                    <span class="text-[9px] font-bold uppercase tracking-wider text-[#00e5c9] shrink-0">FITNESS PORTAL</span>
+                </a>
+                <!-- Close Button (Mobile) -->
+                <button id="closeSidebarBtn" class="md:hidden text-slate-400 hover:text-white p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Section Title -->
+            <div class="text-[11px] font-bold uppercase tracking-widest text-[#64748b] mt-3 mb-4 px-1">
+                DASHBOARD VIEWS
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="space-y-1.5" id="sidebarNav">
+                <!-- 1. Overview (Active Tab: Vibrant Teal #00e5c9 with Dark Text) -->
+                <button type="button" class="tab-trigger active w-full flex items-center space-x-3.5 px-3.5 py-3 rounded-xl text-sm font-bold text-gray-950 bg-[#00e5c9] shadow-[0_0_15px_rgba(0,229,201,0.35)] transition-all duration-200" data-target="tab-overview">
+                    <span class="w-6 h-6 rounded-full bg-gray-950/20 flex items-center justify-center text-gray-950 shrink-0 text-xs">
+                        <i class="fa-solid fa-chart-pie"></i>
+                    </span>
+                    <span>Overview</span>
+                </button>
+
+                <!-- 2. My Workouts -->
+                <button type="button" class="tab-trigger w-full flex items-center space-x-3.5 px-3.5 py-3 rounded-xl text-sm font-medium text-[#94a3b8] hover:text-white hover:bg-[#0f1f2e] transition-all duration-200" data-target="tab-workouts">
+                    <i class="fa-solid fa-dumbbell w-6 text-center text-sm"></i>
+                    <span>My Workouts</span>
+                </button>
+
+                <!-- 3. Progress & InBody -->
+                <button type="button" class="tab-trigger w-full flex items-center space-x-3.5 px-3.5 py-3 rounded-xl text-sm font-medium text-[#94a3b8] hover:text-white hover:bg-[#0f1f2e] transition-all duration-200" data-target="tab-progress">
+                    <i class="fa-solid fa-chart-line w-6 text-center text-sm"></i>
+                    <span>Progress &amp; InBody</span>
+                </button>
+
+                <!-- 4. Session Schedule -->
+                <button type="button" class="tab-trigger w-full flex items-center space-x-3.5 px-3.5 py-3 rounded-xl text-sm font-medium text-[#94a3b8] hover:text-white hover:bg-[#0f1f2e] transition-all duration-200" data-target="tab-schedule">
+                    <i class="fa-regular fa-calendar-check w-6 text-center text-sm"></i>
+                    <span>Session Schedule</span>
+                </button>
+
+                <!-- 5. Nutrition & Meal Plans -->
+                <button type="button" class="tab-trigger w-full flex items-center space-x-3.5 px-3.5 py-3 rounded-xl text-sm font-medium text-[#94a3b8] hover:text-white hover:bg-[#0f1f2e] transition-all duration-200" data-target="tab-nutrition">
+                    <i class="fa-solid fa-apple-whole w-6 text-center text-sm"></i>
+                    <span>Nutrition &amp; Meals</span>
+                </button>
+
+                <!-- 6. Profile & Goals -->
+                <button type="button" class="tab-trigger w-full flex items-center space-x-3.5 px-3.5 py-3 rounded-xl text-sm font-medium text-[#94a3b8] hover:text-white hover:bg-[#0f1f2e] transition-all duration-200" data-target="tab-profile">
+                    <i class="fa-solid fa-user-gear w-6 text-center text-sm"></i>
+                    <span>Profile &amp; Goals</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- Bottom Pinned Logout -->
+        <div class="pt-4 border-t border-white/5">
+            <a href="login.html" class="w-full flex items-center space-x-3 px-3.5 py-3 rounded-xl text-sm font-semibold text-white bg-[#0f1f2e] hover:bg-[#152a3d] border border-white/5 transition-all duration-200 shadow-sm group">
+                <i class="fa-solid fa-arrow-right-from-bracket text-[#00e5c9] group-hover:translate-x-0.5 transition-transform"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- ==============================================
+         RIGHT MAIN CONTENT AREA
+         ============================================== -->
+    <div class="flex-1 flex flex-col h-full bg-[#f4f6fa] overflow-y-auto overflow-x-hidden min-w-0 max-w-full">
+
+        <!-- ==============================================
+             TOP STICKY NAVBAR (Pure White)
+             ============================================== -->
+        <header class="h-20 bg-white/95 backdrop-blur-md border-b border-slate-200/90 flex items-center justify-between px-4 sm:px-6 lg:px-10 sticky top-0 z-30 shadow-sm shrink-0">
+            <!-- Left Side Title & Toggle -->
+            <div class="flex items-center space-x-2 sm:space-x-3 min-w-0">
+                <button id="menuToggleBtn" class="md:hidden p-2 -ml-1 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition shrink-0">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+                <h1 class="text-xl sm:text-2xl font-bold text-[#0f172a] font-heading tracking-tight truncate" id="topPageTitle">Overview</h1>
+            </div>
+
+            <!-- Right Side Controls -->
+            <div class="flex items-center space-x-2 sm:space-x-4 shrink-0">
+                
+                <!-- Notifications Bell -->
+                <div class="relative">
+                    <button id="bellBtn" class="w-10 h-10 rounded-full bg-white hover:bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-600 transition shadow-sm relative focus:outline-none">
+                        <i class="fa-regular fa-bell text-base"></i>
+                        <span class="absolute top-2 right-2.5 w-2 h-2 rounded-full bg-[#00e5c9]"></span>
+                    </button>
+                    <!-- Bell Dropdown Panel -->
+                    <div id="bellDropdown" class="hidden absolute right-0 mt-2 w-80 bg-white rounded-2xl shadow-xl border border-slate-200 p-4 z-50">
+                        <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Workout Alerts</span>
+                            <span class="text-[11px] font-bold px-2 py-0.5 rounded-full bg-teal-50 text-[#0d9488]">2 New</span>
+                        </div>
+                        <div class="space-y-3 mt-3 text-xs">
+                            <div class="flex items-start space-x-2.5 p-2 rounded-lg hover:bg-slate-50 transition">
+                                <span class="w-2 h-2 rounded-full bg-[#00e5c9] mt-1.5 shrink-0"></span>
+                                <div>
+                                    <div class="font-bold text-slate-800">New Phase 2 Workout Uploaded</div>
+                                    <div class="text-slate-500">Coach Marcus updated your deadlift progression.</div>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-2.5 p-2 rounded-lg hover:bg-slate-50 transition">
+                                <span class="w-2 h-2 rounded-full bg-[#0d9488] mt-1.5 shrink-0"></span>
+                                <div>
+                                    <div class="font-bold text-slate-800">Bi-Weekly InBody Scan Ready</div>
+                                    <div class="text-slate-500">Your scan is scheduled tomorrow at 8:00 AM.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Profile Display Pill with Teal Accent -->
+                <div class="flex items-center space-x-2 sm:space-x-3 bg-white border border-slate-200 rounded-full p-1 sm:pl-1.5 sm:pr-4 sm:py-1.5 shadow-sm" id="userProfileHeaderPill">
+                    <div class="relative shrink-0">
+                        <img id="userHeaderAvatar" src="assets/images/alexander-vance.webp" alt="Profile" class="w-9 h-9 rounded-full object-cover border-2 border-[#00e5c9]">
+                        <div id="userHeaderInitials" class="w-9 h-9 rounded-full bg-[#07111a] text-[#00e5c9] font-bold text-xs border-2 border-[#00e5c9] hidden items-center justify-center">AV</div>
+                    </div>
+                    <div class="text-left hidden sm:block max-w-[190px]">
+                        <div class="text-xs font-bold text-[#0f172a] leading-snug truncate" id="userHeaderName">Alexander Vance</div>
+                        <div class="text-[10px] font-semibold text-[#0d9488] leading-snug truncate" id="userHeaderEmail" title="alexander.vance@stacklyfit.com">alexander.vance@stacklyfit.com</div>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- ==============================================
+             PORTAL MAIN BODY
+             ============================================== -->
+        <main class="p-4 sm:p-6 lg:p-8 space-y-6 flex-1 min-w-0 w-full overflow-x-hidden">
+
+            <!-- ==============================================
+                 TAB 1: OVERVIEW (Matching exact screenshot structure with fitness theme)
+                 ============================================== -->
+            <div id="tab-overview" class="tab-panel active space-y-6 min-w-0 max-w-full">
+                
+                <!-- Welcome Greeting Banner (Dynamic Name & Mail from Login) -->
+                <div data-aos="fade-down" class="bg-gradient-to-r from-[#07111a] via-[#0c1a27] to-[#0d2232] rounded-2xl p-5 sm:p-7 border border-white/10 shadow-md text-white flex flex-col md:flex-row md:items-center justify-between gap-5 relative overflow-hidden min-w-0">
+                    <div class="absolute -right-12 -top-12 w-48 h-48 bg-[#00e5c9]/10 rounded-full blur-3xl pointer-events-none"></div>
+                    <div class="relative z-10 min-w-0 flex-1">
+                        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#00e5c9]/15 border border-[#00e5c9]/30 text-[#00e5c9] text-xs font-bold mb-2.5">
+                            <span class="w-2 h-2 rounded-full bg-[#00e5c9] animate-pulse"></span>
+                            <span>MEMBER PORTAL ACTIVE</span>
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold font-heading text-white tracking-tight break-words">
+                            Welcome back, <span id="welcomeUserName" class="text-[#00e5c9] break-all">Alexander Vance</span>! <i class="fa-solid fa-hand-wave text-[#00e5c9] wave-hand-icon ml-1"></i>
+                        </h2>
+                        <p class="text-xs sm:text-sm text-slate-300 mt-1.5 max-w-xl break-all">
+                            Logged in as <span id="welcomeUserEmail" class="font-semibold text-white break-all">alexander.vance@stacklyfit.com</span>. You have an active <strong class="text-[#00e5c9]">18-day workout streak</strong>. Ready to crush today's phase goals?
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-3 relative z-10 shrink-0 w-full sm:w-auto">
+                        <button onclick="document.querySelector('[data-target=\'tab-workouts\']').click()" class="flex-1 sm:flex-initial px-5 py-2.5 bg-[#00e5c9] hover:bg-[#25f4dc] text-gray-950 font-bold text-xs rounded-xl shadow-[0_0_15px_rgba(0,229,201,0.35)] transition transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-dumbbell text-xs"></i>
+                            <span>Today's Workout</span>
+                        </button>
+                        <button onclick="document.querySelector('[data-target=\'tab-schedule\']').click()" class="flex-1 sm:flex-initial px-4 py-2.5 bg-white/10 hover:bg-white/15 border border-white/10 text-white font-semibold text-xs rounded-xl transition text-center">
+                            View Schedule
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Row 1: 4 Stat KPI Cards (Fitness Themed with Teal Accents) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <!-- Card 1: TOTAL SESSIONS -->
+                    <div data-aos="fade-up" data-aos-delay="100" class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">TOTAL SESSIONS</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#f0fdfa] text-[#0d9488] border border-[#ccfbf1] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-dumbbell"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">24</div>
+                            <div class="text-xs text-[#64748b]">Across 3 training cycles</div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: ACTIVE STREAK -->
+                    <div data-aos="fade-up" data-aos-delay="200" class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">ACTIVE STREAK</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#ecfdf5] text-[#059669] border border-[#d1fae5] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-fire"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">18 Days</div>
+                            <div class="text-xs text-[#64748b]">Consistent workout logs</div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: BODY FAT % -->
+                    <div data-aos="fade-up" data-aos-delay="300" class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">BODY FAT %</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#eff6ff] text-[#2563eb] border border-[#dbeafe] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">14.2%</div>
+                            <div class="text-xs text-[#059669] font-medium"><i class="fa-solid fa-arrow-down mr-1"></i> -3.8% since starting</div>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: NEXT 1-ON-1 SESSION -->
+                    <div data-aos="fade-up" data-aos-delay="400" class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">NEXT 1-ON-1 SESSION</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#f0fdfa] text-[#0d9488] border border-[#ccfbf1] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-calendar-check"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">Tomorrow</div>
+                            <div class="text-xs text-[#64748b]">08:00 AM with Marcus Vance</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Row 2: 2 Charts Side-by-Side (Exact Layout matching screenshot with Teal Palette) -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    
+                    <!-- Left: Monthly Training Volume & Intensity (Vibrant Teal Bars) -->
+                    <div class="lg:col-span-7 xl:col-span-8 bg-white rounded-2xl p-4 sm:p-7 border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
+                            <div class="flex items-center space-x-2.5">
+                                <i class="fa-solid fa-chart-column text-[#0d9488] text-base"></i>
+                                <h3 class="text-base sm:text-lg font-bold text-[#0f172a] font-heading">Monthly Training Volume &amp; Intensity</h3>
+                            </div>
+                            <span class="px-3 py-1 rounded-full bg-[#ecfdf5] text-[#059669] text-[11px] font-bold tracking-wider border border-[#a7f3d0] self-start sm:self-auto shrink-0">2026 TRAINING DATA</span>
+                        </div>
+
+                        <!-- Bar Chart SVG Container -->
+                        <div class="w-full overflow-hidden">
+                            <svg class="w-full h-64" viewBox="0 0 540 260" preserveAspectRatio="xMidYMid meet">
+                                <!-- Grid Lines & Y-Axis Labels (Volume in lbs) -->
+                                <g class="chart-grid">
+                                    <text x="48" y="24" text-anchor="end" class="chart-axis-text">25k lbs</text>
+                                    <line x1="58" y1="20" x2="525" y2="20" class="chart-grid-line" />
+
+                                    <text x="48" y="64" text-anchor="end" class="chart-axis-text">20k lbs</text>
+                                    <line x1="58" y1="60" x2="525" y2="60" class="chart-grid-line" />
+
+                                    <text x="48" y="104" text-anchor="end" class="chart-axis-text">15k lbs</text>
+                                    <line x1="58" y1="100" x2="525" y2="100" class="chart-grid-line" />
+
+                                    <text x="48" y="144" text-anchor="end" class="chart-axis-text">10k lbs</text>
+                                    <line x1="58" y1="140" x2="525" y2="140" class="chart-grid-line" />
+
+                                    <text x="48" y="184" text-anchor="end" class="chart-axis-text">5k lbs</text>
+                                    <line x1="58" y1="180" x2="525" y2="180" class="chart-grid-line" />
+
+                                    <text x="48" y="224" text-anchor="end" class="chart-axis-text">0 lbs</text>
+                                    <line x1="58" y1="220" x2="525" y2="220" stroke="#cbd5e1" stroke-width="1.5" />
+                                </g>
+
+                                <!-- Monthly Bars in Vibrant Teal #00e5c9 -->
+                                <!-- May (5,000 lbs) -->
+                                <rect x="85" y="184" width="30" height="36" rx="5" class="chart-bar-teal" />
+                                <text x="100" y="242" text-anchor="middle" class="chart-axis-text">May</text>
+
+                                <!-- Jun (0 lbs) -->
+                                <text x="180" y="242" text-anchor="middle" class="chart-axis-text">Jun</text>
+
+                                <!-- Jul (23,000 lbs Peak Volume) -->
+                                <rect x="245" y="36" width="30" height="184" rx="5" class="chart-bar-teal" />
+                                <text x="260" y="242" text-anchor="middle" class="chart-axis-text">Jul</text>
+
+                                <!-- Aug (0 lbs) -->
+                                <text x="340" y="242" text-anchor="middle" class="chart-axis-text">Aug</text>
+
+                                <!-- Sep (0 lbs) -->
+                                <text x="420" y="242" text-anchor="middle" class="chart-axis-text">Sep</text>
+
+                                <!-- Oct (15,500 lbs Volume) -->
+                                <rect x="475" y="96" width="30" height="124" rx="5" class="chart-bar-teal" />
+                                <text x="490" y="242" text-anchor="middle" class="chart-axis-text">Oct</text>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Right: Workout Focus Breakdown Donut Chart -->
+                    <div class="lg:col-span-5 xl:col-span-4 bg-white rounded-2xl p-4 sm:p-7 border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-4">
+                            <div class="flex items-center space-x-2">
+                                <i class="fa-solid fa-chart-pie text-[#0d9488] text-base"></i>
+                                <h3 class="text-base sm:text-lg font-bold text-[#0f172a] font-heading">Workout Focus</h3>
+                            </div>
+                            <span class="text-xs text-[#64748b]">Weekly Split Share</span>
+                        </div>
+
+                        <!-- Donut Chart SVG in Fitness Teal / Cyan / Emerald Palette -->
+                        <div class="w-full flex items-center justify-center my-2">
+                            <svg class="w-56 h-56" viewBox="0 0 200 200">
+                                <!-- Strength & Hypertrophy (#00e5c9, ~42%) -->
+                                <circle cx="100" cy="100" r="62" fill="none" stroke="#00e5c9" stroke-width="26"
+                                        stroke-dasharray="163 389.56" stroke-dashoffset="0" transform="rotate(-90 100 100)" />
+                                <!-- HIIT & Conditioning (#0284c7, ~28%) -->
+                                <circle cx="100" cy="100" r="62" fill="none" stroke="#0284c7" stroke-width="26"
+                                        stroke-dasharray="109 389.56" stroke-dashoffset="-166" transform="rotate(-90 100 100)" />
+                                <!-- Core & Mobility (#10b981, ~16%) -->
+                                <circle cx="100" cy="100" r="62" fill="none" stroke="#10b981" stroke-width="26"
+                                        stroke-dasharray="62 389.56" stroke-dashoffset="-278" transform="rotate(-90 100 100)" />
+                                <!-- Functional Resistance (#0f766e, ~8%) -->
+                                <circle cx="100" cy="100" r="62" fill="none" stroke="#0f766e" stroke-width="26"
+                                        stroke-dasharray="31 389.56" stroke-dashoffset="-343" transform="rotate(-90 100 100)" />
+                                <!-- Recovery & Stretch (#38bdf8, ~4%) -->
+                                <circle cx="100" cy="100" r="62" fill="none" stroke="#38bdf8" stroke-width="26"
+                                        stroke-dasharray="12 389.56" stroke-dashoffset="-376" transform="rotate(-90 100 100)" />
+                            </svg>
+                        </div>
+
+                        <!-- Donut Legend with Fitness Muscle Splits -->
+                        <div class="flex items-center justify-center flex-wrap gap-x-4 gap-y-2 pt-2 text-xs text-[#475569]">
+                            <span class="inline-flex items-center space-x-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-[#00e5c9]"></span><span>Strength</span></span>
+                            <span class="inline-flex items-center space-x-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-[#0284c7]"></span><span>HIIT</span></span>
+                            <span class="inline-flex items-center space-x-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-[#10b981]"></span><span>Core</span></span>
+                            <span class="inline-flex items-center space-x-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-[#0f766e]"></span><span>Functional</span></span>
+                            <span class="inline-flex items-center space-x-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-[#38bdf8]"></span><span>Recovery</span></span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- ==============================================
+                 TAB 2: MY WORKOUTS
+                 ============================================== -->
+            <div id="tab-workouts" class="tab-panel space-y-6 min-w-0 max-w-full">
+                
+                <!-- Row 1: 4 Mini-KPI Stat Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Weekly Volume -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">THIS WEEK'S VOLUME</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#f0fdfa] text-[#0d9488] border border-[#ccfbf1] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-weight-hanging"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">14,250 lbs</div>
+                            <div class="text-xs text-[#059669] font-medium"><i class="fa-solid fa-arrow-trend-up mr-1"></i> +12% vs last week</div>
+                        </div>
+                    </div>
+
+                    <!-- Workouts Completed -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">WEEKLY TARGET</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#eff6ff] text-[#2563eb] border border-[#dbeafe] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-dumbbell"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">4 of 5 Done</div>
+                            <div class="text-xs text-[#64748b]">80% of program completed</div>
+                        </div>
+                    </div>
+
+                    <!-- Average Intensity -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">AVG INTENSITY</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#fff7ed] text-[#ea580c] border border-[#ffedd5] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-fire"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">RPE 8.4</div>
+                            <div class="text-xs text-[#ea580c] font-medium">Optimal Hypertrophy Zone</div>
+                        </div>
+                    </div>
+
+                    <!-- Active Phase -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">CURRENT PROGRAM</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#f0fdfa] text-[#0d9488] border border-[#ccfbf1] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-diagram-project"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">Phase 2: Power</div>
+                            <div class="text-xs text-[#0d9488] font-medium">Week 3 of 8 &bull; Coach Marcus</div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Personal Records & Benchmark Lifts -->
+                <div class="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-sm">
+                    <div class="flex items-center justify-between mb-5">
+                        <div class="flex items-center space-x-2.5">
+                            <i class="fa-solid fa-trophy text-[#0d9488] text-base"></i>
+                            <h3 class="text-base sm:text-lg font-bold text-[#0f172a] font-heading">Personal Strength Benchmarks (PRs)</h3>
+                        </div>
+                        <span class="text-xs text-slate-500">Verified by Head Coach Marcus</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/60">
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="text-xs font-bold text-slate-600 uppercase">Deadlift 1RM</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700">PR Broken</span>
+                            </div>
+                            <div class="text-2xl font-extrabold text-[#0f172a] font-heading">315 lbs</div>
+                            <div class="w-full bg-slate-200 h-1.5 rounded-full mt-2 overflow-hidden">
+                                <div class="bg-[#00e5c9] h-full rounded-full" style="width: 95%"></div>
+                            </div>
+                            <div class="text-[11px] text-slate-500 mt-1 flex justify-between">
+                                <span>Current: 315</span>
+                                <span>Goal: 330 lbs</span>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/60">
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="text-xs font-bold text-slate-600 uppercase">Back Squat</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-teal-50 text-[#0d9488]">On Track</span>
+                            </div>
+                            <div class="text-2xl font-extrabold text-[#0f172a] font-heading">275 lbs</div>
+                            <div class="w-full bg-slate-200 h-1.5 rounded-full mt-2 overflow-hidden">
+                                <div class="bg-[#00e5c9] h-full rounded-full" style="width: 91%"></div>
+                            </div>
+                            <div class="text-[11px] text-slate-500 mt-1 flex justify-between">
+                                <span>Current: 275</span>
+                                <span>Goal: 300 lbs</span>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/60">
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="text-xs font-bold text-slate-600 uppercase">Barbell Bench</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700">+10 lbs gain</span>
+                            </div>
+                            <div class="text-2xl font-extrabold text-[#0f172a] font-heading">225 lbs</div>
+                            <div class="w-full bg-slate-200 h-1.5 rounded-full mt-2 overflow-hidden">
+                                <div class="bg-[#00e5c9] h-full rounded-full" style="width: 93%"></div>
+                            </div>
+                            <div class="text-[11px] text-slate-500 mt-1 flex justify-between">
+                                <span>Current: 225</span>
+                                <span>Goal: 240 lbs</span>
+                            </div>
+                        </div>
+
+                        <div class="p-4 rounded-xl border border-slate-100 bg-slate-50/60">
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="text-xs font-bold text-slate-600 uppercase">Strict Pull-ups</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700">Bodyweight</span>
+                            </div>
+                            <div class="text-2xl font-extrabold text-[#0f172a] font-heading">16 Reps</div>
+                            <div class="w-full bg-slate-200 h-1.5 rounded-full mt-2 overflow-hidden">
+                                <div class="bg-[#00e5c9] h-full rounded-full" style="width: 80%"></div>
+                            </div>
+                            <div class="text-[11px] text-slate-500 mt-1 flex justify-between">
+                                <span>Current: 16</span>
+                                <span>Goal: 20 Reps</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Complete Weekly Workout Splits (Table with Filter Pills) -->
+                <div class="bg-white rounded-2xl p-4 sm:p-7 border border-slate-200/80 shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
+                        <div>
+                            <h3 class="text-base sm:text-lg font-bold text-[#0f172a] font-heading">Weekly Periodization Program</h3>
+                            <p class="text-xs text-slate-500 mt-0.5">Click filter pills to view specific session splits.</p>
+                        </div>
+                        <!-- Filter Pills -->
+                        <div class="flex items-center space-x-1 sm:space-x-1.5 bg-slate-100 p-1 rounded-xl text-xs font-semibold overflow-x-auto max-w-full" id="workoutFilters">
+                            <button class="workout-filter active px-3 py-1.5 rounded-lg bg-white text-slate-900 shadow-sm transition shrink-0" data-filter="all">All</button>
+                            <button class="workout-filter px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition shrink-0" data-filter="strength">Strength</button>
+                            <button class="workout-filter px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition shrink-0" data-filter="cardio">Cardio / HIIT</button>
+                            <button class="workout-filter px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition shrink-0" data-filter="mobility">Mobility</button>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm text-slate-700">
+                            <thead class="text-xs uppercase tracking-wider text-slate-400 border-b border-slate-200">
+                                <tr>
+                                    <th class="pb-3">Session &amp; Day</th>
+                                    <th class="pb-3">Muscle Focus</th>
+                                    <th class="pb-3">Prescribed Sets</th>
+                                    <th class="pb-3">Target RPE</th>
+                                    <th class="pb-3">Coach</th>
+                                    <th class="pb-3">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 text-xs sm:text-sm" id="workoutTableBody">
+                                <tr data-category="strength">
+                                    <td class="py-4">
+                                        <div class="font-bold text-slate-900">Monday &bull; Pull &amp; Lat Hypertrophy</div>
+                                        <div class="text-[11px] text-slate-500">Barbell Rows, Lat Pulldowns, Bicep Curls</div>
+                                    </td>
+                                    <td class="py-4 font-medium text-slate-600">Back, Biceps, Rear Delts</td>
+                                    <td class="py-4 font-semibold text-slate-900">18 Total Sets</td>
+                                    <td class="py-4 text-[#0d9488] font-bold">RPE 8.5</td>
+                                    <td class="py-4">Marcus Vance</td>
+                                    <td class="py-4"><span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold">Completed</span></td>
+                                </tr>
+                                <tr data-category="strength">
+                                    <td class="py-4">
+                                        <div class="font-bold text-slate-900">Tuesday &bull; Quad &amp; Posterior Chain</div>
+                                        <div class="text-[11px] text-slate-500">Barbell Squats, RDLs, Bulgarian Split Squats</div>
+                                    </td>
+                                    <td class="py-4 font-medium text-slate-600">Quads, Hamstrings, Glutes</td>
+                                    <td class="py-4 font-semibold text-slate-900">20 Total Sets</td>
+                                    <td class="py-4 text-[#0d9488] font-bold">RPE 9.0</td>
+                                    <td class="py-4">Marcus Vance</td>
+                                    <td class="py-4"><span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold">Completed</span></td>
+                                </tr>
+                                <tr data-category="strength">
+                                    <td class="py-4">
+                                        <div class="font-bold text-slate-900">Wednesday &bull; Push &amp; Deltoid Sculpt</div>
+                                        <div class="text-[11px] text-slate-500">Incline DB Press, OHP, Cable Flyes</div>
+                                    </td>
+                                    <td class="py-4 font-medium text-slate-600">Chest, Shoulders, Triceps</td>
+                                    <td class="py-4 font-semibold text-slate-900">17 Total Sets</td>
+                                    <td class="py-4 text-[#0d9488] font-bold">RPE 8.5</td>
+                                    <td class="py-4">Marcus Vance</td>
+                                    <td class="py-4"><span class="px-2.5 py-1 rounded-full bg-teal-50 text-[#0d9488] text-xs font-bold">In Progress</span></td>
+                                </tr>
+                                <tr data-category="cardio">
+                                    <td class="py-4">
+                                        <div class="font-bold text-slate-900">Thursday &bull; HIIT Metabolic Conditioning</div>
+                                        <div class="text-[11px] text-slate-500">Sled Pushes, Assault Bike, Row Intervals</div>
+                                    </td>
+                                    <td class="py-4 font-medium text-slate-600">Cardiovascular &amp; Core</td>
+                                    <td class="py-4 font-semibold text-slate-900">8 High Intervals</td>
+                                    <td class="py-4 text-[#ea580c] font-bold">Max VO2</td>
+                                    <td class="py-4">Elena Rodriguez</td>
+                                    <td class="py-4"><span class="px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold">Scheduled</span></td>
+                                </tr>
+                                <tr data-category="mobility">
+                                    <td class="py-4">
+                                        <div class="font-bold text-slate-900">Friday &bull; Rotational Core &amp; Fascial Mobility</div>
+                                        <div class="text-[11px] text-slate-500">Kettlebell Windmills, Hip Openers, Foam Rolling</div>
+                                    </td>
+                                    <td class="py-4 font-medium text-slate-600">Full Body Recovery</td>
+                                    <td class="py-4 font-semibold text-slate-900">45 Mins Active</td>
+                                    <td class="py-4 text-[#0d9488] font-bold">RPE 5.0</td>
+                                    <td class="py-4">David Chen</td>
+                                    <td class="py-4"><span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-bold">Upcoming</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ==============================================
+                 TAB 3: PROGRESS & INBODY
+                 ============================================== -->
+            <div id="tab-progress" class="tab-panel space-y-6 min-w-0 max-w-full">
+                
+                <!-- Row 1: 4 Key Metric Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Current Body Weight -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">TOTAL BODY WEIGHT</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#eff6ff] text-[#2563eb] border border-[#dbeafe] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-weight-scale"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">176.4 lbs</div>
+                            <div class="text-xs text-emerald-600 font-medium"><i class="fa-solid fa-arrow-down mr-1"></i> -8.6 lbs from 185.0 lbs start</div>
+                        </div>
+                    </div>
+
+                    <!-- Body Fat % -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">BODY FAT %</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#f0fdfa] text-[#0d9488] border border-[#ccfbf1] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">14.2%</div>
+                            <div class="text-xs text-emerald-600 font-medium"><i class="fa-solid fa-arrow-down mr-1"></i> Down from 18.0% baseline</div>
+                        </div>
+                    </div>
+
+                    <!-- Skeletal Muscle Mass -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">SKELETAL MUSCLE MASS</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#ecfdf5] text-[#059669] border border-[#d1fae5] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-dumbbell"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">78.4 lbs</div>
+                            <div class="text-xs text-emerald-600 font-medium"><i class="fa-solid fa-arrow-up mr-1"></i> +4.2 lbs pure lean tissue</div>
+                        </div>
+                    </div>
+
+                    <!-- Visceral Fat Grade -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">VISCERAL FAT RATING</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#f0fdfa] text-[#0d9488] border border-[#ccfbf1] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-shield-heart"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">Level 4</div>
+                            <div class="text-xs text-[#0d9488] font-medium">Optimal Low-Risk Category</div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Latest InBody Scan Comparison Matrix (Scan #INB-2026-104 vs Baseline) -->
+                <div class="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                        <div>
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2.5 py-0.5 rounded-full bg-teal-50 text-[#0d9488] text-[11px] font-mono font-bold">SCAN #INB-2026-104</span>
+                                <span class="text-xs text-slate-500">&bull; Administered by Coach Marcus Vance</span>
+                            </div>
+                            <h3 class="text-base sm:text-lg font-bold text-[#0f172a] font-heading mt-1">Detailed Body Recomposition Matrix</h3>
+                        </div>
+                        <button onclick="alert('Downloading high-resolution InBody clinical report PDF (Scan #INB-2026-104)...')" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold rounded-xl transition shadow-sm inline-flex items-center space-x-2">
+                            <i class="fa-solid fa-file-pdf text-[#0d9488]"></i>
+                            <span>Export Full Report</span>
+                        </button>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm text-slate-700">
+                            <thead class="text-xs uppercase tracking-wider text-slate-400 border-b border-slate-200">
+                                <tr>
+                                    <th class="pb-3">Biometric Parameter</th>
+                                    <th class="pb-3">Baseline (May 2026)</th>
+                                    <th class="pb-3">Current Scan</th>
+                                    <th class="pb-3">Net Change</th>
+                                    <th class="pb-3">Evaluation</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 text-xs sm:text-sm">
+                                <tr>
+                                    <td class="py-4 font-bold text-slate-900">Total Weight</td>
+                                    <td class="py-4 text-slate-500">185.0 lbs</td>
+                                    <td class="py-4 font-semibold text-slate-900">176.4 lbs</td>
+                                    <td class="py-4 font-bold text-emerald-600">-8.6 lbs</td>
+                                    <td class="py-4"><span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold">Optimal Cut</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 font-bold text-slate-900">Pure Body Fat Mass</td>
+                                    <td class="py-4 text-slate-500">33.3 lbs (18.0%)</td>
+                                    <td class="py-4 font-semibold text-slate-900">25.0 lbs (14.2%)</td>
+                                    <td class="py-4 font-bold text-emerald-600">-8.3 lbs Pure Fat</td>
+                                    <td class="py-4"><span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold">Goal Exceeded</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 font-bold text-slate-900">Skeletal Muscle Mass (SMM)</td>
+                                    <td class="py-4 text-slate-500">74.2 lbs</td>
+                                    <td class="py-4 font-semibold text-slate-900">78.4 lbs</td>
+                                    <td class="py-4 font-bold text-emerald-600">+4.2 lbs Muscle</td>
+                                    <td class="py-4"><span class="px-2.5 py-1 rounded-full bg-teal-50 text-[#0d9488] text-xs font-bold">Lean Hypertrophy</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 font-bold text-slate-900">Basal Metabolic Rate (BMR)</td>
+                                    <td class="py-4 text-slate-500">1,840 kcal/day</td>
+                                    <td class="py-4 font-semibold text-slate-900">1,920 kcal/day</td>
+                                    <td class="py-4 font-bold text-[#0d9488]">+80 kcal/day</td>
+                                    <td class="py-4"><span class="px-2.5 py-1 rounded-full bg-teal-50 text-[#0d9488] text-xs font-bold">Metabolic Surge</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="py-4 font-bold text-slate-900">Waist-to-Hip Ratio</td>
+                                    <td class="py-4 text-slate-500">0.89</td>
+                                    <td class="py-4 font-semibold text-slate-900">0.83</td>
+                                    <td class="py-4 font-bold text-emerald-600">-0.06 Ratio</td>
+                                    <td class="py-4"><span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold">Athletic V-Taper</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Biometric Body Circumferences (Tape Measurements) -->
+                <div class="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-sm">
+                    <h3 class="text-base sm:text-lg font-bold text-[#0f172a] font-heading mb-4">Body Circumference Tape Measurements</h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                        <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 text-center">
+                            <span class="text-xs text-slate-500 font-bold uppercase">Chest</span>
+                            <div class="text-2xl font-extrabold text-[#0f172a] mt-1">42.5 in</div>
+                            <span class="text-[11px] font-bold text-emerald-600">+1.2 in expanded</span>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 text-center">
+                            <span class="text-xs text-slate-500 font-bold uppercase">Waist</span>
+                            <div class="text-2xl font-extrabold text-[#0f172a] mt-1">32.0 in</div>
+                            <span class="text-[11px] font-bold text-emerald-600">-2.5 in reduced</span>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 text-center">
+                            <span class="text-xs text-slate-500 font-bold uppercase">Arms / Biceps</span>
+                            <div class="text-2xl font-extrabold text-[#0f172a] mt-1">15.8 in</div>
+                            <span class="text-[11px] font-bold text-emerald-600">+0.9 in peak</span>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 text-center">
+                            <span class="text-xs text-slate-500 font-bold uppercase">Thighs</span>
+                            <div class="text-2xl font-extrabold text-[#0f172a] mt-1">23.2 in</div>
+                            <span class="text-[11px] font-bold text-emerald-600">+0.6 in quad sweep</span>
+                        </div>
+                        <div class="p-4 rounded-xl bg-slate-50 border border-slate-100 text-center col-span-2 sm:col-span-1">
+                            <span class="text-xs text-slate-500 font-bold uppercase">Shoulders</span>
+                            <div class="text-2xl font-extrabold text-[#0f172a] mt-1">49.4 in</div>
+                            <span class="text-[11px] font-bold text-emerald-600">+1.5 in width</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ==============================================
+                 TAB 4: SESSION SCHEDULE
+                 ============================================== -->
+            <div id="tab-schedule" class="tab-panel space-y-6 min-w-0 max-w-full">
+                
+                <!-- Row 1: 4 Schedule KPI Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Sessions Remaining -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">SESSIONS REMAINING</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#f0fdfa] text-[#0d9488] border border-[#ccfbf1] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-ticket"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">6 of 8 Left</div>
+                            <div class="text-xs text-[#0d9488] font-medium">Monthly Pro Allotment</div>
+                        </div>
+                    </div>
+
+                    <!-- Next Session Countdown -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">NEXT 1-ON-1 IN</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#eff6ff] text-[#2563eb] border border-[#dbeafe] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-hourglass-half"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">18 Hours</div>
+                            <div class="text-xs text-slate-500">Tomorrow &bull; 08:00 AM</div>
+                        </div>
+                    </div>
+
+                    <!-- Dedicated Studio Pod -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">RESERVED STUDIO POD</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#ecfdf5] text-[#059669] border border-[#d1fae5] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-cubes"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">Pod 2: Power</div>
+                            <div class="text-xs text-[#059669] font-medium">Olympic Turf &amp; Heavy Racks</div>
+                        </div>
+                    </div>
+
+                    <!-- Lifetime Sessions -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">LIFETIME SESSIONS</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#f0fdfa] text-[#0d9488] border border-[#ccfbf1] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-medal"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">114 Total</div>
+                            <div class="text-xs text-[#0d9488] font-medium">96% Attendance Consistency</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7-Day Interactive Studio Calendar Strip -->
+                <div class="bg-white rounded-2xl p-4 sm:p-7 border border-slate-200/80 shadow-sm">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-4 mb-4">
+                        <div>
+                            <h3 class="text-base sm:text-lg font-bold text-[#0f172a] font-heading leading-tight">This Week's Studio Availability &bull; Oct 23 – Oct 29</h3>
+                            <p class="text-xs text-slate-500 mt-0.5 sm:hidden">Swipe sideways to view full week</p>
+                        </div>
+                        <span class="text-xs text-slate-500 font-medium shrink-0 hidden sm:inline-block">Private Studio Access</span>
+                    </div>
+
+                    <div class="flex sm:grid sm:grid-cols-7 gap-2.5 sm:gap-3 text-center overflow-x-auto pb-2 sm:pb-0 -mx-1 px-1 sm:mx-0 sm:px-0">
+                        <!-- Mon 23 -->
+                        <div class="min-w-[84px] sm:min-w-0 flex-1 shrink-0 p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs flex flex-col justify-between">
+                            <div class="text-slate-400 font-bold text-[10px] uppercase">Mon</div>
+                            <div class="text-lg font-extrabold text-slate-800 my-1">23</div>
+                            <div class="flex items-center justify-center space-x-1 mt-1">
+                                <span class="inline-block w-2 h-2 rounded-full bg-emerald-500" title="Completed"></span>
+                                <span class="text-[10px] text-emerald-600 font-semibold whitespace-nowrap">Done</span>
+                            </div>
+                        </div>
+
+                        <!-- Tue 24 (Today) -->
+                        <div class="min-w-[96px] sm:min-w-0 flex-1 shrink-0 p-3 rounded-xl bg-emerald-50/70 border-2 border-[#00e5c9] text-xs shadow-sm flex flex-col justify-between">
+                            <div class="text-[#0d9488] font-bold text-[10px] uppercase whitespace-nowrap">Tue (Today)</div>
+                            <div class="text-lg font-extrabold text-[#0f172a] my-1">24</div>
+                            <div class="flex items-center justify-center space-x-1 mt-1">
+                                <span class="inline-block w-2 h-2 rounded-full bg-[#00e5c9] animate-ping" title="In Progress"></span>
+                                <span class="text-[10px] text-[#0d9488] font-bold whitespace-nowrap">In Gym</span>
+                            </div>
+                        </div>
+
+                        <!-- Wed 25 -->
+                        <div class="min-w-[84px] sm:min-w-0 flex-1 shrink-0 p-3 rounded-xl bg-teal-50 border border-teal-200 text-xs flex flex-col justify-between">
+                            <div class="text-slate-500 font-bold text-[10px] uppercase">Wed</div>
+                            <div class="text-lg font-extrabold text-slate-800 my-1">25</div>
+                            <div class="flex items-center justify-center space-x-1 mt-1">
+                                <span class="inline-block w-2 h-2 rounded-full bg-[#0d9488]" title="Session Booked"></span>
+                                <span class="text-[10px] text-[#0d9488] font-bold whitespace-nowrap">08:00 AM</span>
+                            </div>
+                        </div>
+
+                        <!-- Thu 26 -->
+                        <div class="min-w-[84px] sm:min-w-0 flex-1 shrink-0 p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs flex flex-col justify-between">
+                            <div class="text-slate-400 font-bold text-[10px] uppercase">Thu</div>
+                            <div class="text-lg font-extrabold text-slate-800 my-1">26</div>
+                            <div class="flex items-center justify-center space-x-1 mt-1">
+                                <span class="inline-block w-2 h-2 rounded-full bg-slate-300"></span>
+                                <span class="text-[10px] text-slate-400 font-medium whitespace-nowrap">Rest Day</span>
+                            </div>
+                        </div>
+
+                        <!-- Fri 27 -->
+                        <div class="min-w-[84px] sm:min-w-0 flex-1 shrink-0 p-3 rounded-xl bg-teal-50 border border-teal-200 text-xs flex flex-col justify-between">
+                            <div class="text-slate-500 font-bold text-[10px] uppercase">Fri</div>
+                            <div class="text-lg font-extrabold text-slate-800 my-1">27</div>
+                            <div class="flex items-center justify-center space-x-1 mt-1">
+                                <span class="inline-block w-2 h-2 rounded-full bg-[#0d9488]"></span>
+                                <span class="text-[10px] text-[#0d9488] font-bold whitespace-nowrap">09:30 AM</span>
+                            </div>
+                        </div>
+
+                        <!-- Sat 28 -->
+                        <div class="min-w-[84px] sm:min-w-0 flex-1 shrink-0 p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs flex flex-col justify-between">
+                            <div class="text-slate-400 font-bold text-[10px] uppercase">Sat</div>
+                            <div class="text-lg font-extrabold text-slate-800 my-1">28</div>
+                            <div class="flex items-center justify-center space-x-1 mt-1">
+                                <span class="inline-block w-2 h-2 rounded-full bg-blue-500"></span>
+                                <span class="text-[10px] text-blue-600 font-semibold whitespace-nowrap">Open Turf</span>
+                            </div>
+                        </div>
+
+                        <!-- Sun 29 -->
+                        <div class="min-w-[84px] sm:min-w-0 flex-1 shrink-0 p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs flex flex-col justify-between">
+                            <div class="text-slate-400 font-bold text-[10px] uppercase">Sun</div>
+                            <div class="text-lg font-extrabold text-slate-800 my-1">29</div>
+                            <div class="flex items-center justify-center space-x-1 mt-1">
+                                <span class="inline-block w-2 h-2 rounded-full bg-slate-300"></span>
+                                <span class="text-[10px] text-slate-400 font-medium whitespace-nowrap">Recovery</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Confirmed Appointments -->
+                <div class="bg-white rounded-2xl p-4 sm:p-7 border border-slate-200/80 shadow-sm">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-5">
+                        <div class="flex items-center space-x-2.5">
+                            <i class="fa-regular fa-calendar-check text-[#0d9488] text-base shrink-0"></i>
+                            <h3 class="text-base sm:text-lg font-bold text-[#0f172a] font-heading">Confirmed 1-on-1 Appointments</h3>
+                        </div>
+                        <span class="px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold shrink-0">3 Scheduled</span>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Appointment 1 -->
+                        <div class="p-4 sm:p-5 rounded-2xl border border-teal-200 bg-teal-50/30 flex flex-col md:flex-row md:items-center justify-between gap-4 hover:shadow-sm transition">
+                            <div class="flex items-start space-x-3 sm:space-x-4">
+                                <div class="w-12 h-12 rounded-xl bg-[#00e5c9] text-gray-950 font-bold flex flex-col items-center justify-center shrink-0 shadow-sm">
+                                    <span class="text-[10px] uppercase tracking-wider">OCT</span>
+                                    <span class="text-base font-extrabold leading-none">25</span>
+                                </div>
+                                <div class="min-w-0 flex-1">
+                                    <div class="flex flex-wrap items-center gap-2">
+                                        <h4 class="text-base font-bold text-[#0f172a] leading-tight">Compound Power &amp; Posterior Chain Lift</h4>
+                                        <span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold shrink-0">Tomorrow</span>
+                                    </div>
+                                    <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+                                        <i class="fa-regular fa-clock mr-1 text-[#0d9488]"></i> 08:00 AM – 09:00 AM &bull; 
+                                        <i class="fa-solid fa-location-dot mx-1 text-[#0d9488]"></i> Private Studio Pod 2 (Turf &amp; Racks) &bull; 
+                                        <i class="fa-solid fa-user-tie mx-1 text-[#0d9488]"></i> Coach Marcus Vance
+                                    </p>
+                                    <p class="text-[11px] text-slate-600 mt-1.5 italic bg-white/70 p-2 rounded-lg border border-slate-200/60 inline-block">
+                                        Coach Note: "Bring lifting straps. We will test your 4-rep working deadlift weight."
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2 self-stretch sm:self-end md:self-center shrink-0 pt-2 md:pt-0 border-t border-teal-100/60 md:border-t-0">
+                                <button onclick="showToast('Session added to your Google & Outlook calendars!')" class="flex-1 sm:flex-initial px-3.5 py-2 bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition shadow-sm text-center">
+                                    <i class="fa-regular fa-calendar-plus mr-1"></i> Add to Calendar
+                                </button>
+                                <button onclick="showToast('Reschedule request sent to Coach Marcus.')" class="flex-1 sm:flex-initial px-3.5 py-2 bg-[#00e5c9] hover:bg-[#25f4dc] text-gray-950 text-xs font-bold rounded-xl transition shadow-sm text-center">
+                                    Reschedule
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Appointment 2 -->
+                        <div class="p-4 sm:p-5 rounded-2xl border border-slate-200 bg-white flex flex-col md:flex-row md:items-center justify-between gap-4 hover:shadow-sm transition">
+                            <div class="flex items-start space-x-3 sm:space-x-4">
+                                <div class="w-12 h-12 rounded-xl bg-slate-100 text-slate-800 font-bold flex flex-col items-center justify-center shrink-0">
+                                    <span class="text-[10px] uppercase tracking-wider text-slate-500">OCT</span>
+                                    <span class="text-base font-extrabold leading-none">27</span>
+                                </div>
+                                <div class="min-w-0 flex-1">
+                                    <h4 class="text-base font-bold text-[#0f172a] leading-tight">Functional Rotational Core &amp; Agility</h4>
+                                    <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+                                        <i class="fa-regular fa-clock mr-1 text-[#0d9488]"></i> 09:30 AM – 10:30 AM &bull; 
+                                        <i class="fa-solid fa-location-dot mx-1 text-[#0d9488]"></i> Turf Zone &bull; 
+                                        <i class="fa-solid fa-user-tie mx-1 text-[#0d9488]"></i> Coach David Chen
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2 self-stretch sm:self-end md:self-center shrink-0 pt-2 md:pt-0 border-t border-slate-100 md:border-t-0">
+                                <button onclick="showToast('Session added to your Calendar!')" class="flex-1 sm:flex-initial px-3.5 py-2 bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition shadow-sm text-center">
+                                    <i class="fa-regular fa-calendar-plus mr-1"></i> Add
+                                </button>
+                                <button onclick="showToast('Reschedule request submitted.')" class="flex-1 sm:flex-initial px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold rounded-xl transition text-center">
+                                    Reschedule
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Appointment 3 -->
+                        <div class="p-4 sm:p-5 rounded-2xl border border-slate-200 bg-white flex flex-col md:flex-row md:items-center justify-between gap-4 hover:shadow-sm transition">
+                            <div class="flex items-start space-x-3 sm:space-x-4">
+                                <div class="w-12 h-12 rounded-xl bg-slate-100 text-slate-800 font-bold flex flex-col items-center justify-center shrink-0">
+                                    <span class="text-[10px] uppercase tracking-wider text-slate-500">OCT</span>
+                                    <span class="text-base font-extrabold leading-none">31</span>
+                                </div>
+                                <div class="min-w-0 flex-1">
+                                    <h4 class="text-base font-bold text-[#0f172a] leading-tight">Metabolic Conditioning &amp; VO2 Max Threshold</h4>
+                                    <p class="text-xs text-slate-500 mt-1 leading-relaxed">
+                                        <i class="fa-regular fa-clock mr-1 text-[#0d9488]"></i> 08:00 AM – 09:00 AM &bull; 
+                                        <i class="fa-solid fa-location-dot mx-1 text-[#0d9488]"></i> Cardio Deck &bull; 
+                                        <i class="fa-solid fa-user-tie mx-1 text-[#0d9488]"></i> Coach Elena Rodriguez
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-2 self-stretch sm:self-end md:self-center shrink-0 pt-2 md:pt-0 border-t border-slate-100 md:border-t-0">
+                                <button onclick="showToast('Session added to your Calendar!')" class="flex-1 sm:flex-initial px-3.5 py-2 bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs font-semibold rounded-xl transition shadow-sm text-center">
+                                    <i class="fa-regular fa-calendar-plus mr-1"></i> Add
+                                </button>
+                                <button onclick="showToast('Reschedule request submitted.')" class="flex-1 sm:flex-initial px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold rounded-xl transition text-center">
+                                    Reschedule
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Booking Card for New Session -->
+                <div class="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-sm">
+                    <h3 class="text-base sm:text-lg font-bold text-[#0f172a] font-heading mb-4">Book an Additional 1-on-1 Session</h3>
+                    <form id="bookSessionForm" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-500 mb-1.5">Select Trainer</label>
+                            <select id="bookTrainer" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs text-slate-800 outline-none focus:border-[#00e5c9]">
+                                <option value="Marcus Vance">Marcus Vance (Head Coach)</option>
+                                <option value="Elena Rodriguez">Elena Rodriguez (HIIT &amp; Endurance)</option>
+                                <option value="David Chen">David Chen (Mobility &amp; Rehab)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-500 mb-1.5">Target Date</label>
+                            <input type="date" id="bookDate" value="2026-11-02" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs text-slate-800 outline-none focus:border-[#00e5c9]">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-500 mb-1.5">Preferred Slot</label>
+                            <select id="bookTime" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs text-slate-800 outline-none focus:border-[#00e5c9]">
+                                <option value="08:00 AM">08:00 AM – 09:00 AM (Morning)</option>
+                                <option value="09:30 AM">09:30 AM – 10:30 AM (Mid-Morning)</option>
+                                <option value="05:30 PM">05:30 PM – 06:30 PM (Evening)</option>
+                            </select>
+                        </div>
+
+                        <div class="flex items-end">
+                            <button type="submit" class="w-full py-2.5 bg-[#00e5c9] hover:bg-[#25f4dc] text-gray-950 font-bold text-xs rounded-xl shadow-sm transition flex items-center justify-center space-x-1.5">
+                                <i class="fa-solid fa-plus"></i>
+                                <span>Confirm Booking</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- ==============================================
+                 TAB 5: NUTRITION & MEAL PLANS
+                 ============================================== -->
+            <div id="tab-nutrition" class="tab-panel space-y-6 min-w-0 max-w-full">
+                
+                <!-- Row 1: 4 Macro Target Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Daily Calorie Target -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">DAILY CALORIES</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#f0fdfa] text-[#0d9488] border border-[#ccfbf1] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-fire-burner"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">2,650 kcal</div>
+                            <div class="text-xs text-slate-500">Consumed: <strong class="text-slate-800">1,820</strong> &bull; Remaining: <strong class="text-[#0d9488]">830</strong></div>
+                        </div>
+                    </div>
+
+                    <!-- Daily Protein Target -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">PROTEIN (LEAN TARGET)</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#eff6ff] text-[#2563eb] border border-[#dbeafe] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-drumstick-bite"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">180g</div>
+                            <div class="text-xs text-emerald-600 font-medium">142g logged &bull; 79% achieved</div>
+                        </div>
+                    </div>
+
+                    <!-- Complex Carbs -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">COMPLEX CARBS</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#fff7ed] text-[#ea580c] border border-[#ffedd5] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-wheat-awn"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">240g</div>
+                            <div class="text-xs text-slate-500">170g logged &bull; 71% of glycogen fuel</div>
+                        </div>
+                    </div>
+
+                    <!-- Healthy Fats -->
+                    <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between hover:shadow-md transition-shadow">
+                        <div class="flex items-start justify-between">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-[#64748b]">HEALTHY FATS</span>
+                            <div class="w-12 h-12 rounded-2xl bg-[#fefce8] text-[#ca8a04] border border-[#fef08a] flex items-center justify-center text-lg shadow-sm">
+                                <i class="fa-solid fa-seedling"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-extrabold text-[#0f172a] font-heading mt-1 mb-1">65g</div>
+                            <div class="text-xs text-slate-500">48g logged &bull; Hormonal recovery</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hydration & Macro Nutrient Breakdown -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <!-- Left: Macro Progress Bars -->
+                    <div class="lg:col-span-7 bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-sm">
+                        <h3 class="text-base sm:text-lg font-bold text-[#0f172a] font-heading mb-4">Daily Nutrient Target Fulfillment</h3>
+                        
+                        <div class="space-y-4">
+                            <!-- Protein Bar -->
+                            <div>
+                                <div class="flex justify-between text-xs font-bold text-slate-700 mb-1">
+                                    <span>Protein (142g / 180g)</span>
+                                    <span class="text-[#0d9488]">79%</span>
+                                </div>
+                                <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                                    <div class="bg-[#00e5c9] h-full rounded-full transition-all duration-500" style="width: 79%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Carbs Bar -->
+                            <div>
+                                <div class="flex justify-between text-xs font-bold text-slate-700 mb-1">
+                                    <span>Carbohydrates (170g / 240g)</span>
+                                    <span class="text-blue-600">71%</span>
+                                </div>
+                                <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                                    <div class="bg-blue-500 h-full rounded-full transition-all duration-500" style="width: 71%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Fats Bar -->
+                            <div>
+                                <div class="flex justify-between text-xs font-bold text-slate-700 mb-1">
+                                    <span>Healthy Fats (48g / 65g)</span>
+                                    <span class="text-amber-600">74%</span>
+                                </div>
+                                <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                                    <div class="bg-amber-500 h-full rounded-full transition-all duration-500" style="width: 74%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Total Energy Bar -->
+                            <div>
+                                <div class="flex justify-between text-xs font-bold text-slate-700 mb-1">
+                                    <span>Total Calories (1,820 kcal / 2,650 kcal)</span>
+                                    <span class="text-emerald-600">69%</span>
+                                </div>
+                                <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                                    <div class="bg-emerald-500 h-full rounded-full transition-all duration-500" style="width: 69%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Interactive Water Intake Tracker -->
+                    <div class="lg:col-span-5 bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="text-base sm:text-lg font-bold text-[#0f172a] font-heading">Hydration Tracker</h3>
+                                <span class="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 text-xs font-bold">Goal: 3.5L</span>
+                            </div>
+                            <p class="text-xs text-slate-500 mb-4">Vital for optimal muscle protein synthesis &amp; cellular recovery.</p>
+                            
+                            <div class="flex items-center justify-center space-x-3 my-2">
+                                <i class="fa-solid fa-droplet text-3xl text-[#00e5c9]"></i>
+                                <div class="text-3xl font-extrabold text-[#0f172a] font-heading">
+                                    <span id="waterLoggedVal">2.8</span> <span class="text-lg font-bold text-slate-400">/ 3.5 Liters</span>
+                                </div>
+                            </div>
+                            
+                            <div class="w-full bg-slate-100 h-3 rounded-full mt-3 overflow-hidden">
+                                <div id="waterProgressBar" class="bg-[#00e5c9] h-full rounded-full transition-all duration-500" style="width: 80%"></div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-2 mt-5 pt-4 border-t border-slate-100">
+                            <button id="addWater250Btn" class="flex-1 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold transition">
+                                + 250 ml Glass
+                            </button>
+                            <button id="addWater500Btn" class="flex-1 py-2 rounded-xl bg-[#00e5c9] hover:bg-[#25f4dc] text-gray-950 text-xs font-bold transition shadow-sm">
+                                + 500 ml Shaker
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Daily Meal-by-Meal Plan Cards -->
+                <div class="bg-white rounded-2xl p-4 sm:p-7 border border-slate-200/80 shadow-sm min-w-0">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 mb-5">
+                        <div>
+                            <h3 class="text-base sm:text-lg font-bold text-[#0f172a] font-heading leading-tight">Today's Personalized Meal Schedule</h3>
+                            <p class="text-xs text-slate-500 mt-0.5">Designed by Sports Dietitian for Alexander Vance.</p>
+                        </div>
+                        <span class="text-xs font-semibold text-slate-600 bg-slate-100 px-3 py-1 rounded-lg self-start sm:self-auto shrink-0">High Protein &bull; Moderate Carbs</span>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Meal 1 -->
+                        <div class="p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-slate-50/60 flex flex-col md:flex-row md:items-center justify-between gap-3 min-w-0">
+                            <div class="flex items-start space-x-3 sm:space-x-3.5 min-w-0 flex-1">
+                                <input type="checkbox" checked class="meal-check w-4 h-4 rounded text-[#00e5c9] accent-[#00e5c9] mt-1 cursor-pointer shrink-0">
+                                <div class="min-w-0 flex-1">
+                                    <div class="flex flex-wrap items-center gap-2">
+                                        <h4 class="text-sm font-bold text-slate-900 line-through text-slate-400 leading-tight">Meal 1 &bull; Pre-Workout Power Breakfast (07:00 AM)</h4>
+                                        <span class="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold shrink-0">Consumed</span>
+                                    </div>
+                                    <p class="text-xs text-slate-600 mt-1">Organic Rolled Oats (80g), 1 Scoop Whey Isolate, Wild Blueberries (50g), 1 tbsp Almond Butter.</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-600 shrink-0 pt-2 md:pt-0 border-t border-slate-200/60 md:border-t-0">
+                                <span class="bg-white px-2.5 py-1 rounded-lg border border-slate-200">480 kcal</span>
+                                <span class="text-[#0d9488]">38g P</span>
+                                <span class="text-blue-600">54g C</span>
+                                <span class="text-amber-600">12g F</span>
+                            </div>
+                        </div>
+
+                        <!-- Meal 2 -->
+                        <div class="p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-slate-50/60 flex flex-col md:flex-row md:items-center justify-between gap-3 min-w-0">
+                            <div class="flex items-start space-x-3 sm:space-x-3.5 min-w-0 flex-1">
+                                <input type="checkbox" checked class="meal-check w-4 h-4 rounded text-[#00e5c9] accent-[#00e5c9] mt-1 cursor-pointer shrink-0">
+                                <div class="min-w-0 flex-1">
+                                    <div class="flex flex-wrap items-center gap-2">
+                                        <h4 class="text-sm font-bold text-slate-900 line-through text-slate-400 leading-tight">Meal 2 &bull; Post-Workout Anabolic Lunch (12:30 PM)</h4>
+                                        <span class="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold shrink-0">Consumed</span>
+                                    </div>
+                                    <p class="text-xs text-slate-600 mt-1">Grilled Herb Chicken Breast (200g), Jasmine Rice (1.5 cups), Steamed Broccoli &amp; Zucchini, Half Hass Avocado.</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-600 shrink-0 pt-2 md:pt-0 border-t border-slate-200/60 md:border-t-0">
+                                <span class="bg-white px-2.5 py-1 rounded-lg border border-slate-200">620 kcal</span>
+                                <span class="text-[#0d9488]">52g P</span>
+                                <span class="text-blue-600">65g C</span>
+                                <span class="text-amber-600">14g F</span>
+                            </div>
+                        </div>
+
+                        <!-- Meal 3 -->
+                        <div class="p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-slate-50/60 flex flex-col md:flex-row md:items-center justify-between gap-3 min-w-0">
+                            <div class="flex items-start space-x-3 sm:space-x-3.5 min-w-0 flex-1">
+                                <input type="checkbox" class="meal-check w-4 h-4 rounded text-[#00e5c9] accent-[#00e5c9] mt-1 cursor-pointer shrink-0">
+                                <div class="min-w-0 flex-1">
+                                    <div class="flex flex-wrap items-center gap-2">
+                                        <h4 class="text-sm font-bold text-slate-900 leading-tight">Meal 3 &bull; Mid-Afternoon Sustained Energy (04:00 PM)</h4>
+                                        <span class="px-2 py-0.5 rounded-full bg-teal-50 text-[#0d9488] text-[10px] font-bold shrink-0">Up Next</span>
+                                    </div>
+                                    <p class="text-xs text-slate-600 mt-1">Non-Fat Greek Yogurt (250g), 1 tbsp Raw Acacia Honey, Raw Walnuts (20g), 1 Sliced Banana.</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-600 shrink-0 pt-2 md:pt-0 border-t border-slate-200/60 md:border-t-0">
+                                <span class="bg-white px-2.5 py-1 rounded-lg border border-slate-200">340 kcal</span>
+                                <span class="text-[#0d9488]">26g P</span>
+                                <span class="text-blue-600">38g C</span>
+                                <span class="text-amber-600">6g F</span>
+                            </div>
+                        </div>
+
+                        <!-- Meal 4 -->
+                        <div class="p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-slate-50/60 flex flex-col md:flex-row md:items-center justify-between gap-3 min-w-0">
+                            <div class="flex items-start space-x-3 sm:space-x-3.5 min-w-0 flex-1">
+                                <input type="checkbox" class="meal-check w-4 h-4 rounded text-[#00e5c9] accent-[#00e5c9] mt-1 cursor-pointer shrink-0">
+                                <div class="min-w-0 flex-1">
+                                    <div class="flex flex-wrap items-center gap-2">
+                                        <h4 class="text-sm font-bold text-slate-900 leading-tight">Meal 4 &bull; Evening Muscle Recovery Dinner (07:30 PM)</h4>
+                                        <span class="px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 text-[10px] font-bold shrink-0">Scheduled</span>
+                                    </div>
+                                    <p class="text-xs text-slate-600 mt-1">Wild Alaskan Sockeye Salmon (220g), Roasted Sweet Potato (200g), Grilled Asparagus Spears, EVOO drizzle.</p>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-600 shrink-0 pt-2 md:pt-0 border-t border-slate-200/60 md:border-t-0">
+                                <span class="bg-white px-2.5 py-1 rounded-lg border border-slate-200">590 kcal</span>
+                                <span class="text-[#0d9488]">44g P</span>
+                                <span class="text-blue-600">48g C</span>
+                                <span class="text-amber-600">18g F</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Daily Supplement Stack Assigned by Coach -->
+                <div class="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-sm">
+                    <h3 class="text-base sm:text-lg font-bold text-[#0f172a] font-heading mb-4">Assigned Micronutrient &amp; Supplement Protocol</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="p-4 rounded-xl border border-slate-100 bg-slate-50">
+                            <span class="text-xs font-bold text-slate-500 uppercase">Post-Workout</span>
+                            <div class="text-base font-bold text-slate-900 mt-1">Creatine Monohydrate</div>
+                            <p class="text-xs text-slate-500 mt-0.5">5g Creapure with hydration</p>
+                        </div>
+                        <div class="p-4 rounded-xl border border-slate-100 bg-slate-50">
+                            <span class="text-xs font-bold text-slate-500 uppercase">With Breakfast</span>
+                            <div class="text-base font-bold text-slate-900 mt-1">Omega-3 EPA/DHA</div>
+                            <p class="text-xs text-slate-500 mt-0.5">2,000mg Triple Strength</p>
+                        </div>
+                        <div class="p-4 rounded-xl border border-slate-100 bg-slate-50">
+                            <span class="text-xs font-bold text-slate-500 uppercase">Morning</span>
+                            <div class="text-base font-bold text-slate-900 mt-1">Vitamin D3 + K2</div>
+                            <p class="text-xs text-slate-500 mt-0.5">5,000 IU softgel</p>
+                        </div>
+                        <div class="p-4 rounded-xl border border-slate-100 bg-slate-50">
+                            <span class="text-xs font-bold text-slate-500 uppercase">Intra-Workout</span>
+                            <div class="text-base font-bold text-slate-900 mt-1">Electrolyte Complex</div>
+                            <p class="text-xs text-slate-500 mt-0.5">Sodium, Potassium &amp; Magnesium</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ==============================================
+                 TAB 6: PROFILE & GOALS
+                 ============================================== -->
+            <div id="tab-profile" class="tab-panel space-y-6 min-w-0 max-w-full">
+                
+                <!-- Athlete Identity & VIP Membership Card -->
+                <div class="bg-white rounded-2xl p-4 sm:p-7 border border-slate-200/80 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-5 min-w-0">
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5 min-w-0 flex-1 w-full">
+                        <div class="relative shrink-0">
+                            <img id="profileCardAvatar" src="assets/images/alexander-vance.webp" alt="Profile" class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl object-cover border-4 border-[#00e5c9] shadow-md shrink-0">
+                            <div id="profileCardInitials" class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[#07111a] text-[#00e5c9] font-extrabold text-xl sm:text-2xl border-4 border-[#00e5c9] shadow-md shrink-0 hidden items-center justify-center">AV</div>
+                        </div>
+                        <div class="min-w-0 flex-1 w-full overflow-hidden">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <h3 class="text-xl sm:text-2xl font-extrabold text-[#0f172a] font-heading break-all sm:break-words leading-tight" id="profileCardName">Alexander Vance</h3>
+                                <span class="px-2.5 py-0.5 rounded-full bg-teal-50 text-[#0d9488] text-xs font-bold border border-teal-200 shrink-0">
+                                    <i class="fa-solid fa-circle-check mr-1 text-[#00e5c9]"></i> Verified Athlete
+                                </span>
+                            </div>
+                            <p class="text-xs text-slate-500 mt-1.5 break-all leading-relaxed">
+                                Email: <strong class="text-slate-700 font-semibold break-all" id="profileCardEmail">alexander.vance@stacklyfit.com</strong> <span class="hidden sm:inline">&bull;</span> <span class="block sm:inline mt-0.5 sm:mt-0">Member ID: <strong class="text-slate-700 font-mono">#STK-8842</strong></span>
+                            </p>
+                            <div class="flex flex-wrap items-center gap-2 sm:gap-3 mt-2 text-xs">
+                                <span class="font-bold text-[#0d9488]">Pro 1-on-1 Transformation</span>
+                                <span class="text-slate-300 hidden sm:inline">&bull;</span>
+                                <span class="text-slate-600">Assigned Coach: <strong>Marcus Vance</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 shrink-0 w-full md:w-auto pt-3 md:pt-0 border-t border-slate-100 md:border-t-0">
+                        <button onclick="showToast('Digital Membership Card saved to Apple Wallet!')" class="w-full sm:w-auto px-4 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold rounded-xl transition shadow-sm text-center">
+                            <i class="fa-solid fa-qrcode mr-1.5 text-[#0d9488]"></i> Digital ID Pass
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 90-Day Active Transformation Milestones -->
+                <div class="bg-white rounded-2xl p-4 sm:p-7 border border-slate-200/80 shadow-sm min-w-0">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-4 mb-5">
+                        <div class="flex items-center space-x-2.5">
+                            <i class="fa-solid fa-bullseye text-[#0d9488] text-base shrink-0"></i>
+                            <h3 class="text-base sm:text-lg font-bold text-[#0f172a] font-heading leading-tight">Active 90-Day Transformation Targets</h3>
+                        </div>
+                        <span class="text-xs text-slate-500 shrink-0">Milestone Check-in: Nov 15, 2026</span>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Goal 1 -->
+                        <div class="p-3.5 sm:p-4 rounded-xl border border-slate-100 bg-slate-50/70">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center text-xs font-bold gap-1 mb-1.5">
+                                <span class="text-slate-900 leading-tight">Milestone 1: Reach Sub-14.0% Body Fat (Currently 14.2%)</span>
+                                <span class="text-[#0d9488] shrink-0 self-start sm:self-auto">95% Completed</span>
+                            </div>
+                            <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                                <div class="bg-[#00e5c9] h-full rounded-full" style="width: 95%"></div>
+                            </div>
+                            <p class="text-[11px] text-slate-500 mt-1">Starting point was 18.0%. Only 0.2% remaining to hit gold standard.</p>
+                        </div>
+
+                        <!-- Goal 2 -->
+                        <div class="p-3.5 sm:p-4 rounded-xl border border-slate-100 bg-slate-50/70">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center text-xs font-bold gap-1 mb-1.5">
+                                <span class="text-slate-900 leading-tight">Milestone 2: 315 lbs Barbell Deadlift (Currently 295 lbs working)</span>
+                                <span class="text-[#0d9488] shrink-0 self-start sm:self-auto">93% Completed</span>
+                            </div>
+                            <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                                <div class="bg-[#00e5c9] h-full rounded-full" style="width: 93%"></div>
+                            </div>
+                            <p class="text-[11px] text-slate-500 mt-1">Form verified by Marcus. Scheduled for testing next Wednesday.</p>
+                        </div>
+
+                        <!-- Goal 3 -->
+                        <div class="p-3.5 sm:p-4 rounded-xl border border-slate-100 bg-slate-50/70">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center text-xs font-bold gap-1 mb-1.5">
+                                <span class="text-slate-900 leading-tight">Milestone 3: 20 Unbroken Strict Pull-Ups (Currently 16 reps)</span>
+                                <span class="text-blue-600 shrink-0 self-start sm:self-auto">80% Completed</span>
+                            </div>
+                            <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                                <div class="bg-blue-500 h-full rounded-full" style="width: 80%"></div>
+                            </div>
+                            <p class="text-[11px] text-slate-500 mt-1">Increased from 10 reps in May. Scapular pull-ups added to warm-ups.</p>
+                        </div>
+
+                        <!-- Goal 4 -->
+                        <div class="p-3.5 sm:p-4 rounded-xl border border-slate-100 bg-slate-50/70">
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center text-xs font-bold gap-1 mb-1.5">
+                                <span class="text-slate-900 leading-tight">Milestone 4: 20 Studio Check-Ins / Month (Currently 18 completed)</span>
+                                <span class="text-emerald-600 shrink-0 self-start sm:self-auto">90% Completed</span>
+                            </div>
+                            <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                                <div class="bg-emerald-500 h-full rounded-full" style="width: 90%"></div>
+                            </div>
+                            <p class="text-[11px] text-slate-500 mt-1">2 sessions remaining this week to hit monthly perfect attendance.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Information & Studio Settings Form -->
+                <div class="bg-white rounded-2xl p-4 sm:p-7 border border-slate-200/80 shadow-sm min-w-0">
+                    <h3 class="text-base sm:text-lg font-bold text-[#0f172a] font-heading mb-5">Biometrics &amp; Athlete Preferences</h3>
+                    
+                    <form id="profileForm" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-500 mb-1.5">Full Name</label>
+                                <input type="text" id="profName" value="Alexander Vance" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 outline-none focus:border-[#00e5c9]">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-500 mb-1.5">Email Address</label>
+                                <input type="email" id="profEmail" value="alexander.vance@stacklyfit.com" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 outline-none focus:border-[#00e5c9]">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-500 mb-1.5">Phone Number</label>
+                                <input type="tel" id="profPhone" value="+1 (555) 234-5678" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 outline-none focus:border-[#00e5c9]">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-500 mb-1.5">Emergency Contact</label>
+                                <input type="text" id="profEmergency" value="Sarah Vance &bull; (555) 887-1234" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 outline-none focus:border-[#00e5c9]">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-500 mb-1.5">Height &amp; Weight</label>
+                                <input type="text" id="profBiometrics" value="6 ft 1 in (185 cm) &bull; 176.4 lbs" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 outline-none focus:border-[#00e5c9]">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-500 mb-1.5">Dietary Restrictions</label>
+                                <input type="text" id="profDiet" value="Lactose Sensitive, High Protein" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 outline-none focus:border-[#00e5c9]">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-500 mb-1.5">Primary Long-Term Fitness Target</label>
+                            <input type="text" id="profGoal" value="Achieve Sub-12% Body Fat, 330 lbs Barbell Deadlift, and run a sub-22 min 5K" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 outline-none focus:border-[#00e5c9]">
+                        </div>
+
+                        <!-- Notification & Preference Toggles -->
+                        <div class="pt-4 border-t border-slate-100 space-y-3">
+                            <div class="flex items-center justify-between gap-3 text-xs">
+                                <div>
+                                    <div class="font-bold text-slate-800">SMS Workout &amp; Session Reminders</div>
+                                    <div class="text-slate-500">Receive 2-hour advance notifications before private pod bookings.</div>
+                                </div>
+                                <input type="checkbox" checked class="w-4 h-4 rounded text-[#00e5c9] accent-[#00e5c9] cursor-pointer shrink-0">
+                            </div>
+
+                            <div class="flex items-center justify-between gap-3 text-xs">
+                                <div>
+                                    <div class="font-bold text-slate-800">Weekly Nutrition &amp; Macro Summary Email</div>
+                                    <div class="text-slate-500">Get a weekly InBody &amp; caloric report every Sunday evening.</div>
+                                </div>
+                                <input type="checkbox" checked class="w-4 h-4 rounded text-[#00e5c9] accent-[#00e5c9] cursor-pointer shrink-0">
+                            </div>
+                        </div>
+
+                        <div class="pt-2">
+                            <button type="submit" class="w-full sm:w-auto px-6 py-3 bg-[#00e5c9] hover:bg-[#25f4dc] text-gray-950 font-bold text-xs rounded-xl shadow-[0_0_15px_rgba(0,229,201,0.3)] transition text-center">
+                                <i class="fa-solid fa-floppy-disk mr-1.5"></i> Save All Preferences &amp; Goals
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Floating Global Toast Notification -->
+    <div id="dashboardToast" class="fixed bottom-6 right-6 z-50 bg-[#07111a] text-white px-5 py-3.5 rounded-2xl shadow-2xl border border-[#00e5c9]/40 flex items-center space-x-3 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="w-8 h-8 rounded-xl bg-[#00e5c9]/20 text-[#00e5c9] flex items-center justify-center shrink-0">
+            <i class="fa-solid fa-circle-check text-base"></i>
+        </div>
+        <div class="text-xs font-semibold" id="dashboardToastMsg">Action completed successfully!</div>
+    </div>
+
+    <!-- Interactive Tabs & Sidebar Toggle Script -->
+    <script>
+        // Toast Notification Helper
+        let toastTimeout;
+        function showToast(message) {
+            const toast = document.getElementById('dashboardToast');
+            const msgEl = document.getElementById('dashboardToastMsg');
+            if (!toast || !msgEl) return;
+            
+            msgEl.textContent = message;
+            toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+            }, 3200);
+        }
+
+        // 1. Mobile Sidebar Toggle
+        const menuToggleBtn = document.getElementById('menuToggleBtn');
+        const closeSidebarBtn = document.getElementById('closeSidebarBtn');
+        const portalSidebar = document.getElementById('portalSidebar');
+        const backdrop = document.getElementById('mobileSidebarBackdrop');
+
+        function toggleSidebar(open) {
+            if (open) {
+                portalSidebar.classList.remove('-translate-x-full');
+                backdrop.classList.remove('hidden');
+            } else {
+                portalSidebar.classList.add('-translate-x-full');
+                backdrop.classList.add('hidden');
+            }
+        }
+
+        if (menuToggleBtn) menuToggleBtn.addEventListener('click', () => toggleSidebar(true));
+        if (closeSidebarBtn) closeSidebarBtn.addEventListener('click', () => toggleSidebar(false));
+        if (backdrop) backdrop.addEventListener('click', () => toggleSidebar(false));
+
+        // 2. Bell Dropdown Toggle
+        const bellBtn = document.getElementById('bellBtn');
+        const bellDropdown = document.getElementById('bellDropdown');
+        if (bellBtn && bellDropdown) {
+            bellBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                bellDropdown.classList.toggle('hidden');
+            });
+            document.addEventListener('click', (e) => {
+                if (!bellDropdown.contains(e.target) && e.target !== bellBtn) {
+                    bellDropdown.classList.add('hidden');
+                }
+            });
+        }
+
+        // 3. Tab Switching Logic with Vibrant Teal Active State
+        const tabTriggers = document.querySelectorAll('.tab-trigger');
+        const tabPanels = document.querySelectorAll('.tab-panel');
+        const topPageTitle = document.getElementById('topPageTitle');
+
+        tabTriggers.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetId = btn.getAttribute('data-target');
+                const titleText = btn.querySelector('span:last-child').textContent;
+
+                // Reset Active Tab Buttons
+                tabTriggers.forEach(t => {
+                    t.classList.remove('active', 'bg-[#00e5c9]', 'text-gray-950', 'font-bold', 'shadow-[0_0_15px_rgba(0,229,201,0.35)]');
+                    t.classList.add('text-[#94a3b8]', 'font-medium');
+                    const circle = t.querySelector('.w-6');
+                    if (circle) {
+                        circle.classList.remove('bg-gray-950/20', 'text-gray-950');
+                        circle.classList.add('text-[#94a3b8]');
+                    }
+                });
+
+                // Set Active Tab Button to Teal
+                btn.classList.add('active', 'bg-[#00e5c9]', 'text-gray-950', 'font-bold', 'shadow-[0_0_15px_rgba(0,229,201,0.35)]');
+                btn.classList.remove('text-[#94a3b8]', 'font-medium');
+                const activeCircle = btn.querySelector('.w-6');
+                if (activeCircle) {
+                    activeCircle.classList.add('bg-gray-950/20', 'text-gray-950');
+                    activeCircle.classList.remove('text-[#94a3b8]');
+                }
+
+                // Switch Panels
+                tabPanels.forEach(panel => panel.classList.remove('active'));
+                const activePanel = document.getElementById(targetId);
+                if (activePanel) activePanel.classList.add('active');
+
+                // Update Header Title
+                if (topPageTitle) topPageTitle.textContent = titleText;
+
+                // Close sidebar on mobile
+                if (window.innerWidth < 768) {
+                    toggleSidebar(false);
+                }
+            });
+        });
+
+        // 4. Workout Checklist Interactive Toggles
+        const exerciseChecks = document.querySelectorAll('.exercise-check');
+        exerciseChecks.forEach(chk => {
+            chk.addEventListener('change', () => {
+                const row = chk.closest('.exercise-row');
+                const name = row.querySelector('.exercise-name');
+                const badge = row.querySelector('.exercise-badge');
+                if (chk.checked) {
+                    name.classList.add('line-through', 'text-slate-400');
+                    badge.className = 'exercise-badge text-[11px] font-bold px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-700';
+                    badge.textContent = 'Completed';
+                } else {
+                    name.classList.remove('line-through', 'text-slate-400');
+                    badge.className = 'exercise-badge text-[11px] font-bold px-2.5 py-1 rounded-lg bg-teal-50 text-[#0d9488]';
+                    badge.textContent = 'Up Next';
+                }
+            });
+        });
+
+        const completeWorkoutBtn = document.getElementById('completeWorkoutBtn');
+        if (completeWorkoutBtn) {
+            completeWorkoutBtn.addEventListener('click', () => {
+                exerciseChecks.forEach(chk => {
+                    chk.checked = true;
+                    const row = chk.closest('.exercise-row');
+                    const name = row.querySelector('.exercise-name');
+                    const badge = row.querySelector('.exercise-badge');
+                    name.classList.add('line-through', 'text-slate-400');
+                    badge.className = 'exercise-badge text-[11px] font-bold px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-700';
+                    badge.textContent = 'Completed';
+                });
+                showToast("Awesome work! All today's exercises marked completed.");
+            });
+        }
+
+        // 5. Workout Periodization Table Category Filters
+        const workoutFilters = document.querySelectorAll('#workoutFilters .workout-filter');
+        const workoutRows = document.querySelectorAll('#workoutTableBody tr');
+        workoutFilters.forEach(fBtn => {
+            fBtn.addEventListener('click', () => {
+                workoutFilters.forEach(b => {
+                    b.classList.remove('active', 'bg-white', 'text-slate-900', 'shadow-sm');
+                    b.classList.add('text-slate-600');
+                });
+                fBtn.classList.add('active', 'bg-white', 'text-slate-900', 'shadow-sm');
+                fBtn.classList.remove('text-slate-600');
+
+                const filterVal = fBtn.getAttribute('data-filter');
+                workoutRows.forEach(row => {
+                    if (filterVal === 'all' || row.getAttribute('data-category') === filterVal) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // 6. Interactive Hydration Water Logger
+        let currentWater = 2.8;
+        const waterLoggedVal = document.getElementById('waterLoggedVal');
+        const waterProgressBar = document.getElementById('waterProgressBar');
+        const addWater250Btn = document.getElementById('addWater250Btn');
+        const addWater500Btn = document.getElementById('addWater500Btn');
+
+        function updateWater(addLiters) {
+            currentWater = Math.round((currentWater + addLiters) * 100) / 100;
+            if (waterLoggedVal) waterLoggedVal.textContent = currentWater.toFixed(1);
+            if (waterProgressBar) {
+                const pct = Math.min(Math.round((currentWater / 3.5) * 100), 100);
+                waterProgressBar.style.width = pct + '%';
+            }
+            showToast(`Hydration logged: +${addLiters * 1000} ml recorded!`);
+        }
+
+        if (addWater250Btn) addWater250Btn.addEventListener('click', () => updateWater(0.25));
+        if (addWater500Btn) addWater500Btn.addEventListener('click', () => updateWater(0.5));
+
+        // 7. Meal Checklist Toggles
+        const mealChecks = document.querySelectorAll('.meal-check');
+        mealChecks.forEach(mChk => {
+            mChk.addEventListener('change', () => {
+                const header = mChk.closest('div').querySelector('h4');
+                const badge = mChk.closest('div').querySelector('span');
+                if (mChk.checked) {
+                    header.classList.add('line-through', 'text-slate-400');
+                    if (badge) {
+                        badge.className = 'px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-bold';
+                        badge.textContent = 'Consumed';
+                    }
+                    showToast('Meal successfully logged into daily macros!');
+                } else {
+                    header.classList.remove('line-through', 'text-slate-400');
+                    if (badge) {
+                        badge.className = 'px-2 py-0.5 rounded-full bg-teal-50 text-[#0d9488] text-[10px] font-bold';
+                        badge.textContent = 'Up Next';
+                    }
+                }
+            });
+        });
+
+        // 8. Session Booking Form (Validation & 404 Redirection)
+        const bookSessionForm = document.getElementById('bookSessionForm');
+        if (bookSessionForm) {
+            bookSessionForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const trainerInput = document.getElementById('bookTrainer');
+                const dateInput = document.getElementById('bookDate');
+                const timeInput = document.getElementById('bookTime');
+
+                if (!trainerInput || !trainerInput.value.trim()) {
+                    if (trainerInput) trainerInput.reportValidity();
+                    showToast('Please select a trainer.');
+                    return;
+                }
+                if (!dateInput || !dateInput.value.trim()) {
+                    if (dateInput) {
+                        dateInput.reportValidity();
+                        dateInput.focus();
+                    }
+                    showToast('Please choose a session date.');
+                    return;
+                }
+                if (!timeInput || !timeInput.value.trim()) {
+                    if (timeInput) timeInput.reportValidity();
+                    showToast('Please choose a time slot.');
+                    return;
+                }
+
+                // Form validated successfully -> Redirect to 404 page
+                window.location.href = '404.html';
+            });
+        }
+
+        // 9. Profile & Goals Form (Validation & 404 Redirection)
+        const profileForm = document.getElementById('profileForm');
+        if (profileForm) {
+            profileForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const nameInput = document.getElementById('profName');
+                const emailInput = document.getElementById('profEmail');
+
+                if (!nameInput || !nameInput.value.trim()) {
+                    if (nameInput) {
+                        nameInput.reportValidity();
+                        nameInput.focus();
+                    }
+                    showToast('Please enter your full name.');
+                    return;
+                }
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailInput || !emailInput.value.trim() || !emailRegex.test(emailInput.value.trim())) {
+                    if (emailInput) {
+                        emailInput.setCustomValidity('Please enter a valid email address.');
+                        emailInput.reportValidity();
+                        emailInput.focus();
+                        emailInput.addEventListener('input', () => emailInput.setCustomValidity(''), { once: true });
+                    }
+                    showToast('Please enter a valid email address.');
+                    return;
+                }
+
+                // Form validated successfully -> Redirect to 404 page
+                window.location.href = '404.html';
+            });
+        }
+
+        // ----------------------------------------------------
+        // 404 REDIRECTION FOR ALL CONTENT LINKS & BUTTONS (EXCEPT SIDEBAR MENUS)
+        // ----------------------------------------------------
+        document.addEventListener('click', (e) => {
+            // Keep sidebar menus and mobile toggles functional
+            if (e.target.closest('#portalSidebar, #menuToggleBtn, #closeSidebarBtn, #mobileSidebarBackdrop')) {
+                return;
+            }
+
+            // Allow typing/selecting in forms without navigation
+            if (e.target.closest('input, textarea, select, label')) {
+                return;
+            }
+
+            // Allow form submit buttons to trigger form submit validation
+            const submitBtn = e.target.closest('button[type="submit"], input[type="submit"]');
+            if (submitBtn) {
+                return;
+            }
+
+            // All other links and buttons inside the dashboard go to 404
+            const clickable = e.target.closest('a, button');
+            if (clickable) {
+                e.preventDefault();
+                window.location.href = '404.html';
+            }
+        });
+
+        // 10. Dynamic User Name & Email Hydration (From Login)
+        function formatNameFromEmail(email) {
+            if (!email || !email.includes('@')) return 'Alexander Vance';
+            const usernamePart = email.split('@')[0];
+            const parts = usernamePart.split(/[._+-]+/).filter(Boolean);
+            if (!parts.length) return 'Member';
+            const formatted = parts.map(part => {
+                const clean = part.replace(/\d+$/, '');
+                const word = clean || part;
+                return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+            }).join(' ');
+            return formatted || 'Member';
+        }
+
+        function getInitials(name) {
+            if (!name) return 'AV';
+            const parts = name.trim().split(/\s+/);
+            if (parts.length >= 2) {
+                return (parts[0][0] + parts[1][0]).toUpperCase();
+            }
+            return name.slice(0, 2).toUpperCase();
+        }
+
+        function initUserDetails() {
+            const params = new URLSearchParams(window.location.search);
+            const paramEmail = params.get('email');
+            const paramName = params.get('name');
+            
+            let email = paramEmail || '';
+            let name = paramName || '';
+            
+            try {
+                if (!email) email = localStorage.getItem('stackly_logged_user') || '';
+                if (!name) name = localStorage.getItem('stackly_user_name') || '';
+            } catch (e) {}
+
+            if (email && !name) {
+                name = formatNameFromEmail(email);
+            }
+
+            // Defaults if opened directly without prior login
+            if (!email) email = 'alexander.vance@stacklyfit.com';
+            if (!name) name = 'Alexander Vance';
+
+            const isCustom = (email.toLowerCase() !== 'alexander.vance@stacklyfit.com');
+
+            // Update Top Profile Logo Pill
+            const userHeaderName = document.getElementById('userHeaderName');
+            const userHeaderEmail = document.getElementById('userHeaderEmail');
+            const userHeaderAvatar = document.getElementById('userHeaderAvatar');
+            const userHeaderInitials = document.getElementById('userHeaderInitials');
+
+            if (userHeaderName) userHeaderName.textContent = name;
+            if (userHeaderEmail) {
+                userHeaderEmail.textContent = email;
+                userHeaderEmail.setAttribute('title', email);
+            }
+
+            if (isCustom && userHeaderAvatar && userHeaderInitials) {
+                userHeaderAvatar.classList.add('hidden');
+                userHeaderInitials.classList.remove('hidden');
+                userHeaderInitials.classList.add('flex');
+                userHeaderInitials.textContent = getInitials(name);
+            }
+
+            // Update Welcome Greeting in Overview Tab
+            const welcomeUserName = document.getElementById('welcomeUserName');
+            const welcomeUserEmail = document.getElementById('welcomeUserEmail');
+            if (welcomeUserName) welcomeUserName.textContent = name;
+            if (welcomeUserEmail) welcomeUserEmail.textContent = email;
+
+            // Update Profile & Goals Tab
+            const profileCardName = document.getElementById('profileCardName');
+            const profileCardEmail = document.getElementById('profileCardEmail');
+            const profileCardAvatar = document.getElementById('profileCardAvatar');
+            const profileCardInitials = document.getElementById('profileCardInitials');
+            const profNameInput = document.getElementById('profName');
+            const profEmailInput = document.getElementById('profEmail');
+
+            if (profileCardName) profileCardName.textContent = name;
+            if (profileCardEmail) profileCardEmail.textContent = email;
+            if (profNameInput) profNameInput.value = name;
+            if (profEmailInput) profEmailInput.value = email;
+
+            if (isCustom && profileCardAvatar && profileCardInitials) {
+                profileCardAvatar.classList.add('hidden');
+                profileCardInitials.classList.remove('hidden');
+                profileCardInitials.classList.add('flex');
+                profileCardInitials.textContent = getInitials(name);
+            }
+        }
+
+        // Run on page load
+        initUserDetails();
+    </script>
+
+    <!-- AOS (Animate On Scroll) JS CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({ duration: 750, easing: 'ease-out-cubic', once: true, offset: 40 });
+    </script>
+</body>
+</html>

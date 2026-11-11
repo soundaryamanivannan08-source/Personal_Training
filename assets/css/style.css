@@ -1,0 +1,152 @@
+/* Custom styling for Stackly Personal Training */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap');
+
+:root {
+    --theme-teal: #00e5c9;
+    --theme-teal-hover: #1cf5dc;
+    --theme-teal-glow: rgba(0, 229, 201, 0.45);
+    --theme-dark-bg: #07111a;
+    --theme-dark-card: #0d1924;
+    --theme-dark-card-hover: #122130;
+    --theme-border: rgba(255, 255, 255, 0.08);
+    --theme-border-teal: rgba(0, 229, 201, 0.25);
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color-scheme: dark;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: var(--theme-dark-bg);
+    color: #e2e8f0;
+    overflow-x: hidden;
+    position: relative;
+}
+
+h1, h2, h3, h4, .font-heading {
+    font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+}
+
+#main-nav {
+    box-shadow: none !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #060e15;
+}
+::-webkit-scrollbar-thumb {
+    background: #162a39;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--theme-teal);
+}
+
+/* Teal Glow Utilities */
+.teal-glow {
+    box-shadow: 0 0 25px var(--theme-teal-glow);
+}
+.teal-glow-lg {
+    box-shadow: 0 0 45px rgba(0, 229, 201, 0.35);
+}
+.teal-text-glow {
+    text-shadow: 0 0 20px rgba(0, 229, 201, 0.4);
+}
+
+/* Hero Background styling */
+.hero-wrapper {
+    position: relative;
+    background-color: #07111a;
+    background-image: 
+        linear-gradient(to right, #07111a 0%, rgba(7, 17, 26, 0.98) 35%, rgba(7, 17, 26, 0.75) 60%, rgba(7, 17, 26, 0.3) 100%),
+        url('../images/hero-bg-clean.webp?v=2');
+    background-size: cover;
+    background-position: right center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+@media (max-width: 768px) {
+    .hero-wrapper {
+        background-image: 
+            linear-gradient(to bottom, rgba(7, 17, 26, 0.85) 0%, rgba(7, 17, 26, 0.95) 70%, #07111a 100%),
+            url('../images/hero-bg-clean.webp?v=2');
+        background-position: center top;
+    }
+}
+
+/* Glassmorphism effects */
+.glass-panel {
+    background: rgba(13, 25, 36, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.glass-panel-teal {
+    background: rgba(13, 25, 36, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 229, 201, 0.25);
+}
+
+/* Card hover animation */
+.hover-lift {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+.hover-lift:hover {
+    transform: translateY(-6px);
+    border-color: rgba(0, 229, 201, 0.4);
+    box-shadow: 0 16px 35px -10px rgba(0, 229, 201, 0.15);
+}
+
+/* Animated Pulse Gradient Badge */
+@keyframes pulseTeal {
+    0%, 100% {
+        opacity: 0.7;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+.pulse-teal {
+    animation: pulseTeal 2.5s infinite ease-in-out;
+}
+
+/* Modal styles */
+.modal-backdrop {
+    background: rgba(4, 9, 14, 0.85);
+    backdrop-filter: blur(8px);
+}
+
+/* Font Awesome Custom Hand Wave Icon Extension */
+@keyframes wave-hand {
+    0%, 100% { transform: rotate(0deg); }
+    20%, 60% { transform: rotate(14deg); }
+    40%, 80% { transform: rotate(-14deg); }
+}
+.wave-hand-icon {
+    display: inline-block;
+    transform-origin: 70% 70%;
+    animation: wave-hand 2.2s infinite ease-in-out;
+}
+.fa-hand-wave,
+i.fa-hand-wave {
+    display: inline-block;
+    width: 1.1em;
+    height: 1.1em;
+    vertical-align: -0.15em;
+    background-color: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M.975 7q0-2.5 1.763-4.262T7 .974V3Q5.35 3 4.175 4.175T3 7zM5.3 18.725Q3.025 16.45 3.025 13.25T5.3 7.775L7.05 6l.3.3q.725.725.725 1.762T7.35 9.826l-.35.35q-.3.3-.3.713t.3.712l.9.9q.65.65.65 1.575T7.9 15.65l1.075 1.075q1.1-1.1 1.1-2.637T8.95 11.425l-.55-.55q.65-.65.925-1.463T9.55 7.75l4.475-4.475q.3-.3.713-.3t.712.3t.3.712t-.3.713l-4.675 4.675l1.05 1.05l6.025-6q.3-.3.7-.3t.7.3t.3.7t-.3.7l-6 6.025l1.05 1.05l5.3-5.3q.3-.3.713-.3t.712.3t.3.713t-.3.712l-5.3 5.3l1.05 1.05l4.05-4.05q.3-.3.713-.3t.712.3t.3.713t-.3.712l-6 5.975Q13.975 21 10.775 21T5.3 18.725m11.7 4.3V21q1.65 0 2.825-1.175T21 17h2.025q0 2.5-1.763 4.263T17 23.025'/%3E%3C/svg%3E") no-repeat center / contain;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M.975 7q0-2.5 1.763-4.262T7 .974V3Q5.35 3 4.175 4.175T3 7zM5.3 18.725Q3.025 16.45 3.025 13.25T5.3 7.775L7.05 6l.3.3q.725.725.725 1.762T7.35 9.826l-.35.35q-.3.3-.3.713t.3.712l.9.9q.65.65.65 1.575T7.9 15.65l1.075 1.075q1.1-1.1 1.1-2.637T8.95 11.425l-.55-.55q.65-.65.925-1.463T9.55 7.75l4.475-4.475q.3-.3.713-.3t.712.3t.3.712t-.3.713l-4.675 4.675l1.05 1.05l6.025-6q.3-.3.7-.3t.7.3t.3.7t-.3.7l-6 6.025l1.05 1.05l5.3-5.3q.3-.3.713-.3t.712.3t.3.713t-.3.712l-5.3 5.3l1.05 1.05l4.05-4.05q.3-.3.713-.3t.712.3t.3.713t-.3.712l-6 5.975Q13.975 21 10.775 21T5.3 18.725m11.7 4.3V21q1.65 0 2.825-1.175T21 17h2.025q0 2.5-1.763 4.263T17 23.025'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+

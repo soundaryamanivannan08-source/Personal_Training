@@ -1,0 +1,370 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | Stackly Personal Training</title>
+    <meta name="description" content="Register for your Stackly Personal Training membership and begin your customized fitness transformation.">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        teal: {
+                            400: '#2dd4bf',
+                            500: '#14b8a6',
+                            accent: '#00e5c9',
+                            glow: 'rgba(0, 229, 201, 0.45)',
+                        },
+                        theme: {
+                            dark: '#07111a',
+                            darker: '#040b11',
+                            card: '#0d1924',
+                            cardHover: '#132332',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
+                        heading: ['Outfit', '"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- AOS (Animate On Scroll) Animation CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+    <!-- Fonts & Custom Styles -->
+    <link rel="stylesheet" href="assets/css/style.css?v=2">
+    <style>
+        .auth-bg-visual {
+            background-image: 
+                linear-gradient(135deg, rgba(7, 17, 26, 0.72) 0%, rgba(7, 17, 26, 0.94) 100%),
+                url('assets/images/program-hiit.webp');
+            background-size: cover;
+            background-position: center;
+        }
+        .role-btn-active {
+            background-color: #00e5c9 !important;
+            color: #040b11 !important;
+            box-shadow: 0 0 20px rgba(0, 229, 201, 0.35);
+        }
+        .role-btn-inactive {
+            background-color: transparent;
+            color: #94a3b8;
+        }
+        .role-btn-inactive:hover {
+            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-[#07111a] text-slate-100 font-sans selection:bg-[#00e5c9] selection:text-black min-h-screen flex flex-col md:flex-row overflow-x-hidden">
+
+    <!-- ========================================================
+         LEFT SIDE: BRAND HERO VISUAL (Desktop / Tablet)
+         ======================================================== -->
+    <div class="hidden md:flex md:w-1/2 lg:w-5/12 auth-bg-visual relative p-10 lg:p-14 flex-col justify-between items-start border-r border-white/10">
+        
+        <!-- Brand Logo Header -->
+        <a href="index.html" class="flex items-center group z-10 transition-transform duration-300 hover:scale-105">
+            <img src="assets/images/logo_0991.webp" alt="Stackly" class="h-9 lg:h-10 w-auto object-contain">
+        </a>
+
+        <!-- Center Brand Message -->
+        <div data-aos="fade-up" class="z-10 max-w-lg my-auto py-10">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#00e5c9]/15 border border-[#00e5c9]/30 text-[#00e5c9] text-xs font-bold uppercase tracking-wider mb-5">
+                <i class="fa-solid fa-fire text-xs"></i>
+                <span>Join The Elite Community</span>
+            </div>
+            <h1 class="text-4xl lg:text-5xl font-extrabold text-white font-heading leading-tight mb-5">
+                Start Your Journey With <span class="text-[#00e5c9]">Dedicated Trainers.</span>
+            </h1>
+            <p class="text-gray-300 text-sm lg:text-base leading-relaxed mb-8">
+                Create your profile to receive individualized strength programming, bespoke sports nutrition macros, and 1-on-1 private studio training.
+            </p>
+
+            <!-- Feature Checkpoints -->
+            <div class="space-y-3.5 mb-8">
+                <div class="flex items-center space-x-3 text-sm text-gray-200">
+                    <div class="w-6 h-6 rounded-full bg-[#00e5c9]/20 text-[#00e5c9] flex items-center justify-center flex-shrink-0 text-xs">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <span>Science-backed 1-on-1 progressive training</span>
+                </div>
+                <div class="flex items-center space-x-3 text-sm text-gray-200">
+                    <div class="w-6 h-6 rounded-full bg-[#00e5c9]/20 text-[#00e5c9] flex items-center justify-center flex-shrink-0 text-xs">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <span>Bi-weekly InBody body composition scans</span>
+                </div>
+                <div class="flex items-center space-x-3 text-sm text-gray-200">
+                    <div class="w-6 h-6 rounded-full bg-[#00e5c9]/20 text-[#00e5c9] flex items-center justify-center flex-shrink-0 text-xs">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <span>Direct coach WhatsApp access & habit coaching</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Visual Footer -->
+        <div class="z-10 text-xs text-gray-400">
+            &copy; 2026 Stackly Personal Training. All rights reserved.
+        </div>
+    </div>
+
+    <!-- ========================================================
+         RIGHT SIDE: SIGNUP FORM
+         ======================================================== -->
+    <div class="w-full md:w-1/2 lg:w-7/12 flex flex-col justify-center px-6 sm:px-12 lg:px-20 py-10 sm:py-12 relative min-h-screen bg-[#07111a]">
+        
+        <!-- Top Navigation Row: Back to Home & Mobile Logo -->
+        <div class="flex items-center justify-between mb-6 sm:mb-8">
+            <!-- Mobile Brand Logo -->
+            <a href="index.html" class="flex md:hidden items-center">
+                <img src="assets/images/logo_0991.webp" alt="Stackly" class="h-7 sm:h-8 w-auto object-contain">
+            </a>
+
+            <!-- Back to Home Button -->
+            <a href="index.html" class="inline-flex items-center space-x-2 text-xs sm:text-sm font-semibold text-gray-400 hover:text-[#00e5c9] transition-all duration-300 group ml-auto py-2 px-4 rounded-full border border-white/5 hover:border-[#00e5c9]/40 bg-white/[0.02]">
+                <i class="fa-solid fa-arrow-left text-xs transition-transform duration-300 group-hover:-translate-x-1"></i>
+                <span>Back to Home</span>
+            </a>
+        </div>
+
+        <!-- Form Container -->
+        <div data-aos="zoom-in" class="w-full max-w-md mx-auto">
+            
+            <!-- Heading -->
+            <div class="mb-6">
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white font-heading tracking-tight mb-2">Create Account</h2>
+                <p class="text-gray-400 text-sm">Please select your portal role and enter your details to register.</p>
+            </div>
+
+            <!-- Role Selector Tabs (User / Admin) -->
+            <div class="mb-6">
+                <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2.5">Select Role</label>
+                <div class="grid grid-cols-2 p-1.5 rounded-2xl bg-[#0d1924] border border-white/10 gap-1.5">
+                    <button type="button" id="role-user-btn" class="w-full py-3 rounded-xl text-sm font-bold transition-all duration-300 flex items-center justify-center space-x-2 role-btn-active">
+                        <i class="fa-solid fa-user-check text-xs"></i>
+                        <span>User Portal</span>
+                    </button>
+                    <button type="button" id="role-admin-btn" class="w-full py-3 rounded-xl text-sm font-bold transition-all duration-300 flex items-center justify-center space-x-2 role-btn-inactive">
+                        <i class="fa-solid fa-shield-halved text-xs"></i>
+                        <span>Admin Portal</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Registration Form (Native browser validation only) -->
+            <form id="signupForm" class="space-y-4">
+                
+                <!-- Hidden input storing selected role -->
+                <input type="hidden" id="selected_role" name="role" value="user">
+
+                <!-- Username Input -->
+                <div>
+                    <label for="username" class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1.5">Username *</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-500">
+                            <i class="fa-regular fa-user text-sm"></i>
+                        </div>
+                        <input 
+                            type="text" 
+                            id="username" 
+                            name="username"
+                            required 
+                            placeholder="alexmorgan"
+                            class="w-full bg-[#0d1924] border border-white/10 focus:border-[#00e5c9] focus:ring-1 focus:ring-[#00e5c9] rounded-xl pl-11 pr-4 py-3 text-white placeholder-gray-500 text-sm outline-none transition-all duration-300"
+                        >
+                    </div>
+                </div>
+
+                <!-- Email Input -->
+                <div>
+                    <label for="email" class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1.5">Email Address *</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-500">
+                            <i class="fa-regular fa-envelope text-sm"></i>
+                        </div>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email"
+                            required 
+                            placeholder="name@example.com"
+                            class="w-full bg-[#0d1924] border border-white/10 focus:border-[#00e5c9] focus:ring-1 focus:ring-[#00e5c9] rounded-xl pl-11 pr-4 py-3 text-white placeholder-gray-500 text-sm outline-none transition-all duration-300"
+                        >
+                    </div>
+                </div>
+
+                <!-- Password Input with Eye Toggle -->
+                <div>
+                    <label for="password" class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1.5">Password *</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-500">
+                            <i class="fa-solid fa-lock text-sm"></i>
+                        </div>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password"
+                            required 
+                            placeholder="Create a strong password"
+                            class="w-full bg-[#0d1924] border border-white/10 focus:border-[#00e5c9] focus:ring-1 focus:ring-[#00e5c9] rounded-xl pl-11 pr-12 py-3 text-white placeholder-gray-500 text-sm outline-none transition-all duration-300"
+                        >
+                        <!-- Password Eye Toggle -->
+                        <button 
+                            type="button" 
+                            id="togglePassword" 
+                            aria-label="Toggle password visibility" 
+                            class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-[#00e5c9] transition-colors focus:outline-none"
+                        >
+                            <i class="fa-regular fa-eye text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Confirm Password Input with Eye Toggle -->
+                <div>
+                    <label for="confirm_password" class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-1.5">Confirm Password *</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-500">
+                            <i class="fa-solid fa-shield text-sm"></i>
+                        </div>
+                        <input 
+                            type="password" 
+                            id="confirm_password" 
+                            name="confirm_password"
+                            required 
+                            placeholder="Confirm your password"
+                            class="w-full bg-[#0d1924] border border-white/10 focus:border-[#00e5c9] focus:ring-1 focus:ring-[#00e5c9] rounded-xl pl-11 pr-12 py-3 text-white placeholder-gray-500 text-sm outline-none transition-all duration-300"
+                        >
+                        <!-- Confirm Password Eye Toggle -->
+                        <button 
+                            type="button" 
+                            id="toggleConfirmPassword" 
+                            aria-label="Toggle confirm password visibility" 
+                            class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-[#00e5c9] transition-colors focus:outline-none"
+                        >
+                            <i class="fa-regular fa-eye text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Accept Privacy Policy & Terms Checkbox -->
+                <div class="flex items-start pt-2">
+                    <div class="flex items-center h-5 mt-0.5">
+                        <input 
+                            type="checkbox" 
+                            id="terms" 
+                            name="terms"
+                            required 
+                            class="w-4 h-4 rounded bg-[#0d1924] border-white/20 text-[#00e5c9] focus:ring-[#00e5c9] focus:ring-offset-0 cursor-pointer accent-[#00e5c9]"
+                        >
+                    </div>
+                    <label for="terms" class="ml-2.5 block text-xs sm:text-sm text-gray-300 cursor-pointer select-none leading-snug">
+                        I accept the <a href="#" class="text-[#00e5c9] hover:underline font-semibold">Privacy Policy</a> and <a href="#" class="text-[#00e5c9] hover:underline font-semibold">Terms of Service</a> *
+                    </label>
+                </div>
+
+                <!-- Register Submit Button -->
+                <button 
+                    type="submit" 
+                    id="signupSubmitBtn"
+                    class="w-full bg-[#00e5c9] hover:bg-[#25f4dc] text-gray-950 font-black py-4 rounded-xl transition-all duration-300 shadow-[0_0_20px_rgba(0,229,201,0.35)] hover:shadow-[0_0_30px_rgba(0,229,201,0.6)] transform hover:-translate-y-0.5 active:translate-y-0 text-sm uppercase tracking-wider flex items-center justify-center space-x-2.5 mt-3"
+                >
+                    <span>Create Account</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </button>
+            </form>
+
+            <!-- Link to Login Page -->
+            <div class="mt-6 pt-5 border-t border-white/10 text-center">
+                <p class="text-sm text-gray-400">
+                    Already have an account? 
+                    <a href="login.html" class="font-bold text-[#00e5c9] hover:underline transition ml-1">Sign In</a>
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        // 1. Role Selector Toggle Logic
+        const roleUserBtn = document.getElementById('role-user-btn');
+        const roleAdminBtn = document.getElementById('role-admin-btn');
+        const selectedRoleInput = document.getElementById('selected_role');
+
+        roleUserBtn.addEventListener('click', () => {
+            selectedRoleInput.value = 'user';
+            roleUserBtn.className = 'w-full py-3 rounded-xl text-sm font-bold transition-all duration-300 flex items-center justify-center space-x-2 role-btn-active';
+            roleAdminBtn.className = 'w-full py-3 rounded-xl text-sm font-bold transition-all duration-300 flex items-center justify-center space-x-2 role-btn-inactive';
+        });
+
+        roleAdminBtn.addEventListener('click', () => {
+            selectedRoleInput.value = 'admin';
+            roleAdminBtn.className = 'w-full py-3 rounded-xl text-sm font-bold transition-all duration-300 flex items-center justify-center space-x-2 role-btn-active';
+            roleUserBtn.className = 'w-full py-3 rounded-xl text-sm font-bold transition-all duration-300 flex items-center justify-center space-x-2 role-btn-inactive';
+        });
+
+        // 2. Password Visibility Eye Toggle Helper
+        function setupPasswordToggle(btnId, inputId) {
+            const btn = document.getElementById(btnId);
+            const input = document.getElementById(inputId);
+            if (!btn || !input) return;
+
+            const icon = btn.querySelector('i');
+            btn.addEventListener('click', () => {
+                const isPassword = input.getAttribute('type') === 'password';
+                input.setAttribute('type', isPassword ? 'text' : 'password');
+                if (isPassword) {
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                } else {
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }
+            });
+        }
+
+        setupPasswordToggle('togglePassword', 'password');
+        setupPasswordToggle('toggleConfirmPassword', 'confirm_password');
+
+        // 3. Form Submission Handling (Native browser validation only)
+        const signupForm = document.getElementById('signupForm');
+        signupForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Native validation already confirmed all required fields and terms checkbox
+            
+            const username = document.getElementById('username').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const role = selectedRoleInput.value;
+
+            try {
+                localStorage.setItem('stackly_logged_user', email);
+                localStorage.setItem('stackly_user_name', username);
+                localStorage.setItem('stackly_user_role', role);
+            } catch (err) {}
+
+            // Redirect user to Login page with prefilled email
+            const encEmail = encodeURIComponent(email);
+            window.location.href = `login.html?registered=true&email=${encEmail}&role=${role}`;
+        });
+    </script>
+
+    <!-- AOS (Animate On Scroll) JS CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({ duration: 750, easing: 'ease-out-cubic', once: true, offset: 40 });
+    </script>
+</body>
+</html>
