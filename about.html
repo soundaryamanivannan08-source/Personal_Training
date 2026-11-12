@@ -249,13 +249,13 @@
                     </div>
 
                     <!-- Right: Visual Image with Floating Frosted Badges -->
-                    <div class="lg:col-span-5 relative" data-aos="fade-up" data-aos-delay="200">
-                        <div class="relative rounded-3xl overflow-hidden border border-white/15 shadow-2xl group">
-                            <img src="assets/images/about-fitness.webp" alt="Stackly High Performance Private Pod Training" class="w-full h-[420px] sm:h-[500px] object-cover group-hover:scale-105 transition-transform duration-700">
-                            <div class="absolute inset-0 bg-gradient-to-t from-[#07111a] via-transparent to-transparent opacity-80"></div>
+                    <div class="lg:col-span-5 relative max-w-md sm:max-w-none mx-auto w-full" data-aos="fade-up" data-aos-delay="200">
+                        <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/15 shadow-2xl group bg-[#07111a]">
+                            <img src="assets/images/about-fitness.webp" alt="Stackly High Performance Private Pod Training" class="w-full aspect-[3/2] sm:aspect-auto sm:h-[460px] lg:h-[500px] object-cover sm:object-cover group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#07111a] via-transparent to-transparent opacity-80 hidden sm:block"></div>
                             
-                            <!-- Bottom Overlay Card -->
-                            <div class="absolute bottom-5 left-5 right-5 p-4 rounded-2xl bg-[#07111a]/90 backdrop-blur-md border border-[#00e5c9]/30 shadow-xl">
+                            <!-- Bottom Overlay Card (Tablet & Desktop) -->
+                            <div class="hidden sm:block absolute bottom-5 left-5 right-5 p-4 rounded-2xl bg-[#07111a]/90 backdrop-blur-md border border-[#00e5c9]/30 shadow-xl">
                                 <div class="flex items-center space-x-3">
                                     <div class="w-10 h-10 rounded-xl bg-[#00e5c9] text-gray-950 flex items-center justify-center font-bold text-lg shrink-0">
                                         <i class="fa-solid fa-shield-halved"></i>
@@ -265,6 +265,17 @@
                                         <div class="text-sm font-extrabold text-white">100% Dedicated Private Pods</div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+
+                        <!-- Mobile Info Card: positioned below the image on mobile so the image remains 100% visible and unobstructed -->
+                        <div class="sm:hidden mt-3 p-3.5 rounded-2xl bg-[#0b1724] border border-[#00e5c9]/30 shadow-xl flex items-center space-x-3">
+                            <div class="w-9 h-9 rounded-xl bg-[#00e5c9] text-gray-950 flex items-center justify-center font-bold text-base shrink-0">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div>
+                                <div class="text-[11px] font-bold text-[#00e5c9] uppercase tracking-wider">Zero Distractions Guarantee</div>
+                                <div class="text-xs font-extrabold text-white">100% Dedicated Private Pods</div>
                             </div>
                         </div>
 
@@ -1095,13 +1106,13 @@
                         Science-backed 1-on-1 personal training, private studio pod access, and clinical nutrition precision engineered for sustainable physical excellence.
                     </p>
                     <div class="flex space-x-3 pt-2">
-                        <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-full bg-[#0d1924] border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#00e5c9] hover:border-[#00e5c9] transition">
+                        <a href="404.html" aria-label="Instagram" class="w-9 h-9 rounded-full bg-[#0d1924] border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#00e5c9] hover:border-[#00e5c9] transition">
                             <i class="fa-brands fa-instagram text-xs"></i>
                         </a>
-                        <a href="#" aria-label="YouTube" class="w-9 h-9 rounded-full bg-[#0d1924] border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#00e5c9] hover:border-[#00e5c9] transition">
+                        <a href="404.html" aria-label="YouTube" class="w-9 h-9 rounded-full bg-[#0d1924] border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#00e5c9] hover:border-[#00e5c9] transition">
                             <i class="fa-brands fa-youtube text-xs"></i>
                         </a>
-                        <a href="#" aria-label="LinkedIn" class="w-9 h-9 rounded-full bg-[#0d1924] border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#00e5c9] hover:border-[#00e5c9] transition">
+                        <a href="404.html" aria-label="LinkedIn" class="w-9 h-9 rounded-full bg-[#0d1924] border border-white/10 flex items-center justify-center text-gray-400 hover:text-[#00e5c9] hover:border-[#00e5c9] transition">
                             <i class="fa-brands fa-linkedin-in text-xs"></i>
                         </a>
                     </div>
@@ -1112,11 +1123,11 @@
                     <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4 font-heading">Quick Links</h4>
                     <ul class="space-y-2.5 text-xs sm:text-sm">
                         <li><a href="index.html" class="hover:text-[#00e5c9] transition">Home</a></li>
-                        <li><a href="about.html" class="text-[#00e5c9] font-bold">About Us</a></li>
-                        <li><a href="service.html" class="hover:text-[#00e5c9] transition">Training Programs</a></li>
-                        <li><a href="blog.html" class="hover:text-[#00e5c9] transition">Fitness Blog</a></li>
-                        <li><a href="contact.html" class="hover:text-[#00e5c9] transition">Contact &amp; Studio</a></li>
-                        <li><a href="login.html" class="hover:text-[#00e5c9] transition">Member Portal Login</a></li>
+                        <li><a href="about.html" class="text-[#00e5c9] font-bold">About </a></li>
+                        <li><a href="service.html" class="hover:text-[#00e5c9] transition">Service</a></li>
+                        <li><a href="blog.html" class="hover:text-[#00e5c9] transition">Blog</a></li>
+                        <li><a href="contact.html" class="hover:text-[#00e5c9] transition">Contact</a></li>
+                        
                     </ul>
                 </div>
 
@@ -1124,11 +1135,11 @@
                 <div>
                     <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-4 font-heading">Programs</h4>
                     <ul class="space-y-2.5 text-xs sm:text-sm">
-                        <li><a href="service.html" class="hover:text-[#00e5c9] transition">1-on-1 Private Pod Coaching</a></li>
-                        <li><a href="service.html" class="hover:text-[#00e5c9] transition">Strength &amp; Hypertrophy</a></li>
-                        <li><a href="service.html" class="hover:text-[#00e5c9] transition">HIIT &amp; Metabolic Conditioning</a></li>
-                        <li><a href="service.html" class="hover:text-[#00e5c9] transition">InBody Biometric Diagnostics</a></li>
-                        <li><a href="service.html" class="hover:text-[#00e5c9] transition">Clinical Sports Nutrition</a></li>
+                        <li><a href="404.html" class="hover:text-[#00e5c9] transition">Pod Coaching</a></li>
+                        <li><a href="404.html" class="hover:text-[#00e5c9] transition">Hypertrophy</a></li>
+                        <li><a href="404.html" class="hover:text-[#00e5c9] transition">Conditioning</a></li>
+                        <li><a href="404.html" class="hover:text-[#00e5c9] transition">Biometric Diagnostics</a></li>
+                        <li><a href="404.html" class="hover:text-[#00e5c9] transition">Sports Nutrition</a></li>
                     </ul>
                 </div>
 
